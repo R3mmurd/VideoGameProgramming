@@ -4,7 +4,7 @@ INCLUDE = -I.
 
 BUILD_DIR = build
 
-OBJ_RULES = Configuration.o Game.o Bird.o Pipe.o PipePair.o World.o StateMachine.o TitleScreenState.o CountDownState.o PlayingState.o
+OBJ_RULES = text_utilities.o Configuration.o Game.o Bird.o Pipe.o PipePair.o World.o StateMachine.o TitleScreenState.o CountDownState.o PlayingState.o
 
 LIBS = -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system $(BUILD_DIR)/*.o
 
@@ -13,6 +13,9 @@ main: $(BUILD_DIR) $(OBJ_RULES) main.cpp
 
 Configuration.o: $(BUILD_DIR) Configuration.hpp Configuration.cpp
 	$(CXX) -c $(INCLUDE) Configuration.cpp -o $(BUILD_DIR)/$@
+
+text_utilities.o: $(BUILD_DIR) src/text_utilities.hpp src/text_utilities.cpp
+	$(CXX) -c $(INCLUDE) src/text_utilities.cpp -o $(BUILD_DIR)/$@
 
 Game.o: $(BUILD_DIR) src/Game.hpp src/Game.cpp
 	$(CXX) -c $(INCLUDE) src/Game.cpp -o $(BUILD_DIR)/$@

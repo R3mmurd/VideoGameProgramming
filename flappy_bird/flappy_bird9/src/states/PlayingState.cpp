@@ -1,4 +1,5 @@
 #include <Configuration.hpp>
+#include <src/text_utilities.hpp>
 #include <src/states/StateMachine.hpp>
 #include <src/states/PlayingState.hpp>
 
@@ -50,11 +51,7 @@ void PlayingState::render(sf::RenderTarget& target) const noexcept
     world.render(target);
     bird.render(target);
 
-    sf::Text score_text;
+    sf::Text score_text = build_text("Score: " + std::to_string(score), Configuration::FLAPPY_TEXT_SIZE, "flappy", sf::Color::White);
     score_text.move(20, 10);
-    score_text.setFont(Configuration::fonts["flappy"]);
-    score_text.setString("Score: " + std::to_string(score));
-    score_text.setCharacterSize(Configuration::FLAPPY_TEXT_SIZE);
-    score_text.setFillColor(sf::Color::White);
     target.draw(score_text);
 }
