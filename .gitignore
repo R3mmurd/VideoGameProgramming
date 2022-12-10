@@ -1,4 +1,5 @@
 .vscode
 **/hello_world
-**/pong
+**/main
 **/*.o
+**/build

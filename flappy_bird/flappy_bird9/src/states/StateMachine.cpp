@@ -1,0 +1,36 @@
+#include <src/states/StateMachine.hpp>
+
+StateMachine::StateMachine(const std::initializer_list<std::pair<std::string, StateBuilder>>& init_states) noexcept
+    : states{init_states.begin(), init_states.end()}
+{
+
+}
+
+void StateMachine::change_state(const std::string& state_name) noexcept
+{
+    auto it = states.find(state_name);
+
+    if (it == states.end())
+    {
+        return;
+    }
+
+    current_state->exit();
+    current_state = it->second(this);
+    current_state->enter();
+}
+
+void StateMachine::handle_inputs(const sf::Event& event) noexcept
+{
+    current_state->handle_inputs(event);
+}
+
+void StateMachine::update(float dt) noexcept
+{
+    current_state->update(dt);
+}
+
+void StateMachine::render(sf::RenderTarget& target) const noexcept
+{
+    current_state->render(target);
+}
