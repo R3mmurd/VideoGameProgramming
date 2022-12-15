@@ -79,3 +79,7 @@ class InputHandler:
                     if action is not None:
                         evt = MouseMotionEvent(event.pos, event.buttons)
                         cls.notify(action, evt)
+            elif event.type == pygame.MOUSEWHEEL:
+                print(event)
+                print(event.x, event.y)
+                print(event.flipped)
