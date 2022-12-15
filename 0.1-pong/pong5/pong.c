@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 #include <allegro5/allegro_primitives.h>
 
 #include "configuration.h"
