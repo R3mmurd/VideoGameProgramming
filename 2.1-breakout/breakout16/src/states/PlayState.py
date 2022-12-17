@@ -177,7 +177,7 @@ class PlayState(BaseState):
                 score=self.score,
                 lives=self.lives,
                 paddle=self.paddle,
-                ball=self.ball,
+                balls=self.balls,
                 bricks=self.bricks,
                 broken_bricks_counter=self.broken_bricks_counter,
                 points_to_next_live=self.points_to_next_live,

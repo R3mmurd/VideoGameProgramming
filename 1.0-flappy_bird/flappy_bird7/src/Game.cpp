@@ -34,7 +34,6 @@ void Game::handle_inputs(const sf::Event& event) noexcept
         bird.jump();
     }
 }
-
 void Game::update(float dt) noexcept
 {
     bird.update(dt);
