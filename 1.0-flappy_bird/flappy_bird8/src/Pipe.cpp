@@ -1,8 +1,8 @@
-#include <Configuration.hpp>
+#include <Settings.hpp>
 #include <src/Pipe.hpp>
 
 Pipe::Pipe(float _x, float _y, bool _inverted) noexcept
-    : x{_x}, y{_y}, inverted{_inverted}, sprite{Configuration::textures["pipe"]}
+    : x{_x}, y{_y}, inverted{_inverted}, sprite{Settings::textures["pipe"]}
 {
     if (inverted)
     {
@@ -14,10 +14,10 @@ sf::FloatRect Pipe::get_collision_rect() const noexcept
 {
     if (!inverted)
     {
-        return sf::FloatRect{x, y, Configuration::PIPE_WIDTH, Configuration::PIPE_HEIGHT};
+        return sf::FloatRect{x, y, Settings::PIPE_WIDTH, Settings::PIPE_HEIGHT};
     }
 
-    return sf::FloatRect{x - Configuration::PIPE_WIDTH, y - Configuration::PIPE_HEIGHT, Configuration::PIPE_WIDTH, Configuration::PIPE_HEIGHT};
+    return sf::FloatRect{x - Settings::PIPE_WIDTH, y - Settings::PIPE_HEIGHT, Settings::PIPE_WIDTH, Settings::PIPE_HEIGHT};
 }
 
 void Pipe::update(float _x) noexcept
@@ -26,7 +26,7 @@ void Pipe::update(float _x) noexcept
 
     if (inverted)
     {
-        x += Configuration::PIPE_WIDTH;
+        x += Settings::PIPE_WIDTH;
     }
 
     sprite.setPosition(x, y);

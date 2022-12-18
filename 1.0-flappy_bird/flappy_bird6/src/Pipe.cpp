@@ -1,8 +1,8 @@
-#include <Configuration.hpp>
+#include <Settings.hpp>
 #include <src/Pipe.hpp>
 
 Pipe::Pipe(float _x, float _y, bool _inverted) noexcept
-    : x{_x}, y{_y}, inverted{_inverted}, sprite{Configuration::textures["pipe"]}
+    : x{_x}, y{_y}, inverted{_inverted}, sprite{Settings::textures["pipe"]}
 {
     if (inverted)
     {
@@ -16,7 +16,7 @@ void Pipe::update(float _x) noexcept
 
     if (inverted)
     {
-        x += Configuration::PIPE_WIDTH;
+        x += Settings::PIPE_WIDTH;
     }
 
     sprite.setPosition(x, y);

@@ -1,7 +1,7 @@
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_primitives.h>
 
-#include "configuration.h"
+#include "settings.h"
 #include "pong.h"
 
 int main()

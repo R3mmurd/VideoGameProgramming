@@ -5,12 +5,10 @@
 
 #include <SFML/Graphics.hpp>
 
-struct Configuration
+struct Settings
 {
     static constexpr int WINDOW_WIDTH{1280};
     static constexpr int WINDOW_HEIGHT{720};
-    static constexpr int VIRTUAL_WIDTH{512};
-    static constexpr int VIRTUAL_HEIGHT{288};
     static constexpr float BIRD_WIDTH{38.f};
     static constexpr float BIRD_HEIGHT{24.f};
 
@@ -20,3 +18,4 @@ struct Configuration
 
     static void load_textures();
 };
+ 

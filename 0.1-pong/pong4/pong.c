@@ -1,6 +1,6 @@
 #include <allegro5/allegro_primitives.h>
 
-#include "configuration.h"
+#include "settings.h"
 #include "fonts.h"
 #include "pong.h"
 

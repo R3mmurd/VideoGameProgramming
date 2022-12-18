@@ -1,31 +1,31 @@
-#include <Configuration.hpp>
+#include <Settings.hpp>
 #include <src/World.hpp>
 
 World::World() noexcept
-    : background{Configuration::textures["background"]}, ground{Configuration::textures["ground"]}
+    : background{Settings::textures["background"]}, ground{Settings::textures["ground"]}
 {
-    ground.setPosition(0, Configuration::VIRTUAL_HEIGHT - Configuration::GROUND_HEIGHT);
+    ground.setPosition(0, Settings::VIRTUAL_HEIGHT - Settings::GROUND_HEIGHT);
 }
 
 void World::update(float dt) noexcept
 {
-    background_x += -Configuration::BACK_SCROLL_SPEED * dt;
+    background_x += -Settings::BACK_SCROLL_SPEED * dt;
 
-    if (background_x <= -Configuration::BACKGROUND_LOOPING_POINT)
+    if (background_x <= -Settings::BACKGROUND_LOOPING_POINT)
     {
         background_x = 0;
     }
 
     background.setPosition(background_x, 0);
 
-    ground_x += -Configuration::MAIN_SCROLL_SPEED * dt;
+    ground_x += -Settings::MAIN_SCROLL_SPEED * dt;
 
-    if (ground_x <= -Configuration::VIRTUAL_WIDTH)
+    if (ground_x <= -Settings::VIRTUAL_WIDTH)
     {
         ground_x = 0;
     }
 
-    ground.setPosition(ground_x, Configuration::VIRTUAL_HEIGHT - Configuration::GROUND_HEIGHT);
+    ground.setPosition(ground_x, Settings::VIRTUAL_HEIGHT - Settings::GROUND_HEIGHT);
 }
 
 void World::render(sf::RenderTarget& target) const noexcept

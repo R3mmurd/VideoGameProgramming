@@ -1,20 +1,20 @@
 #include <stdexcept>
 
-#include <Configuration.hpp>
+#include <Settings.hpp>
 
-std::unordered_map<std::string, sf::Texture> Configuration::textures{};
+std::unordered_map<std::string, sf::Texture> Settings::textures{};
 
-std::unordered_map<std::string, sf::SoundBuffer> Configuration::sound_buffers;
+std::unordered_map<std::string, sf::SoundBuffer> Settings::sound_buffers;
 
-std::unordered_map<std::string, sf::Sound> Configuration::sounds{};
+std::unordered_map<std::string, sf::Sound> Settings::sounds{};
 
-void Configuration::init()
+void Settings::init()
 {
-    Configuration::load_textures();
-    Configuration::load_sounds();
+    Settings::load_textures();
+    Settings::load_sounds();
 }
 
-void Configuration::load_textures()
+void Settings::load_textures()
 {
     sf::Texture texture{};
 
@@ -23,24 +23,24 @@ void Configuration::load_textures()
         throw std::runtime_error{"Error loading texture graphics/bird.png"};
     }
 
-    Configuration::textures["bird"] = texture;
+    Settings::textures["bird"] = texture;
 
     if (!texture.loadFromFile("graphics/background.png"))
     {
         throw std::runtime_error{"Error loading texture graphics/background.png"};
     }
 
-    Configuration::textures["background"] = texture;
+    Settings::textures["background"] = texture;
 
     if (!texture.loadFromFile("graphics/ground.png"))
     {
         throw std::runtime_error{"Error loading texture graphics/ground.png"};
     }
 
-    Configuration::textures["ground"] = texture;
+    Settings::textures["ground"] = texture;
 }
 
-void Configuration::load_sounds()
+void Settings::load_sounds()
 {
     sf::SoundBuffer buffer;
     sf::Sound sound;
@@ -50,8 +50,8 @@ void Configuration::load_sounds()
         throw std::runtime_error{"Error loading sound sounds/jump.wav"};
     }
 
-    auto result = Configuration::sound_buffers.emplace("jump", buffer);
+    auto result = Settings::sound_buffers.emplace("jump", buffer);
 
     sound.setBuffer(result.first->second);
-    Configuration::sounds["jump"] = sound;
+    Settings::sounds["jump"] = sound;
 }

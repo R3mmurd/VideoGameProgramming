@@ -1,29 +1,29 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
-#include <Configuration.hpp>
+#include <Settings.hpp>
 
 #include <src/Bird.hpp>
 
 int main()
 {
-    Configuration::init();
+    Settings::init();
     
-    sf::RenderWindow window{sf::VideoMode{Configuration::WINDOW_WIDTH, Configuration::WINDOW_HEIGHT}, "Flappy Bird", sf::Style::Close};
+    sf::RenderWindow window{sf::VideoMode{Settings::WINDOW_WIDTH, Settings::WINDOW_HEIGHT}, "Flappy Bird", sf::Style::Close};
     sf::RenderTexture render_texture{};
-    render_texture.create(Configuration::VIRTUAL_WIDTH, Configuration::VIRTUAL_HEIGHT);
+    render_texture.create(Settings::VIRTUAL_WIDTH, Settings::VIRTUAL_HEIGHT);
 
     sf::Vector2f scale_factors{
-        float(Configuration::WINDOW_WIDTH) / float(Configuration::VIRTUAL_WIDTH), 
-        float(Configuration::WINDOW_HEIGHT) / float(Configuration::VIRTUAL_HEIGHT)
+        float(Settings::WINDOW_WIDTH) / float(Settings::VIRTUAL_WIDTH), 
+        float(Settings::WINDOW_HEIGHT) / float(Settings::VIRTUAL_HEIGHT)
     };
 
     sf::Sprite render_sprite{render_texture.getTexture()};
     render_sprite.setScale(scale_factors);
 
     Bird bird{
-        Configuration::VIRTUAL_WIDTH / 2 - Configuration::BIRD_WIDTH / 2, Configuration::VIRTUAL_HEIGHT / 2 - Configuration::BIRD_HEIGHT / 2,
-        Configuration::BIRD_WIDTH, Configuration::BIRD_HEIGHT
+        Settings::VIRTUAL_WIDTH / 2 - Settings::BIRD_WIDTH / 2, Settings::VIRTUAL_HEIGHT / 2 - Settings::BIRD_HEIGHT / 2,
+        Settings::BIRD_WIDTH, Settings::BIRD_HEIGHT
     };
 
     sf::Texture texture{};

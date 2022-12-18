@@ -1,6 +1,6 @@
 #include <allegro5/allegro_primitives.h>
 
-#include "configuration.h"
+#include "settings.h"
 #include "pong.h"
 
 void handle_input_pong(struct Pong* pong, ALLEGRO_KEYBOARD_STATE* state)

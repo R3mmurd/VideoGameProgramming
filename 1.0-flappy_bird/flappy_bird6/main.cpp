@@ -1,11 +1,11 @@
 #include <SFML/Window.hpp>
 
-#include <Configuration.hpp>
+#include <Settings.hpp>
 #include <src/Game.hpp>
 
 int main()
 {
-    Configuration::init();
+    Settings::init();
 
     Game game{};
 

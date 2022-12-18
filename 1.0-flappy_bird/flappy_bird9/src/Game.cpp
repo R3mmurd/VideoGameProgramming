@@ -1,11 +1,11 @@
-#include <Configuration.hpp>
+#include <Settings.hpp>
 #include <src/Game.hpp>
 #include <src/states/CountDownState.hpp>
 #include <src/states/TitleScreenState.hpp>
 #include <src/states/PlayingState.hpp>
 
 Game::Game()
-    : render_window{sf::VideoMode{Configuration::WINDOW_WIDTH, Configuration::WINDOW_HEIGHT}, "Flappy Bird", sf::Style::Close},
+    : render_window{sf::VideoMode{Settings::WINDOW_WIDTH, Settings::WINDOW_HEIGHT}, "Flappy Bird", sf::Style::Close},
       render_texture{},
       render_sprite{},
       state_machine{
@@ -14,11 +14,11 @@ Game::Game()
         {"playing", [](StateMachine* sm) { return std::make_shared<PlayingState>(sm); }}
       }
 {
-    render_texture.create(Configuration::VIRTUAL_WIDTH, Configuration::VIRTUAL_HEIGHT);
+    render_texture.create(Settings::VIRTUAL_WIDTH, Settings::VIRTUAL_HEIGHT);
 
     sf::Vector2f scale_factors{
-        float(Configuration::WINDOW_WIDTH) / float(Configuration::VIRTUAL_WIDTH), 
-        float(Configuration::WINDOW_HEIGHT) / float(Configuration::VIRTUAL_HEIGHT)
+        float(Settings::WINDOW_WIDTH) / float(Settings::VIRTUAL_WIDTH), 
+        float(Settings::WINDOW_HEIGHT) / float(Settings::VIRTUAL_HEIGHT)
     };
 
     render_sprite.setTexture(render_texture.getTexture());
@@ -26,8 +26,8 @@ Game::Game()
 
     state_machine.change_state("title");
 
-    Configuration::music.setLoop(true);
-    Configuration::music.play();
+    Settings::music.setLoop(true);
+    Settings::music.play();
 }
 
 sf::RenderWindow& Game::get_window() noexcept

@@ -1,7 +1,7 @@
 #include <allegro5/allegro_primitives.h>
 
 #include "ball.h"
-#include "configuration.h"
+#include "settings.h"
 
 void init_ball(struct Ball* ball, int x, int y, int s)
 {

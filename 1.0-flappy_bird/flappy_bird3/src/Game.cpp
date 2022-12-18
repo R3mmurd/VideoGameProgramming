@@ -1,21 +1,21 @@
-#include <Configuration.hpp>
+#include <Settings.hpp>
 #include <src/Game.hpp>
 
 Game::Game()
-    : render_window{sf::VideoMode{Configuration::WINDOW_WIDTH, Configuration::WINDOW_HEIGHT}, "Flappy Bird", sf::Style::Close},
+    : render_window{sf::VideoMode{Settings::WINDOW_WIDTH, Settings::WINDOW_HEIGHT}, "Flappy Bird", sf::Style::Close},
       render_texture{},
       render_sprite{},
       bird{
-        Configuration::VIRTUAL_WIDTH / 2 - Configuration::BIRD_WIDTH / 2, Configuration::VIRTUAL_HEIGHT / 2 - Configuration::BIRD_HEIGHT / 2,
-        Configuration::BIRD_WIDTH, Configuration::BIRD_HEIGHT
+        Settings::VIRTUAL_WIDTH / 2 - Settings::BIRD_WIDTH / 2, Settings::VIRTUAL_HEIGHT / 2 - Settings::BIRD_HEIGHT / 2,
+        Settings::BIRD_WIDTH, Settings::BIRD_HEIGHT
       },
       world{}
 {
-    render_texture.create(Configuration::VIRTUAL_WIDTH, Configuration::VIRTUAL_HEIGHT);
+    render_texture.create(Settings::VIRTUAL_WIDTH, Settings::VIRTUAL_HEIGHT);
 
     sf::Vector2f scale_factors{
-        float(Configuration::WINDOW_WIDTH) / float(Configuration::VIRTUAL_WIDTH), 
-        float(Configuration::WINDOW_HEIGHT) / float(Configuration::VIRTUAL_HEIGHT)
+        float(Settings::WINDOW_WIDTH) / float(Settings::VIRTUAL_WIDTH), 
+        float(Settings::WINDOW_HEIGHT) / float(Settings::VIRTUAL_HEIGHT)
     };
 
     render_sprite.setTexture(render_texture.getTexture());

@@ -1,4 +1,4 @@
-#include "configuration.h"
+#include "settings.h"
 #include "fonts.h"
 
 void create_fonts(struct Fonts* fonts)

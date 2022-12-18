@@ -2,13 +2,13 @@ CXX = clang++ -std=c++17
 
 INCLUDE = -I.
 
-LIBS = -lsfml-graphics -lsfml-window -lsfml-system Configuration.o src/*.o
+LIBS = -lsfml-graphics -lsfml-window -lsfml-system Settings.o src/*.o
 
-main: Bird.o Configuration.o main.cpp
+main: Bird.o Settings.o main.cpp
 	$(CXX) $(INCLUDE) $@.cpp -o $@ $(LIBS)
 
-Configuration.o: Configuration.hpp Configuration.cpp
-	$(CXX) -c $(INCLUDE) Configuration.cpp -o Configuration.o
+Settings.o: Settings.hpp Settings.cpp
+	$(CXX) -c $(INCLUDE) Settings.cpp -o Settings.o
 
 Bird.o: src/Bird.hpp src/Bird.cpp
 	$(CXX) -c $(INCLUDE) src/Bird.cpp -o src/Bird.o

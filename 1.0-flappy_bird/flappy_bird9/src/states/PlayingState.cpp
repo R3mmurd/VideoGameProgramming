@@ -1,4 +1,4 @@
-#include <Configuration.hpp>
+#include <Settings.hpp>
 #include <src/text_utilities.hpp>
 #include <src/states/StateMachine.hpp>
 #include <src/states/PlayingState.hpp>
@@ -6,8 +6,8 @@
 PlayingState::PlayingState(StateMachine* sm) noexcept
     : BaseState{sm},
       bird{
-          Configuration::VIRTUAL_WIDTH / 2 - Configuration::BIRD_WIDTH / 2, Configuration::VIRTUAL_HEIGHT / 2 - Configuration::BIRD_HEIGHT / 2,
-          Configuration::BIRD_WIDTH, Configuration::BIRD_HEIGHT
+          Settings::VIRTUAL_WIDTH / 2 - Settings::BIRD_WIDTH / 2, Settings::VIRTUAL_HEIGHT / 2 - Settings::BIRD_HEIGHT / 2,
+          Settings::BIRD_WIDTH, Settings::BIRD_HEIGHT
       },
       world{true}
 {
@@ -34,15 +34,15 @@ void PlayingState::update(float dt) noexcept
 
     if (world.collides(bird.get_collision_rect()))
     {
-        Configuration::sounds["explosion"].play();
-        Configuration::sounds["hurt"].play();
+        Settings::sounds["explosion"].play();
+        Settings::sounds["hurt"].play();
         state_machine->change_state("count_down");
     }
 
     if (world.update_scored(bird.get_collision_rect()))
     {
         ++score;
-        Configuration::sounds["score"].play();
+        Settings::sounds["score"].play();
     }
 }
 
@@ -51,7 +51,7 @@ void PlayingState::render(sf::RenderTarget& target) const noexcept
     world.render(target);
     bird.render(target);
 
-    sf::Text score_text = build_text("Score: " + std::to_string(score), Configuration::FLAPPY_TEXT_SIZE, "flappy", sf::Color::White);
+    sf::Text score_text = build_text("Score: " + std::to_string(score), Settings::FLAPPY_TEXT_SIZE, "flappy", sf::Color::White);
     score_text.move(20, 10);
     target.draw(score_text);
 }

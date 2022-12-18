@@ -1,8 +1,8 @@
-#include <Configuration.hpp>
+#include <Settings.hpp>
 #include <src/Bird.hpp>
 
 Bird::Bird(float _x, float _y, float w, float h) noexcept
-    : x{_x}, y{_y}, width{w}, height{h}, sprite{Configuration::textures["bird"]}
+    : x{_x}, y{_y}, width{w}, height{h}, sprite{Settings::textures["bird"]}
 {
     sprite.setPosition(x, y);
 }

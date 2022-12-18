@@ -1,4 +1,4 @@
-#include <Configuration.hpp>
+#include <Settings.hpp>
 #include <src/text_utilities.hpp>
 #include <src/states/CountDownState.hpp>
 #include <src/states/StateMachine.hpp>
@@ -30,5 +30,5 @@ void CountDownState::update(float dt) noexcept
 void CountDownState::render(sf::RenderTarget& target) const noexcept
 {
     world.render(target);
-    target.draw(build_text(std::to_string(counter), Configuration::HUGE_TEXT_SIZE, "font", sf::Color::White, true));
+    target.draw(build_text(std::to_string(counter), Settings::HUGE_TEXT_SIZE, "font", sf::Color::White, true));
 }

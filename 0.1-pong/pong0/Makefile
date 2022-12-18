@@ -2,7 +2,7 @@ CC = clang
 
 LIBS = -lallegro -lallegro_font -lallegro_primitives paddle.o ball.o pong.o
 
-main: paddle.o ball.o pong.o configuration.h main.c
+main: paddle.o ball.o pong.o settings.h main.c
 	$(CC) main.c -o main $(LIBS)
 
 paddle.o: paddle.h paddle.c

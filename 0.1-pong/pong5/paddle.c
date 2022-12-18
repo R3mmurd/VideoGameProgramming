@@ -1,6 +1,6 @@
 #include <allegro5/allegro_primitives.h>
 
-#include "configuration.h"
+#include "settings.h"
 #include "paddle.h"
 
 void init_paddle(struct Paddle* paddle, int x, int y, int w, int h)

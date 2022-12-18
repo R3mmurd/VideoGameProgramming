@@ -1,10 +1,10 @@
-#include <Configuration.hpp>
+#include <Settings.hpp>
 #include <src/PipePair.hpp>
 
 PipePair::PipePair(float _y) noexcept
-    : x{Configuration::VIRTUAL_WIDTH}, y{_y},
-      top{x, y + Configuration::PIPE_HEIGHT, true},
-      bottom{x, y + Configuration::PIPES_GAP + Configuration::PIPE_HEIGHT, false}
+    : x{Settings::VIRTUAL_WIDTH}, y{_y},
+      top{x, y + Settings::PIPE_HEIGHT, true},
+      bottom{x, y + Settings::PIPES_GAP + Settings::PIPE_HEIGHT, false}
 {
 
 }
@@ -16,7 +16,7 @@ bool PipePair::collides(const sf::FloatRect& rect) const noexcept
 
 void PipePair::update(float dt) noexcept
 {
-    x += -Configuration::MAIN_SCROLL_SPEED * dt;
+    x += -Settings::MAIN_SCROLL_SPEED * dt;
 
     top.update(x);
     bottom.update(x);
@@ -30,7 +30,7 @@ void PipePair::render(sf::RenderTarget& target) const noexcept
 
 bool PipePair::is_out_of_game() const noexcept
 {
-    return x < -Configuration::PIPE_WIDTH;
+    return x < -Settings::PIPE_WIDTH;
 }
 
 bool PipePair::update_scored(const sf::FloatRect& rect) noexcept
@@ -40,7 +40,7 @@ bool PipePair::update_scored(const sf::FloatRect& rect) noexcept
         return false;
     }
 
-    if (rect.left > x + Configuration::PIPE_WIDTH)
+    if (rect.left > x + Settings::PIPE_WIDTH)
     {
         scored = true;
         return true;

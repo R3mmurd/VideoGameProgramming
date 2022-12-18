@@ -1,21 +1,21 @@
-#include <Configuration.hpp>
+#include <Settings.hpp>
 #include <src/Game.hpp>
 
 Game::Game()
-    : render_window{sf::VideoMode{Configuration::WINDOW_WIDTH, Configuration::WINDOW_HEIGHT}, "Flappy Bird", sf::Style::Close},
+    : render_window{sf::VideoMode{Settings::WINDOW_WIDTH, Settings::WINDOW_HEIGHT}, "Flappy Bird", sf::Style::Close},
       render_texture{},
       render_sprite{},
       bird{
-        Configuration::VIRTUAL_WIDTH / 2 - Configuration::BIRD_WIDTH / 2, Configuration::VIRTUAL_HEIGHT / 2 - Configuration::BIRD_HEIGHT / 2,
-        Configuration::BIRD_WIDTH, Configuration::BIRD_HEIGHT
+        Settings::VIRTUAL_WIDTH / 2 - Settings::BIRD_WIDTH / 2, Settings::VIRTUAL_HEIGHT / 2 - Settings::BIRD_HEIGHT / 2,
+        Settings::BIRD_WIDTH, Settings::BIRD_HEIGHT
       },
       world{}
 {
-    render_texture.create(Configuration::VIRTUAL_WIDTH, Configuration::VIRTUAL_HEIGHT);
+    render_texture.create(Settings::VIRTUAL_WIDTH, Settings::VIRTUAL_HEIGHT);
 
     sf::Vector2f scale_factors{
-        float(Configuration::WINDOW_WIDTH) / float(Configuration::VIRTUAL_WIDTH), 
-        float(Configuration::WINDOW_HEIGHT) / float(Configuration::VIRTUAL_HEIGHT)
+        float(Settings::WINDOW_WIDTH) / float(Settings::VIRTUAL_WIDTH), 
+        float(Settings::WINDOW_HEIGHT) / float(Settings::VIRTUAL_HEIGHT)
     };
 
     render_sprite.setTexture(render_texture.getTexture());
@@ -41,15 +41,15 @@ void Game::update(float dt) noexcept
 
     if (!bird_is_dead && world.collides(bird.get_collision_rect()))
     {
-        Configuration::sounds["explosion"].play();
-        Configuration::sounds["hurt"].play();
+        Settings::sounds["explosion"].play();
+        Settings::sounds["hurt"].play();
         bird_is_dead = true;
     }
 
     if (!bird_is_dead && world.update_scored(bird.get_collision_rect()))
     {
         ++score;
-        Configuration::sounds["score"].play();
+        Settings::sounds["score"].play();
     }
 
 }
@@ -62,9 +62,9 @@ void Game::render() noexcept
 
     sf::Text score_text;
     score_text.move(20, 10);
-    score_text.setFont(Configuration::fonts["flappy"]);
+    score_text.setFont(Settings::fonts["flappy"]);
     score_text.setString("Score: " + std::to_string(score));
-    score_text.setCharacterSize(Configuration::FLAPPY_TEXT_SIZE);
+    score_text.setCharacterSize(Settings::FLAPPY_TEXT_SIZE);
     score_text.setFillColor(sf::Color::White);
     render_texture.draw(score_text);
 
