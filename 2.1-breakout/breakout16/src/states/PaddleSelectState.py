@@ -1,9 +1,8 @@
-from typing import Any
 
 import pygame
 
 from gale.state_machine import BaseState
-from gale.input_handler import InputHandler
+from gale.input_handler import InputHandler, InputData, InputData
 from gale.text import render_text
 
 import settings
@@ -19,7 +18,7 @@ class PaddleSelectState(BaseState):
     def exit(self) -> None:
         InputHandler.unregister_listener(self)
 
-    def on_input(self, input_id: str, input_data: Any) -> None:
+    def on_input(self, input_id: str, input_data: InputData) -> None:
         if input_id == 'enter' and input_data.pressed:
             self.state_machine.change('serve', level=1, paddle=self.paddle)
         

@@ -1,9 +1,8 @@
-from typing import Any
 
 import pygame
 
 from gale.state_machine import BaseState
-from gale.input_handler import InputHandler
+from gale.input_handler import InputHandler, InputData, InputData
 from gale.text import render_text
 
 import settings
@@ -60,7 +59,7 @@ class PauseState(BaseState):
             (255, 255, 255), center=True
         )
 
-    def on_input(self, input_id: str, input_data: Any) -> None:
+    def on_input(self, input_id: str, input_data: InputData) -> None:
         if input_id == 'pause' and input_data.pressed:
             self.state_machine.change(
                 'play',

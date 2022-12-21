@@ -1,10 +1,9 @@
-from typing import Any
 
 import pygame
 
 from gale.game import Game
 from gale.state_machine import StateMachine
-from gale.input_handler import InputHandler
+from gale.input_handler import InputHandler, InputData
 
 import settings
 
@@ -37,6 +36,6 @@ class Breakout(Game):
         )
         self.state_machine.render(surface)
 
-    def on_input(self, input_id: str, input_data: Any) -> None:
+    def on_input(self, input_id: str, input_data: InputData) -> None:
         if input_id == 'quit' and input_data.pressed:
             self.quit()

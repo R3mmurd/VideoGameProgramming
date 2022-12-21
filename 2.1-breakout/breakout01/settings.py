@@ -1,6 +1,6 @@
 import pygame
 
-from gale.input_handler import InputHandler, Key
+from gale.input_handler import InputHandler, InputData, Key
 
 InputHandler.set_keyboard_action(Key.KEY_RETURN, 'enter')
 InputHandler.set_keyboard_action(Key.KEY_UP, 'move_up')
