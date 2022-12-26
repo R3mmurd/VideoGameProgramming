@@ -23,7 +23,7 @@ class Breakout(Game):
             'victory': states.VictoryState
         })
         self.state_machine.change('start')
-        pygame.mixer_music.load('sounds/music.wav')
+        pygame.mixer_music.load(settings.BASE_DIR / "sounds/music.wav")
         pygame.mixer_music.play(loops=-1)
 
     def update(self, dt: float) -> None:

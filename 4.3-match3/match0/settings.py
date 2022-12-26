@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import pygame
 
 from gale import input_handler
@@ -19,8 +21,10 @@ BOARD_OFFSET_Y = 16
 
 TILE_SIZE = 32
 
+BASE_DIR = Path(__file__).parent
+
 TEXTURES = {
-    'tiles': pygame.image.load("graphics/match3.png")
+    'tiles': pygame.image.load(BASE_DIR / "graphics/match3.png")
 }
 
 FRAMES = {

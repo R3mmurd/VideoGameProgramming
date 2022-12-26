@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import pygame
 
 from gale import input_handler
@@ -28,9 +30,11 @@ NUM_COLORS = 18
 BACKGROUND_SCROLL_SPEED = 40
 BACKGROUND_LOOPING_POINT = -1024 + VIRTUAL_WIDTH - 4 + 51
 
+BASE_DIR = Path(__file__).parent
+
 TEXTURES = {
-    'background': pygame.image.load("graphics/background.png"),
-    'tiles': pygame.image.load("graphics/match3.png")
+    'background': pygame.image.load(BASE_DIR / "graphics/background.png"),
+    'tiles': pygame.image.load(BASE_DIR / "graphics/match3.png")
 }
 
 FRAMES = {
@@ -40,20 +44,20 @@ FRAMES = {
 pygame.mixer.init()
 
 SOUNDS = {
-    'clock': pygame.mixer.Sound("sounds/clock.wav"),
-    'error': pygame.mixer.Sound("sounds/error.wav"),
-    'game-over': pygame.mixer.Sound("sounds/game-over.wav"),
-    'match': pygame.mixer.Sound("sounds/match.wav"),
-    'music': pygame.mixer.Sound("sounds/music.mp3"),
-    'next-level': pygame.mixer.Sound("sounds/next-level.wav"),
-    'select': pygame.mixer.Sound("sounds/select.wav")
+    'clock': pygame.mixer.Sound(BASE_DIR / "sounds/clock.wav"),
+    'error': pygame.mixer.Sound(BASE_DIR / "sounds/error.wav"),
+    'game-over': pygame.mixer.Sound(BASE_DIR / "sounds/game-over.wav"),
+    'match': pygame.mixer.Sound(BASE_DIR / "sounds/match.wav"),
+    'music': pygame.mixer.Sound(BASE_DIR / "sounds/music.mp3"),
+    'next-level': pygame.mixer.Sound(BASE_DIR / "sounds/next-level.wav"),
+    'select': pygame.mixer.Sound(BASE_DIR / "sounds/select.wav")
 }
 
 pygame.font.init()
 
 FONTS = {
-    'small': pygame.font.Font("fonts/font.ttf", 12),
-    'medium': pygame.font.Font("fonts/font.ttf", 24),
-    'large': pygame.font.Font("fonts/font.ttf", 48),
-    'huge': pygame.font.Font("fonts/font.ttf", 64)
+    'small': pygame.font.Font(BASE_DIR / "fonts/font.ttf", 12),
+    'medium': pygame.font.Font(BASE_DIR / "fonts/font.ttf", 24),
+    'large': pygame.font.Font(BASE_DIR / "fonts/font.ttf", 48),
+    'huge': pygame.font.Font(BASE_DIR / "fonts/font.ttf", 64)
 }
