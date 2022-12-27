@@ -1,0 +1,13 @@
+PlayState = Class{__includes = BaseState}
+
+function PlayState:init(def)
+    world = World(def)
+end
+
+function PlayState:update(dt)
+    world:update(dt)
+end
+
+function PlayState:render()
+    world:render()
+end
