@@ -1,3 +1,13 @@
+/*
+    ISPPJ1 2023
+    Study Case: Flappy Bird
+
+    Author: Alejandro Mujica
+    alejandro.j.mujic4@gmail.com
+
+    This file contains the definition of the class PlayingBaseState.
+*/
+
 #include <Settings.hpp>
 #include <src/states/StateMachine.hpp>
 #include <src/states/PlayingState.hpp>

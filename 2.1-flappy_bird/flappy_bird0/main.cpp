@@ -1,3 +1,14 @@
+/*
+    ISPPJ1 2023
+    Study Case: Flappy Bird
+
+    Author: Alejandro Mujica
+    alejandro.j.mujic4@gmail.com
+
+    This file contains an example of using SFML to setup a window
+    and close it by pressing the key Escape.
+*/
+
 #include <SFML/Window.hpp>
 
 int main()

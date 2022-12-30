@@ -1,3 +1,14 @@
+/*
+    ISPPJ1 2023
+    Study Case: Pong
+
+    Author: Alejandro Mujica
+    alejandro.j.mujic4@gmail.com
+
+    This file contains the definition of the functions to init a pong game,
+    update it, and render it.
+*/
+
 #include <allegro5/allegro_primitives.h>
 
 #include "settings.h"
@@ -103,7 +114,8 @@ void update_pong(struct Pong* pong, double dt)
             pong->ball.y = TABLE_HEIGHT - pong->ball.height;
             pong->ball.vy *= -1;
         }
-        else if (collides(ball_hitbox, player1_hitbox))
+        
+        if (collides(ball_hitbox, player1_hitbox))
         {
             pong->ball.x = player1_hitbox.x2;
             pong->ball.vx *= -1.03;

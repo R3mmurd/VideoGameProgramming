@@ -1,3 +1,13 @@
+/*
+    ISPPJ1 2023
+    Study Case: Flappy Bird
+
+    Author: Alejandro Mujica
+    alejandro.j.mujic4@gmail.com
+
+    This file contains the definition of the class StateMachine.
+*/
+
 #include <src/states/StateMachine.hpp>
 
 StateMachine::StateMachine(const std::initializer_list<std::pair<std::string, StateBuilder>>& init_states) noexcept

@@ -1,3 +1,13 @@
+/*
+    ISPPJ1 2023
+    Study Case: Flappy Bird
+
+    Author: Alejandro Mujica
+    alejandro.j.mujic4@gmail.com
+
+    This file contains the definition of the class Bird.
+*/
+
 #include <Settings.hpp>
 #include <src/Bird.hpp>
 

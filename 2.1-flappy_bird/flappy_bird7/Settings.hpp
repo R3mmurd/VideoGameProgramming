@@ -1,3 +1,14 @@
+/*
+    ISPPJ1 2023
+    Study Case: Flappy Bird
+
+    Author: Alejandro Mujica
+    alejandro.j.mujic4@gmail.com
+
+    This file contains the declaration of Settings that contains constants
+    to set up the game and methods to load multimedia files.
+*/
+
 #pragma once
 
 #include <string>

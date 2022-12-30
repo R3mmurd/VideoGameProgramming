@@ -1,5 +1,18 @@
+/*
+    ISPPJ1 2023
+    Hello World
+
+    Author: Alejandro Mujica
+    alejandro.j.mujic4@gmail.com
+
+    This file contains an example of using Allegro to setup a window
+    and draw the text "Hello World" in the center.
+*/
+
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_font.h>
+
+#define FPS 60.f
 
 int main()
 {
@@ -11,7 +24,7 @@ int main()
     al_install_keyboard();
 
     // Timer to ensure the game runs at a consistent speed.
-    ALLEGRO_TIMER* timer = al_create_timer(0.33);
+    ALLEGRO_TIMER* timer = al_create_timer(1 / FPS);
 
     // Event queue to register the game events.
     ALLEGRO_EVENT_QUEUE* queue = al_create_event_queue();

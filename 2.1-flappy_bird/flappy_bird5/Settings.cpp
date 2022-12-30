@@ -1,3 +1,13 @@
+/*
+    ISPPJ1 2023
+    Study Case: Flappy Bird
+
+    Author: Alejandro Mujica
+    alejandro.j.mujic4@gmail.com
+
+    This file contains the definition of the Settings methods to load multimedia files.
+*/
+
 #include <stdexcept>
 
 #include <Settings.hpp>

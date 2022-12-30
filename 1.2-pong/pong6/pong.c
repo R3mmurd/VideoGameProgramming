@@ -1,3 +1,14 @@
+/*
+    ISPPJ1 2023
+    Study Case: Pong
+
+    Author: Alejandro Mujica
+    alejandro.j.mujic4@gmail.com
+
+    This file contains the definition of the functions to init a pong game,
+    update it, and render it.
+*/
+
 #include <stdio.h>
 
 #include <allegro5/allegro_primitives.h>
@@ -115,7 +126,7 @@ void update_pong(struct Pong* pong, double dt)
 
         if (ball_hitbox.x1 > TABLE_WIDTH)
         {
-            al_play_sample(pong->sounds->score, /* gain */ 1.0, /* center */ 0.0, /* speed */ 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+            al_play_sample(pong->sounds->score, /* gain */ 1.0, /* center */ 1.0, /* speed */ 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
             ++pong->player1_score;
             pong->serving_player = 2;
 
@@ -132,7 +143,7 @@ void update_pong(struct Pong* pong, double dt)
         }
         else if (ball_hitbox.x2 < 0)
         {
-            al_play_sample(pong->sounds->score, /* gain */ 1.0, /* center */ 0.0, /* speed */ 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+            al_play_sample(pong->sounds->score, /* gain */ 1.0, /* center */ -1.0, /* speed */ 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
             ++pong->player2_score;
             pong->serving_player = 1;
 
@@ -160,9 +171,10 @@ void update_pong(struct Pong* pong, double dt)
             pong->ball.y = TABLE_HEIGHT - pong->ball.height;
             pong->ball.vy *= -1;
         }
-        else if (collides(ball_hitbox, player1_hitbox))
+        
+        if (collides(ball_hitbox, player1_hitbox))
         {
-            al_play_sample(pong->sounds->paddle_hit, /* gain */ 1.0, /* center */ 0.0, /* speed */ 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+            al_play_sample(pong->sounds->paddle_hit, /* gain */ 1.0, /* center */ -1.0, /* speed */ 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
             pong->ball.x = player1_hitbox.x2;
             pong->ball.vx *= -1.03;
 
@@ -177,7 +189,7 @@ void update_pong(struct Pong* pong, double dt)
         }
         else if (collides(ball_hitbox, player2_hitbox))
         {
-            al_play_sample(pong->sounds->paddle_hit, /* gain */ 1.0, /* center */ 0.0, /* speed */ 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+            al_play_sample(pong->sounds->paddle_hit, /* gain */ 1.0, /* center */ 1.0, /* speed */ 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
             pong->ball.x = player2_hitbox.x1 - pong->ball.width;
             pong->ball.vx *= -1.03;
 
@@ -206,9 +218,9 @@ void render_pong(struct Pong pong, struct Fonts fonts)
 
     char score[3];
     sprintf(score, "%d", pong.player1_score);
-    al_draw_text(fonts.score_font, al_map_rgb(255, 255, 255), TABLE_WIDTH / 2 + 300, TABLE_HEIGHT / 6, ALLEGRO_ALIGN_CENTER, score);
-    sprintf(score, "%d", pong.player2_score);
     al_draw_text(fonts.score_font, al_map_rgb(255, 255, 255), TABLE_WIDTH / 2 - 300, TABLE_HEIGHT / 6, ALLEGRO_ALIGN_CENTER, score);
+    sprintf(score, "%d", pong.player2_score);
+    al_draw_text(fonts.score_font, al_map_rgb(255, 255, 255), TABLE_WIDTH / 2 + 300, TABLE_HEIGHT / 6, ALLEGRO_ALIGN_CENTER, score);
 
     if (pong.state == START)
     {

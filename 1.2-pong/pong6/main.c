@@ -1,5 +1,15 @@
+/*
+    ISPPJ1 2023
+    Study Case: Pong
+
+    Author: Alejandro Mujica
+    alejandro.j.mujic4@gmail.com
+
+    This file contains the main program to run the pong game.
+*/
+
 #include <allegro5/allegro5.h>
- #include <allegro5/allegro_acodec.h>
+#include <allegro5/allegro_acodec.h>
 #include <allegro5/allegro_primitives.h>
 
 #include "settings.h"

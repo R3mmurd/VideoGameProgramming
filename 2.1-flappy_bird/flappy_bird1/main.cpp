@@ -1,3 +1,13 @@
+/*
+    ISPPJ1 2023
+    Study Case: Flappy Bird
+
+    Author: Alejandro Mujica
+    alejandro.j.mujic4@gmail.com
+
+    This file contains the main program to run the game.
+*/
+
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
@@ -15,8 +25,6 @@ int main()
         Settings::WINDOW_WIDTH / 2 - Settings::BIRD_WIDTH / 2, Settings::WINDOW_HEIGHT / 2 - Settings::BIRD_HEIGHT / 2,
         Settings::BIRD_WIDTH, Settings::BIRD_HEIGHT
     };
-
-    sf::Texture texture{};
 
     while (window.isOpen())
     {

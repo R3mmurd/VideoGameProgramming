@@ -1,3 +1,14 @@
+/*
+    ISPPJ1 2023
+    Study Case: Pong
+
+    Author: Alejandro Mujica
+    alejandro.j.mujic4@gmail.com
+
+    This file contains the definition of a pong ball and the declaration
+    of the functions to init it, update it, and render it.
+*/
+
 #pragma once
 
 #include "hitbox.h"

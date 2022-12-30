@@ -1,3 +1,13 @@
+/*
+    ISPPJ1 2023
+    Study Case: Pong
+
+    Author: Alejandro Mujica
+    alejandro.j.mujic4@gmail.com
+
+    This file contains the definition of functions to create sounds and destroy them.
+*/
+
 #include <assert.h>
 
 #include "sounds.h"
