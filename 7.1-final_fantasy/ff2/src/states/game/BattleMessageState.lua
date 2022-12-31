@@ -1,11 +1,12 @@
 --[[
-    GD50
-    Final Fifty
+    ISPPJ1 2023
+    Study Case: Final Fantasy (RPG)
 
     Author: Colton Ogden
     cogden@cs50.harvard.edu
-]]
 
+    This class contains the class BaseMessageState.
+]]
 BattleMessageState = Class{__includes = BaseState}
 
 function BattleMessageState:init(battleState, msg, onClose, canInput)

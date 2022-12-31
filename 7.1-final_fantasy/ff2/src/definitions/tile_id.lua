@@ -1,3 +1,12 @@
+--[[
+    ISPPJ1 2023
+    Study Case: Final Fantasy (RPG)
+
+    Author: Alejandro Mujica
+    alejandro.j.mujic4@gmail.com
+
+    This class contains the definition for tile ids.
+]]
 TILE_WIDTH = VIRTUAL_WIDTH / TILE_SIZE
 TILE_HEIGHT = VIRTUAL_HEIGHT / TILE_SIZE
 

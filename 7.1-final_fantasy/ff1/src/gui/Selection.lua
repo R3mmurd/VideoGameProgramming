@@ -1,16 +1,12 @@
 --[[
-    GD50
-    Final Fifty
+    ISPPJ1 2023
+    Study Case: Final Fantasy (RPG)
 
     Author: Colton Ogden
     cogden@cs50.harvard.edu
-
-    The Selection class gives us a list of textual items that link to callbacks;
-    this particular implementation only has one dimension of items (vertically),
-    but a more robust implementation might include columns as well for a more
-    grid-like selection, as seen in many kinds of interfaces and games.
+    
+    This class contains the class Selection.
 ]]
-
 Selection = Class{}
 
 function Selection:init(def)

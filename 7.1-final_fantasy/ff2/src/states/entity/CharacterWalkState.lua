@@ -1,3 +1,12 @@
+--[[
+    ISPPJ1 2023
+    Study Case: Final Fantasy (RPG)
+
+    Author: Alejandro Mujica
+    alejandro.j.mujic4@gmail.com
+
+    This file contains the class CharacterWalkState.
+]]
 CharacterWalkState = Class{__includes = EntityBaseState}
 
 function CharacterWalkState:init(entity)

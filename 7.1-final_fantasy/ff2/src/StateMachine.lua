@@ -1,3 +1,12 @@
+--[[
+    ISPPJ1 2023
+    Study Case: Final Fantasy (RPG)
+
+    Author: Colton Ogden
+    cogden@cs50.harvard.edu
+
+	This class contains the class StateMachine.
+]]
 StateMachine = Class{}
 
 function StateMachine:init(states)

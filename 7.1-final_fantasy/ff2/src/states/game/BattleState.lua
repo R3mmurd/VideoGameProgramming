@@ -1,11 +1,10 @@
 --[[
-    GD50
-    Final Fifty
+    ISPPJ1 2023
+    Study Case: Final Fantasy (RPG)
 
     Author: Alejandro Mujica
-    aledrums@gmail.com
+    alejandro.j.mujic4@gmail.com
 ]]
-
 BattleState = Class{__includes = BaseState}
 
 function BattleState:init(party, region, onExit)

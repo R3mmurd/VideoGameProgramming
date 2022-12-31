@@ -1,3 +1,12 @@
+--[[
+    ISPPJ1 2023
+    Study Case: Final Fantasy (RPG)
+
+    Author: Alejandro Mujica
+    aledrums@gmail.com
+
+    This class contains the class ShowTextState.
+]]
 ShowTextState = Class{__includes = BaseState}
 
 function ShowTextState:init(color, text, onShowTextComplete)

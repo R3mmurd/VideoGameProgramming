@@ -1,3 +1,12 @@
+--[[
+    ISPPJ1 2023
+    Study Case: Final Fantasy (RPG)
+
+    Author: Alejandro Mujics
+    alejandro.j.mujic4@gmail.com
+
+    This class contains the class NPC.
+]]
 NPC = Class{__includes = Entity}
 
 function NPC:init(def)

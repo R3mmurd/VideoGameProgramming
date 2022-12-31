@@ -1,3 +1,12 @@
+--[[
+    ISPPJ1 2023
+    Study Case: Final Fantasy (RPG)
+
+    Author: Alejandro Mujica
+    alejandro.j.mujic4@gmail.com
+
+    This file contains the class PartyWalkState.
+]]
 PartyWalkState = Class{__includes = PartyBaseState}
 
 function PartyWalkState:enter(params)

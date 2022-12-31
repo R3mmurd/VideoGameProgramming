@@ -1,3 +1,12 @@
+--[[
+    ISPPJ1 2023
+    Study Case: Final Fantasy (RPG)
+
+    Author: Alejandro Mujica
+    alejandro.j.mujic4@gmail.com
+
+    This class contains the class BattleEntity.
+]]
 BattleEntity = Class{__includes = Entity}
 
 function BattleEntity:init(def)

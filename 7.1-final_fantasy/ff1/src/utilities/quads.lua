@@ -1,3 +1,14 @@
+--[[
+    ISPPJ1 2023
+    Study Case: Final Fantasy (RPG)
+
+    Author: Colton Ogden
+    cogden@cs50.harvard.edu
+
+    Modified by Alejandro Mujica (alejandro.j.mujic4@gmail.com)
+
+    This class contains a util function to generate quads for textures.
+]]
 function generateQuads(spriteSheet, tileWidth, tileHeight)
     local sheetWidth = spriteSheet:getWidth() / tileWidth
     local sheetHeight = spriteSheet:getHeight() / tileHeight

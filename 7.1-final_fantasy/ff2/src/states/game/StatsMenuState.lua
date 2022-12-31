@@ -1,11 +1,12 @@
 --[[
-    GD50
-    Final Fifty
+    ISPPJ1 2023
+    Study Case: Final Fantasy (RPG)
 
     Author: Alejandro Mujica
     aledrums@gmail.com
-]]
 
+    This class contains the class StatsMenuState.
+]]
 StatsMenuState = Class{__includes = BaseState}
 
 function StatsMenuState:init(character, stats, onClose)

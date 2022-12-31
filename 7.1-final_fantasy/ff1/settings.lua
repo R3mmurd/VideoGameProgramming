@@ -1,3 +1,13 @@
+--[[
+    ISPPJ1 2023
+    Study Case: Final Fantasy (RPG)
+
+    Author: Alejandro Mujica
+    alejandro.j.mujic4@gmail.com
+
+    This file contains the game settings that include dependencies, constants of values to set
+    up the game, sounds, textures, frames, and fonts.
+]]
 VIRTUAL_WIDTH = 384
 VIRTUAL_HEIGHT = 224
 

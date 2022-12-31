@@ -1,14 +1,14 @@
 --[[
-    GD50
-    Final Fifty
+    ISPPJ1 2023
+    Study Case: Final Fantasy (RPG)
 
     Author: Colton Ogden
     cogden@cs50.harvard.edu
 
-    Modified by: Alejandro Mujica
-    aledrums@gmail.com
-]]
+    Modified by: Alejandro Mujica (alejandro.j.mujic4@gmail.com)
 
+    This class contains the class BattleMenuState.
+]]
 BattleMenuState = Class{__includes = BaseState}
 
 function BattleMenuState:init(battleState)

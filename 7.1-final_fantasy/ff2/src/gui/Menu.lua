@@ -1,15 +1,12 @@
 --[[
-    GD50
-    Final Fifty
+    ISPPJ1 2023
+    Study Case: Final Fantasy (RPG)
 
     Author: Colton Ogden
     cogden@cs50.harvard.edu
-
-    A Menu is simply a Selection layered onto a Panel, at least for use in this
-    game. More complicated Menus may be collections of Panels and Selections that
-    form a greater whole.
+    
+    This class contains the class Menu.
 ]]
-
 Menu = Class{}
 
 function Menu:init(def)

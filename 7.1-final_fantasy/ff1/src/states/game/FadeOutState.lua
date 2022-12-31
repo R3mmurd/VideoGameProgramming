@@ -1,3 +1,12 @@
+--[[
+    ISPPJ1 2023
+    Study Case: Final Fantasy (RPG)
+
+    Author: Colton Ogden
+    cogden@cs50.harvard.edu
+
+    This class contains the class FadeOutState.
+]]
 FadeOutState = Class{__includes = BaseState}
 
 function FadeOutState:init(color, time, onFadeComplete)

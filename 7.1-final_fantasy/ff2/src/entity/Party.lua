@@ -1,3 +1,12 @@
+--[[
+    ISPPJ1 2023
+    Study Case: Final Fantasy (RPG)
+
+    Author: Alejandro Mujics
+    alejandro.j.mujic4@gmail.com
+
+    This class contains the class Party.
+]]
 Party = Class{}
 
 function Party:init(def)

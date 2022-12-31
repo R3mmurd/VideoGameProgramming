@@ -1,3 +1,12 @@
+--[[
+    ISPPJ1 2023
+    Study Case: Final Fantasy (RPG)
+
+    Author: Alejandro Mujica
+    aledrums@gmail.com
+
+    This class contains the class SelectCharacterState.
+]]
 SelectCharacterState = Class{__includes = BaseState}
 
 function SelectCharacterState:init(def)
