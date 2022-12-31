@@ -1,11 +1,12 @@
 --[[
-    GD50
-    Legend of Zelda
+    ISPPJ1 2023
+    Study Case: The Legend of the Princess (ARPG)
 
     Author: Alejandro Mujica
-    aledrums@gmail.com
-]]
+    alejandro.j.mujic4@gmail.com
 
+    This file contains the class PlayerPotLiftState.
+]]
 PlayerPotLiftState = Class{__includes = BaseState}
 
 function PlayerPotLiftState:init(player, dungeon)

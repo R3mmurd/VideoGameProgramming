@@ -1,3 +1,12 @@
+--[[
+    ISPPJ1 2023
+    Study Case: The Legend of the Princess (ARPG)
+
+    Author: Alejandro Mujica
+    alejandro.j.mujic4@gmail.com
+
+    This file contains the class Projectile.
+]]
 local PROJECTILE_SPEED = 150
 local PROJECTILE_MAX_TILES = 4
 

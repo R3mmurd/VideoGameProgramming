@@ -1,3 +1,12 @@
+--[[
+    ISPPJ1 2023
+    Study Case: The Legend of the Princess (ARPG)
+
+    Author: Colton Ogden
+    cogden@cs50.harvard.edu
+
+    This file contains the class StateMachine.
+]]
 StateMachine = Class{}
 
 function StateMachine:init(states)

@@ -1,3 +1,14 @@
+--[[
+    ISPPJ1 2023
+    Study Case: The Legend of the Princess (ARPG)
+
+    Author: Colton Ogden
+    cogden@cs50.harvard.edu
+
+    Modified by Alejandro Mujica (alejandro.j.mujic4@gmail.com) for teaching purpose.
+
+    This file contains the class StartState for the game.
+]]
 StartState = Class{__includes = BaseState}
 
 function StartState:update(dt)

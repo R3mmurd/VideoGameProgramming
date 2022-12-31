@@ -1,3 +1,12 @@
+--[[
+    ISPPJ1 2023
+    Study Case: The Legend of the Princess (ARPG)
+
+    Author: Alejandro Mujica
+    alejandro.j.mujic4@gmail.com
+
+    This file contains the class PlayerPotIdleState.
+]]
 PlayerPotIdleState = Class{__includes = BaseState}
 
 function PlayerPotIdleState:init(player, dungeon)

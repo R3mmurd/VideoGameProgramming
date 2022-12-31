@@ -67,7 +67,7 @@ local function new(class)
 		include(class, other)
 	end
 
-	-- class implementation
+	-- class definition
 	class.__index = class
 	class.init    = class.init    or class[1] or function() end
 	class.include = class.include or include

@@ -1,11 +1,12 @@
 --[[
-    GD50
-    Legend of Zelda
+    ISPPJ1 2023
+    Study Case: The Legend of the Princess (ARPG)
 
     Author: Alejandro Mujica
-    aledrums@gmail.com
-]]
+    alejandro.j.mujic4@gmail.com
 
+    This file contains the class PlayerPotWalkState.
+]]
 PlayerPotWalkState = Class{__includes = EntityWalkState}
 
 function PlayerPotWalkState:init(player, dungeon)
