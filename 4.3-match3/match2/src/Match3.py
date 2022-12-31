@@ -16,18 +16,17 @@ alejandro.j.mujic4@gmail.com
 
 This file contains the class Match3 as a specialization of gale.Game
 """
+
+
+
+
 import random
-
 import pygame
-
 from gale.game import Game
 from gale.input_handler import InputHandler, InputData
 from gale.timer import Timer
-
 import settings
 from src.Tile import Tile
-
-
 class Match3(Game):
     def init(self) -> None:
         self.board = [[None for _ in range(settings.BOARD_WIDTH)] for _ in range(

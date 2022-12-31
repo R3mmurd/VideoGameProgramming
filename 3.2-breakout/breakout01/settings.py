@@ -9,15 +9,14 @@ This file contains the game settings that include the association of the
 inputs with an their ids, constants of values to set up the game, sounds,
 textures, frames, and fonts.
 """
-import pygame
+from gale import input_handler
 
-from gale.input_handler import InputHandler, InputData, Key
-
-InputHandler.set_keyboard_action(Key.KEY_RETURN, 'enter')
-InputHandler.set_keyboard_action(Key.KEY_UP, 'move_up')
-InputHandler.set_keyboard_action(Key.KEY_RIGHT, 'move_right')
-InputHandler.set_keyboard_action(Key.KEY_DOWN, 'move_down')
-InputHandler.set_keyboard_action(Key.KEY_LEFT, 'move_left')
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_RETURN, 'enter')
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_UP, 'move_up')
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_RIGHT, 'move_right')
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_DOWN, 'move_down')
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_LEFT, 'move_left')
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_ESCAPE, 'quit')
 
 # Size of our actual window
 WINDOW_WIDTH = 1280

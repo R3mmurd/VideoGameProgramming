@@ -30,7 +30,8 @@ class PlayState(BaseState):
         self.live_factor = params['live_factor']
         self.points_to_next_live = params['points_to_next_live']
         self.points_to_next_grow_up = self.score + \
-            settings.PADDLE_GROW_UP_POINTS * (self.paddle.size + 1) * self.level
+            settings.PADDLE_GROW_UP_POINTS * \
+            (self.paddle.size + 1) * self.level
 
         if not params.get('resume', False):
             self.ball.vx = random.randint(-80, 80)

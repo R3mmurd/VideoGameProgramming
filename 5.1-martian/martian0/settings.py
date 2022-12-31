@@ -34,6 +34,7 @@ TEXTURES = {
 FRAMES = {
     'tiles': frames.generate_frames(TEXTURES['tiles'], 16, 16)
 }
+
 TILEMAPS = {
     f'level{i}': f"{BASE_DIR}/tilemaps/level{i}.tmx" for i in range(1, NUM_LEVELS + 1)
 }

@@ -16,9 +16,9 @@ alejandro.j.mujic4@gmail.com
 
 This file contains the main program to run the game.
 """
+
 import settings
 from src.Match3 import Match3
-
 if __name__ == '__main__':
     match3 = Match3(
         "Match 3",
