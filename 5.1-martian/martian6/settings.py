@@ -10,7 +10,6 @@ inputs with an their ids, constants of values to set up the game, sounds,
 textures, frames, and fonts.
 """
 import pathlib
-import sys
 
 import pygame
 
