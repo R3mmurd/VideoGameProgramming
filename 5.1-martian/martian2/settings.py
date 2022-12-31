@@ -1,3 +1,14 @@
+"""
+ISPPJ1 2023
+Study Case: Super Martian (Platformer)
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the game settings that include the association of the
+inputs with an their ids, constants of values to set up the game, sounds,
+textures, frames, and fonts.
+"""
 from pathlib import Path
 
 import pygame
@@ -5,10 +16,14 @@ import pygame
 from gale import frames
 from gale import input_handler
 
-input_handler.InputHandler.set_keyboard_action(input_handler.KEY_RIGHT, 'move_right')
-input_handler.InputHandler.set_keyboard_action(input_handler.KEY_d, 'move_right')
-input_handler.InputHandler.set_keyboard_action(input_handler.KEY_LEFT, 'move_left')
-input_handler.InputHandler.set_keyboard_action(input_handler.KEY_a, 'move_left')
+input_handler.InputHandler.set_keyboard_action(
+    input_handler.KEY_RIGHT, 'move_right')
+input_handler.InputHandler.set_keyboard_action(
+    input_handler.KEY_d, 'move_right')
+input_handler.InputHandler.set_keyboard_action(
+    input_handler.KEY_LEFT, 'move_left')
+input_handler.InputHandler.set_keyboard_action(
+    input_handler.KEY_a, 'move_left')
 
 # Size we want to emulate
 VIRTUAL_WIDTH = 400
@@ -25,8 +40,8 @@ NUM_LEVELS = 1
 BASE_DIR = Path(__file__).parent
 
 TEXTURES = {
-    'tiles':  pygame.image.load(BASE_DIR / 'graphics/tileset.png'),
-    'martian': pygame.image.load(BASE_DIR / 'graphics/martian.png')  
+    'tiles': pygame.image.load(BASE_DIR / 'graphics/tileset.png'),
+    'martian': pygame.image.load(BASE_DIR / 'graphics/martian.png')
 }
 
 FRAMES = {

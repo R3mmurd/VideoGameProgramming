@@ -1,4 +1,12 @@
+"""
+ISPPJ1 2023
+Study Case: Breakout
 
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the class to define the Serve state.
+"""
 import pygame
 
 from gale.state_machine import BaseState
@@ -7,6 +15,7 @@ from gale.text import render_text
 
 import settings
 from src.Ball import Ball
+
 
 class ServeState(BaseState):
     def enter(self, **params: dict) -> None:
@@ -23,24 +32,32 @@ class ServeState(BaseState):
 
     def exit(self) -> None:
         InputHandler.unregister_listener(self)
-    
+
     def update(self, dt: float) -> None:
         self.paddle.update(dt)
         self.ball.x = self.paddle.x + self.paddle.width // 2 - 2
-    
+
     def render(self, surface: pygame.Surface) -> None:
         heart_x = settings.VIRTUAL_WIDTH - 120
 
         i = 0
         # Draw filled hearts
         while i < self.lives:
-            surface.blit(settings.TEXTURES['hearts'], (heart_x, 5), settings.FRAMES['hearts'][0])
+            surface.blit(
+                settings.TEXTURES['hearts'],
+                (heart_x,
+                 5),
+                settings.FRAMES['hearts'][0])
             heart_x += 11
             i += 1
-        
+
         # Draw empty hearts
         while i < 3:
-            surface.blit(settings.TEXTURES['hearts'], (heart_x, 5), settings.FRAMES['hearts'][1])
+            surface.blit(
+                settings.TEXTURES['hearts'],
+                (heart_x,
+                 5),
+                settings.FRAMES['hearts'][1])
             heart_x += 11
             i += 1
 
@@ -54,8 +71,8 @@ class ServeState(BaseState):
 
         render_text(
             surface, f'Level {self.level}', settings.FONTS['large'],
-             settings.VIRTUAL_WIDTH // 2, settings.VIRTUAL_HEIGHT // 2 - 30,
-             (255, 255, 255), center=True
+            settings.VIRTUAL_WIDTH // 2, settings.VIRTUAL_HEIGHT // 2 - 30,
+            (255, 255, 255), center=True
         )
         render_text(
             surface, 'Press Enter to serve!', settings.FONTS['medium'],
@@ -77,4 +94,3 @@ class ServeState(BaseState):
                 self.paddle.vx = settings.PADDLE_SPEED
             elif input_data.released and self.paddle.vx > 0:
                 self.paddle.vx = 0
-

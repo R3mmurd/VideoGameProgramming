@@ -1,4 +1,14 @@
+"""
+ISPPJ1 2023
+Anonymous Functions
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains an example that solve the previous problem by creating a closure.
+"""
 from typing import Callable
+
 
 def create_print_the_value_of_i(i: int) -> Callable:
     def print_the_value_of_i() -> None:

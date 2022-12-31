@@ -1,3 +1,13 @@
+"""
+ISPPJ1 2023
+Input handler by observers.
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the class InputHandler to register and unregister listeners.
+It also fetches the events and notifies to all of its listeners about the event occurred.
+"""
 import sys
 from typing import Union, Optional, Tuple, List
 
@@ -7,24 +17,35 @@ import settings
 
 from Listener import Listener
 
+
 class KeyBoardEvent:
-    def __init__(self, pressed: bool, released: bool, modifier: int, unicode: str) -> None:
+    def __init__(
+            self,
+            pressed: bool,
+            released: bool,
+            modifier: int,
+            unicode: str) -> None:
         self.pressed: bool = pressed
         self.released: bool = released
         self.modifier: int = modifier
         self.unicode: str = unicode
 
+
 class MouseClickEvent:
-    def __init__(self, pressed: bool, released: bool, button: int, position: Tuple[int, int]) -> None:
+    def __init__(self, pressed: bool, released: bool,
+                 button: int, position: Tuple[int, int]) -> None:
         self.pressed: bool = pressed
         self.released: bool = released
         self.button: int = button
         self.position: Tuple[int, int] = position
 
+
 class MouseMotionEvent:
-    def __init__(self, position: Tuple[int, int], buttons: Tuple[int, int, int]) -> None:
+    def __init__(self, position: Tuple[int, int],
+                 buttons: Tuple[int, int, int]) -> None:
         self.position: Tuple[int, int] = position
         self.buttons: Tuple[int, int, int] = buttons
+
 
 class InputHandler:
 
@@ -39,7 +60,11 @@ class InputHandler:
         cls.listeners = [l for l in cls.listeners if l != listener]
 
     @classmethod
-    def notify(cls, action: str, event: Optional[Union[KeyBoardEvent, MouseClickEvent, MouseMotionEvent]]) -> None:
+    def notify(cls,
+               action: str,
+               event: Optional[Union[KeyBoardEvent,
+                                     MouseClickEvent,
+                                     MouseMotionEvent]]) -> None:
         for l in cls.listeners:
             l.on_input(action, event)
 
@@ -47,7 +72,7 @@ class InputHandler:
     def handle_input(cls) -> None:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                sys.exit()  
+                sys.exit()
             elif event.type in (pygame.KEYDOWN, pygame.KEYUP):
                 keyboard_binding = settings.input_binding.get("keyboard")
                 if keyboard_binding is not None:

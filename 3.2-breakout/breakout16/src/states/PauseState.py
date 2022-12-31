@@ -9,6 +9,7 @@ import settings
 from src.Ball import Ball
 from src.level_maker import create_level
 
+
 class PauseState(BaseState):
     def enter(self, **params: dict) -> None:
         self.level = params['level']
@@ -26,20 +27,28 @@ class PauseState(BaseState):
 
     def exit(self) -> None:
         InputHandler.unregister_listener(self)
-    
+
     def render(self, surface: pygame.Surface) -> None:
         heart_x = settings.VIRTUAL_WIDTH - 120
 
         i = 0
         # Draw filled hearts
         while i < self.lives:
-            surface.blit(settings.TEXTURES['hearts'], (heart_x, 5), settings.FRAMES['hearts'][0])
+            surface.blit(
+                settings.TEXTURES['hearts'],
+                (heart_x,
+                 5),
+                settings.FRAMES['hearts'][0])
             heart_x += 11
             i += 1
-        
+
         # Draw empty hearts
         while i < 3:
-            surface.blit(settings.TEXTURES['hearts'], (heart_x, 5), settings.FRAMES['hearts'][1])
+            surface.blit(
+                settings.TEXTURES['hearts'],
+                (heart_x,
+                 5),
+                settings.FRAMES['hearts'][1])
             heart_x += 11
             i += 1
 
@@ -52,7 +61,7 @@ class PauseState(BaseState):
             brick.render(surface)
 
         self.paddle.render(surface)
-        
+
         render_text(
             surface, 'Pause', settings.FONTS['medium'],
             settings.VIRTUAL_WIDTH // 2, settings.VIRTUAL_HEIGHT // 2,

@@ -1,3 +1,12 @@
+"""
+ISPPJ1 2023
+Study Case: Super Martian (Platformer)
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the class PauseState.
+"""
 from typing import Dict, Any
 
 import pygame
@@ -7,6 +16,7 @@ from gale.state_machine import BaseState
 from gale.text import render_text
 
 import settings
+
 
 class PauseState(BaseState):
     def enter(self, **enter_params: Dict[str, Any]) -> None:
@@ -18,11 +28,11 @@ class PauseState(BaseState):
         self.timer = enter_params['timer']
         InputHandler.unregister_listener(self.player.state_machine.current)
         InputHandler.register_listener(self)
-    
+
     def exit(self) -> None:
         InputHandler.unregister_listener(self)
         InputHandler.register_listener(self.player.state_machine.current)
-    
+
     def render(self, surface: pygame.Surface) -> None:
         world_surface = pygame.Surface(
             (self.tilemap.width, self.tilemap.height)
@@ -39,7 +49,7 @@ class PauseState(BaseState):
 
         render_text(
             surface, f'Time: {self.timer}',
-            settings.FONTS['small'], settings.VIRTUAL_WIDTH-60, 5,
+            settings.FONTS['small'], settings.VIRTUAL_WIDTH - 60, 5,
             (255, 255, 255), shadowed=True
         )
 
@@ -53,4 +63,3 @@ class PauseState(BaseState):
                 player=self.player,
                 timer=self.timer
             )
-        

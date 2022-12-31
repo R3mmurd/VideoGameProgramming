@@ -1,3 +1,12 @@
+"""
+ISPPJ1 2023
+Study Case: Super Martian (Platformer)
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the class GameLevel.
+"""
 import pygame
 
 import settings
@@ -31,8 +40,9 @@ class GameLevel:
             creature.update(dt)
 
         # Remove dead creatures
-        self.creatures = [creature for creature in self.creatures if not creature.is_dead]
-    
+        self.creatures = [
+            creature for creature in self.creatures if not creature.is_dead]
+
     def render(self, surface: pygame.Surface) -> None:
         self.tilemap.render(surface)
         for creature in self.creatures:

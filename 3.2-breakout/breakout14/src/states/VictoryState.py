@@ -1,4 +1,12 @@
+"""
+ISPPJ1 2023
+Study Case: Breakout
 
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the class to define the Victory state.
+"""
 import pygame
 
 from gale.input_handler import InputHandler, InputData
@@ -6,6 +14,7 @@ from gale.state_machine import BaseState
 from gale.text import render_text
 
 import settings
+
 
 class VictoryState(BaseState):
     def enter(self, **params: dict) -> None:
@@ -33,7 +42,7 @@ class VictoryState(BaseState):
                 points_to_next_live=self.points_to_next_live,
                 live_factor=self.live_factor
             )
-    
+
     def render(self, surface: pygame.Surface) -> None:
         heart_x = settings.VIRTUAL_WIDTH - 120
 
@@ -46,7 +55,7 @@ class VictoryState(BaseState):
             )
             heart_x += 11
             i += 1
-        
+
         # Draw empty hearts
         while i < 3:
             surface.blit(
@@ -67,13 +76,11 @@ class VictoryState(BaseState):
 
         render_text(
             surface, f'Level {self.level} completed!', settings.FONTS['large'],
-             settings.VIRTUAL_WIDTH // 2, settings.VIRTUAL_HEIGHT // 2 - 30,
-             (255, 255, 255), center=True
+            settings.VIRTUAL_WIDTH // 2, settings.VIRTUAL_HEIGHT // 2 - 30,
+            (255, 255, 255), center=True
         )
         render_text(
             surface, 'Press Enter to continue!', settings.FONTS['medium'],
             settings.VIRTUAL_WIDTH // 2, settings.VIRTUAL_HEIGHT // 2,
             (255, 255, 255), center=True
         )
-
-

@@ -1,3 +1,12 @@
+"""
+ISPPJ1 2023
+Study Case: Match-3
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the class Match3 as a specialization of gale.Game
+"""
 import pygame
 
 from gale.game import Game
@@ -26,7 +35,7 @@ class Match3(Game):
 
         if self.background_x <= settings.BACKGROUND_LOOPING_POINT:
             self.background_x = 0
-        
+
         self.state_machine.update(dt)
 
     def render(self, surface: pygame.Surface) -> None:

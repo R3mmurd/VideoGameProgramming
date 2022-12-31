@@ -1,4 +1,12 @@
+"""
+ISPPJ1 2023
+Study Case: Breakout
 
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the class Breakout as a specialization of gale.Game
+"""
 import pygame
 
 from gale.game import Game
@@ -8,6 +16,7 @@ from gale.input_handler import InputHandler, InputData, InputData
 import settings
 
 from src import states
+
 
 class Breakout(Game):
     def init(self) -> None:

@@ -1,3 +1,12 @@
+"""
+ISPPJ1 2023
+Study Case: Match-3
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the main program to run the game.
+"""
 import settings
 from src.Match3 import Match3
 

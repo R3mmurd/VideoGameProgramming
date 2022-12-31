@@ -1,4 +1,14 @@
+"""
+ISPPJ1 2023
+Study Case: Super Martian (Platformer)
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the class Camera.
+"""
 import pygame
+
 
 class Camera:
     def __init__(self, x: int, y: int, width: int, height: int) -> None:

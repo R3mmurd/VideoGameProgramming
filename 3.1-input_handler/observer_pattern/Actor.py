@@ -1,4 +1,14 @@
+"""
+ISPPJ1 2023
+Input handler by observers.
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the class Actor, a Listener of input events.
+"""
 from Listener import Listener
+
 
 class Actor(Listener):
     def __init__(self, name: str) -> None:

@@ -1,4 +1,12 @@
+"""
+ISPPJ1 2023
+Study Case: Breakout
 
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the class to define the state to show the high score list.
+"""
 import pygame
 
 from gale.input_handler import InputHandler, InputData, InputData
@@ -7,6 +15,7 @@ from gale.text import render_text
 
 import settings
 from src.highscores import read_highscores
+
 
 class HighScoreState(BaseState):
     def enter(self) -> None:
@@ -26,11 +35,11 @@ class HighScoreState(BaseState):
             settings.VIRTUAL_WIDTH // 2, 20,
             (255, 255, 255), center=True
         )
-        
+
         for i in range(settings.NUM_HIGHSCORES):
             name = '---'
             score = '---'
-        
+
             if i < len(self.hs):
                 item = self.hs[i]
                 name = item[0]
@@ -38,12 +47,12 @@ class HighScoreState(BaseState):
 
             render_text(
                 surface, f'{i + 1}.', settings.FONTS['small'],
-                settings.VIRTUAL_WIDTH//2 - 60, 50 + i * 17,
+                settings.VIRTUAL_WIDTH // 2 - 60, 50 + i * 17,
                 (255, 255, 255), center=True
             )
             render_text(
                 surface, name, settings.FONTS['small'],
-                settings.VIRTUAL_WIDTH//2, 50 + i * 17,
+                settings.VIRTUAL_WIDTH // 2, 50 + i * 17,
                 (255, 255, 255), center=True
             )
             render_text(
@@ -51,4 +60,3 @@ class HighScoreState(BaseState):
                 settings.VIRTUAL_WIDTH // 2 + 60, 50 + i * 17,
                 (255, 255, 255), center=True
             )
-

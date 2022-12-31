@@ -1,3 +1,12 @@
+"""
+ISPPJ1 2023
+Study Case: Super Martian (Platformer)
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the class IdleState for player.
+"""
 from gale.input_handler import InputHandler, InputData
 
 from src.states.entities.BaseEntityState import BaseEntityState
@@ -9,7 +18,7 @@ class IdleState(BaseEntityState):
         self.entity.vy = 0
         self.entity.change_animation('idle')
         InputHandler.register_listener(self)
-    
+
     def exit(self) -> None:
         InputHandler.unregister_listener(self)
 

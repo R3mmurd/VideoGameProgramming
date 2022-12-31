@@ -1,9 +1,20 @@
+"""
+ISPPJ1 2023
+Study Case: Super Martian (Platformer)
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the AnimatedMixin.
+"""
 from typing import Dict, Any
 
 from gale.animation import Animation
 
+
 class AnimatedMixin:
-    def _generate_animations(self, animation_defs: Dict[str, Dict[str, Any]]) -> None:
+    def _generate_animations(
+            self, animation_defs: Dict[str, Dict[str, Any]]) -> None:
         for animation_id, values in animation_defs.items():
             animation = Animation(
                 values['frames'],

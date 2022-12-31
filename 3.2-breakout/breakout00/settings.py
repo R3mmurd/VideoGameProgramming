@@ -1,3 +1,14 @@
+"""
+ISPPJ1 2023
+Study Case: Breakout
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the game settings that include the association of the
+inputs with an their ids, constants of values to set up the game, sounds,
+textures, frames, and fonts.
+"""
 import pygame
 
 from gale.input_handler import InputHandler, InputData, Key
@@ -19,5 +30,7 @@ VIRTUAL_HEIGHT = 243
 SOUNDS = {}
 
 TEXTURES = {}
+
+FRAMES = {}
 
 FONTS = {}

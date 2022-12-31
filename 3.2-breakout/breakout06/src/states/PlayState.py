@@ -1,4 +1,12 @@
+"""
+ISPPJ1 2023
+Study Case: Breakout
 
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the class to define the Play state.
+"""
 import random
 
 import pygame
@@ -8,6 +16,7 @@ from gale.input_handler import InputHandler, InputData
 from gale.text import render_text
 
 import settings
+
 
 class PlayState(BaseState):
     def enter(self, **params: dict):
@@ -27,7 +36,7 @@ class PlayState(BaseState):
 
     def exit(self) -> None:
         InputHandler.unregister_listener(self)
-    
+
     def update(self, dt: float) -> None:
         self.paddle.update(dt)
         self.ball.update(dt)
@@ -47,20 +56,28 @@ class PlayState(BaseState):
                     bricks=self.bricks,
                     broken_bricks_counter=self.broken_bricks_counter
                 )
-        
+
     def render(self, surface: pygame.Surface) -> None:
         heart_x = settings.VIRTUAL_WIDTH - 120
 
         i = 0
         # Draw filled hearts
         while i < self.lives:
-            surface.blit(settings.TEXTURES['hearts'], (heart_x, 5), settings.FRAMES['hearts'][0])
+            surface.blit(
+                settings.TEXTURES['hearts'],
+                (heart_x,
+                 5),
+                settings.FRAMES['hearts'][0])
             heart_x += 11
             i += 1
-        
+
         # Draw empty hearts
         while i < 3:
-            surface.blit(settings.TEXTURES['hearts'], (heart_x, 5), settings.FRAMES['hearts'][1])
+            surface.blit(
+                settings.TEXTURES['hearts'],
+                (heart_x,
+                 5),
+                settings.FRAMES['hearts'][1])
             heart_x += 11
             i += 1
 
@@ -86,4 +103,3 @@ class PlayState(BaseState):
                 self.paddle.vx = settings.PADDLE_SPEED
             elif input_data.released and self.paddle.vx > 0:
                 self.paddle.vx = 0
-

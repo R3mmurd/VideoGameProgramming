@@ -1,3 +1,14 @@
+"""
+ISPPJ1 2023
+Study Case: Breakout
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the game settings that include the association of the
+inputs with an their ids, constants of values to set up the game, sounds,
+textures, frames, and fonts.
+"""
 from pathlib import Path
 
 import pygame
@@ -7,12 +18,17 @@ from gale.frames import generate_frames
 
 from src.frames_utility import generate_paddle_frames, generate_ball_frames, generate_brick_frames
 
-input_handler.InputHandler.set_keyboard_action(input_handler.KEY_ESCAPE, 'quit')
-input_handler.InputHandler.set_keyboard_action(input_handler.KEY_RETURN, 'enter')
+input_handler.InputHandler.set_keyboard_action(
+    input_handler.KEY_ESCAPE, 'quit')
+input_handler.InputHandler.set_keyboard_action(
+    input_handler.KEY_RETURN, 'enter')
 input_handler.InputHandler.set_keyboard_action(input_handler.KEY_UP, 'move_up')
-input_handler.InputHandler.set_keyboard_action(input_handler.KEY_RIGHT, 'move_right')
-input_handler.InputHandler.set_keyboard_action(input_handler.KEY_DOWN, 'move_down')
-input_handler.InputHandler.set_keyboard_action(input_handler.KEY_LEFT, 'move_left')
+input_handler.InputHandler.set_keyboard_action(
+    input_handler.KEY_RIGHT, 'move_right')
+input_handler.InputHandler.set_keyboard_action(
+    input_handler.KEY_DOWN, 'move_down')
+input_handler.InputHandler.set_keyboard_action(
+    input_handler.KEY_LEFT, 'move_left')
 
 # Size of our actual window
 WINDOW_WIDTH = 1280

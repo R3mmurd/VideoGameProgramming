@@ -1,3 +1,12 @@
+"""
+ISPPJ1 2023
+Study Case: Super Martian (Platformer)
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the DrawableMixin.
+"""
 import pygame
 
 import settings
@@ -13,5 +22,5 @@ class DrawableMixin:
 
         if self.flipped:
             image = pygame.transform.flip(image, True, False)
-        
+
         surface.blit(image, (self.x, self.y))

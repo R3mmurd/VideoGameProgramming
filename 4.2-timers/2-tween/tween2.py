@@ -1,9 +1,21 @@
+"""
+ISPPJ1 2023
+Timers, every
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains an example that generates 1000 random rectangles and moves them
+from the left to the right by interpolating their position through time
+by using gale.timer.Timer.tween.
+"""
 import random
 
 import pygame
 
 from gale.game import Game
 from gale.input_handler import InputHandler, KEY_ESCAPE, InputData
+from gale.timer import Timer
 
 InputHandler.set_keyboard_action(KEY_ESCAPE, 'quit')
 
@@ -12,30 +24,27 @@ WINDOW_HEIGHT = 720
 
 TIMER_MAX = 10
 
+
 class TweenGame(Game):
     SQUARE_SIZE = 50
-    
+
     def init(self) -> None:
         self.rects = []
 
         for _ in range(1000):
             y = random.randint(0, WINDOW_HEIGHT - self.SQUARE_SIZE)
+
+            rect = pygame.Rect(0, y, self.SQUARE_SIZE, self.SQUARE_SIZE)
+            rate = random.uniform(0.5, TIMER_MAX)
+
             self.rects.append({
-                'rect': pygame.Rect(0, y, self.SQUARE_SIZE, self.SQUARE_SIZE),
-                'rate': random.uniform(0.5, TIMER_MAX)
+                'rect': rect,
+                'rate': rate
             })
-        
-        # end X position for our interpolation
-        self.end_x = WINDOW_WIDTH - self.SQUARE_SIZE
-        self.timer = 0
+            Timer.tween(
+                rate, [(rect, {'left': WINDOW_WIDTH - self.SQUARE_SIZE})])
+
         InputHandler.register_listener(self)
-
-    def update(self, dt: float) -> None:
-        if self.timer < TIMER_MAX:
-            self.timer += dt
-
-            for rect in self.rects:
-                rect['rect'].left = min(self.end_x, self.end_x * (self.timer / rect['rate']))
 
     def render(self, surface: pygame.Surface) -> None:
         for rect in self.rects:

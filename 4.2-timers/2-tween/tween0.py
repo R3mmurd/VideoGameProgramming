@@ -1,3 +1,13 @@
+"""
+ISPPJ1 2023
+Timers, every
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains an example that moves a rectangle from the left to the right
+by interpolating its position through time.
+"""
 import pygame
 
 from gale.game import Game
@@ -10,11 +20,19 @@ WINDOW_HEIGHT = 720
 
 MOVE_DURATION = 3
 
+
 class TweenGame(Game):
     SQUARE_SIZE = 50
-    
+
     def init(self) -> None:
-        self.rect = pygame.Rect(0, WINDOW_HEIGHT // 2 - self.SQUARE_SIZE // 2, self.SQUARE_SIZE, self.SQUARE_SIZE)
+        self.rect = pygame.Rect(
+            0,
+            WINDOW_HEIGHT //
+            2 -
+            self.SQUARE_SIZE //
+            2,
+            self.SQUARE_SIZE,
+            self.SQUARE_SIZE)
         # end X position for our interpolation
         self.end_x = WINDOW_WIDTH - self.SQUARE_SIZE
         self.timer = 0
@@ -23,7 +41,8 @@ class TweenGame(Game):
     def update(self, dt: float) -> None:
         if self.timer < MOVE_DURATION:
             self.timer += dt
-            self.rect.left = min(self.end_x, self.end_x * (self.timer / MOVE_DURATION))
+            self.rect.left = min(self.end_x,
+                                 self.end_x * (self.timer / MOVE_DURATION))
 
     def render(self, surface: pygame.Surface) -> None:
         pygame.draw.rect(surface, (255, 255, 255), self.rect)

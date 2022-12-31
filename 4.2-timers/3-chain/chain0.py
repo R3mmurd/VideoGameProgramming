@@ -1,3 +1,13 @@
+"""
+ISPPJ1 2023
+Timers, every
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains an example that shows how to create a chain of
+interpolated movements.
+"""
 import pygame
 
 from gale.game import Game
@@ -9,6 +19,7 @@ WINDOW_WIDTH = 1280
 WINDOW_HEIGHT = 720
 
 MOVEMENT_TIME = 2
+
 
 class ChainGame(Game):
 
@@ -45,7 +56,7 @@ class ChainGame(Game):
         )
 
         InputHandler.register_listener(self)
-    
+
     def update(self, dt: float) -> None:
         self.timer = min(MOVEMENT_TIME, self.timer + dt)
 
@@ -53,17 +64,19 @@ class ChainGame(Game):
             if d['reached']:
                 continue
 
-            self.rect.left = self.base_left + (d['left'] - self.base_left) * self.timer / MOVEMENT_TIME
-            self.rect.top = self.base_top + (d['top'] - self.base_top) * self.timer / MOVEMENT_TIME
+            self.rect.left = self.base_left + \
+                (d['left'] - self.base_left) * self.timer / MOVEMENT_TIME
+            self.rect.top = self.base_top + \
+                (d['top'] - self.base_top) * self.timer / MOVEMENT_TIME
 
             if self.timer == MOVEMENT_TIME:
                 d['reached'] = True
                 self.base_left = d['left']
                 self.base_top = d['top']
                 self.timer = 0
-            
+
             break
-    
+
     def render(self, surface: pygame.Surface) -> None:
         pygame.draw.rect(surface, (255, 255, 255), self.rect)
 

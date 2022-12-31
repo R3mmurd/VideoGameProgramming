@@ -1,3 +1,12 @@
+"""
+ISPPJ1 2023
+Study Case: Super Martian (Platformer)
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the class PlayState.
+"""
 from typing import Dict, Any
 
 import pygame
@@ -16,11 +25,19 @@ from src.Player import Player
 class PlayState(BaseState):
     def enter(self, **enter_params: Dict[str, Any]) -> None:
         self.level = enter_params.get('level', 1)
-        self.camera = enter_params.get('camera', Camera(0, 0, settings.VIRTUAL_WIDTH, settings.VIRTUAL_HEIGHT))
+        self.camera = enter_params.get(
+            'camera',
+            Camera(
+                0,
+                0,
+                settings.VIRTUAL_WIDTH,
+                settings.VIRTUAL_HEIGHT))
         self.game_level = enter_params.get('game_level')
         if self.game_level is None:
             self.game_level = GameLevel(self.level, self.camera)
-            pygame.mixer.music.load(settings.BASE_DIR / 'sounds/music_grassland.ogg')
+            pygame.mixer.music.load(
+                settings.BASE_DIR /
+                'sounds/music_grassland.ogg')
             pygame.mixer.music.play(loops=-1)
         else:
             pygame.mixer.music.unpause()
@@ -28,7 +45,8 @@ class PlayState(BaseState):
         self.tilemap = self.game_level.tilemap
         self.player = enter_params.get('player')
         if self.player is None:
-            self.player = Player(0, settings.VIRTUAL_HEIGHT - 66, self.game_level)
+            self.player = Player(
+                0, settings.VIRTUAL_HEIGHT - 66, self.game_level)
             self.player.change_state('idle')
 
         self.timer = enter_params.get('timer', 30)
@@ -38,14 +56,14 @@ class PlayState(BaseState):
 
             if 0 < self.timer <= 5:
                 settings.SOUNDS['timer'].play()
-            
+
         Timer.every(1, countdown_timer)
         InputHandler.register_listener(self)
-    
+
     def exit(self) -> None:
         InputHandler.unregister_listener(self)
         Timer.clear()
-    
+
     def update(self, dt: float) -> None:
         if self.player.is_dead or self.timer == 0:
             pygame.mixer.music.stop()
@@ -53,24 +71,30 @@ class PlayState(BaseState):
             self.state_machine.change('game_over', self.player)
 
         self.player.update(dt)
-        
-        self.camera.x = max(0, min(self.player.x + 8 - settings.VIRTUAL_WIDTH // 2, self.tilemap.width - settings.VIRTUAL_WIDTH))
-        self.camera.y = max(0, min(self.player.y + 10 - settings.VIRTUAL_HEIGHT // 2, self.tilemap.height - settings.VIRTUAL_HEIGHT))
+
+        self.camera.x = max(0,
+                            min(self.player.x + 8 - settings.VIRTUAL_WIDTH // 2,
+                                self.tilemap.width - settings.VIRTUAL_WIDTH))
+        self.camera.y = max(0, min(self.player.y +
+                                   10 -
+                                   settings.VIRTUAL_HEIGHT //
+                                   2, self.tilemap.height -
+                                   settings.VIRTUAL_HEIGHT))
 
         self.game_level.update(dt)
 
         for creature in self.game_level.creatures:
             if self.player.collides(creature):
                 self.player.is_dead = True
-        
+
         for item in self.game_level.items:
             if not item.in_play or not item.collidable:
                 continue
-            
+
             if self.player.collides(item):
                 item.on_collide(self.player)
                 item.on_consume(self.player)
-    
+
     def render(self, surface: pygame.Surface) -> None:
         world_surface = pygame.Surface(
             (self.tilemap.width, self.tilemap.height)
@@ -87,7 +111,7 @@ class PlayState(BaseState):
 
         render_text(
             surface, f'Time: {self.timer}',
-            settings.FONTS['small'], settings.VIRTUAL_WIDTH-60, 5,
+            settings.FONTS['small'], settings.VIRTUAL_WIDTH - 60, 5,
             (255, 255, 255), shadowed=True
         )
 
@@ -95,7 +119,7 @@ class PlayState(BaseState):
         if (input_id == 'pause' and input_data.pressed):
             pygame.mixer.music.pause()
             self.state_machine.change(
-                'pause', 
+                'pause',
                 level=self.level,
                 camera=self.camera,
                 game_level=self.game_level,

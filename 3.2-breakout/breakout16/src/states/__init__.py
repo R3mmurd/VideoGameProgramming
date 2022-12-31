@@ -1,3 +1,12 @@
+"""
+ISPPJ1 2023
+Study Case: Breakout
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This module contains all of the states of the Breakout game.
+"""
 from src.states.StartState import StartState
 from src.states.HighScoreState import HighScoreState
 from src.states.EnterHighScoreState import EnterHighScoreState

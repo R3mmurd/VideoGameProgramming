@@ -1,3 +1,13 @@
+"""
+ISPPJ1 2023
+Timers, every
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains an example of how to create three timers that increment
+counters every one, two, and four seconds respectively.
+"""
 import pygame
 
 from gale.input_handler import InputHandler, KEY_ESCAPE, InputData
@@ -20,7 +30,7 @@ class TimerGame(Game):
         self.counter3 = 0
         self.font = pygame.font.Font("font.ttf", 64)
         InputHandler.register_listener(self)
-    
+
     def update(self, dt: float) -> None:
         self.timer1 += dt
         self.timer2 += dt
@@ -33,16 +43,19 @@ class TimerGame(Game):
         if self.timer2 >= self.interval2:
             self.timer2 %= self.interval2
             self.counter2 += 1
-        
+
         if self.timer3 >= self.interval3:
             self.timer3 %= self.interval3
             self.counter3 += 1
-        
+
     def render(self, surface: pygame.Surface) -> None:
-        render_text(surface, str(self.counter1), self.font, 640, 260, (255, 255, 255), center=True)
-        render_text(surface, str(self.counter2), self.font, 640, 360, (255, 255, 255), center=True)
-        render_text(surface, str(self.counter3), self.font, 640, 460, (255, 255, 255), center=True)
-    
+        render_text(surface, str(self.counter1), self.font,
+                    640, 260, (255, 255, 255), center=True)
+        render_text(surface, str(self.counter2), self.font,
+                    640, 360, (255, 255, 255), center=True)
+        render_text(surface, str(self.counter3), self.font,
+                    640, 460, (255, 255, 255), center=True)
+
     def on_input(self, input_id: str, input_data: InputData) -> None:
         if input_id == 'quit' and input_data.pressed:
             self.quit()

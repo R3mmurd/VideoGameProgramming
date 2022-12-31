@@ -1,3 +1,12 @@
+"""
+ISPPJ1 2023
+Study Case: Breakout
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the class Brick.
+"""
 import pygame
 
 
@@ -33,7 +42,7 @@ class Brick:
         self.particle_system.set_life_time(0.2, 0.4)
         self.particle_system.set_linear_acceleration(-0.3, 0.5, 0.3, 1)
         self.particle_system.set_area_spread(4, 7)
-    
+
     def hit(self) -> None:
         settings.SOUNDS['brick_hit_2'].stop()
         settings.SOUNDS['brick_hit_2'].play()
@@ -52,7 +61,7 @@ class Brick:
                 self.color -= 1
         else:
             self.tier -= 1
-        
+
     def score(self):
         return self.tier * 200 + (self.color + 1) * 25
 
@@ -65,5 +74,6 @@ class Brick:
     def render(self, surface: pygame.Surface) -> None:
         if self.in_play:
             frame = self.color * 4 + self.tier
-            surface.blit(self.texture, (self.x, self.y), settings.FRAMES['bricks'][frame])
+            surface.blit(self.texture, (self.x, self.y),
+                         settings.FRAMES['bricks'][frame])
         self.particle_system.render(surface)

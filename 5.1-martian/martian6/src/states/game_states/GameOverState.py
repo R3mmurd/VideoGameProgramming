@@ -1,3 +1,12 @@
+"""
+ISPPJ1 2023
+Study Case: Super Martian (Platformer)
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the class GameOverState.
+"""
 import pygame
 
 from gale.input_handler import InputHandler, InputData
@@ -12,7 +21,7 @@ class GameOverState(BaseState):
         self.player = player
         InputHandler.register_listener(self)
         InputHandler.unregister_listener(self.player.state_machine.current)
-    
+
     def exit(self) -> None:
         InputHandler.unregister_listener(self)
 
@@ -51,7 +60,7 @@ class GameOverState(BaseState):
 
         render_text(
             surface, f'Score: {self.player.score}', settings.FONTS['small'],
-            settings.VIRTUAL_WIDTH // 2, y+10, (255, 255, 255),
+            settings.VIRTUAL_WIDTH // 2, y + 10, (255, 255, 255),
             shadowed=True, center=True
         )
 

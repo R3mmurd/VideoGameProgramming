@@ -1,3 +1,12 @@
+"""
+ISPPJ1 2023
+Study Case: Super Martian (Platformer)
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the class WalkState for Player.
+"""
 from gale.input_handler import InputHandler, InputData
 
 import settings
@@ -15,7 +24,7 @@ class WalkState(BaseEntityState):
 
     def exit(self) -> None:
         InputHandler.unregister_listener(self)
-    
+
     def update(self, dt: float) -> None:
         if self.entity.check_collision_on_bottom():
             self.entity.vy = 0
@@ -30,7 +39,7 @@ class WalkState(BaseEntityState):
                 self.entity.flipped = True
             elif input_data.released and self.entity.vx <= 0:
                 self.entity.change_state('idle')
-        
+
         elif input_id == 'move_right':
             if input_data.pressed:
                 self.entity.vx = settings.PLAYER_SPEED

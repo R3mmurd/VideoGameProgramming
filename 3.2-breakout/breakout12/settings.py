@@ -1,3 +1,14 @@
+"""
+ISPPJ1 2023
+Study Case: Breakout
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the game settings that include the association of the
+inputs with an their ids, constants of values to set up the game, sounds,
+textures, frames, and fonts.
+"""
 from pathlib import Path
 
 import pygame
@@ -7,12 +18,17 @@ from gale.frames import generate_frames
 
 from src.frames_utility import generate_paddle_frames, generate_ball_frames, generate_brick_frames
 
-input_handler.InputHandler.set_keyboard_action(input_handler.KEY_ESCAPE, 'quit')
-input_handler.InputHandler.set_keyboard_action(input_handler.KEY_RETURN, 'enter')
+input_handler.InputHandler.set_keyboard_action(
+    input_handler.KEY_ESCAPE, 'quit')
+input_handler.InputHandler.set_keyboard_action(
+    input_handler.KEY_RETURN, 'enter')
 input_handler.InputHandler.set_keyboard_action(input_handler.KEY_UP, 'move_up')
-input_handler.InputHandler.set_keyboard_action(input_handler.KEY_RIGHT, 'move_right')
-input_handler.InputHandler.set_keyboard_action(input_handler.KEY_DOWN, 'move_down')
-input_handler.InputHandler.set_keyboard_action(input_handler.KEY_LEFT, 'move_left')
+input_handler.InputHandler.set_keyboard_action(
+    input_handler.KEY_RIGHT, 'move_right')
+input_handler.InputHandler.set_keyboard_action(
+    input_handler.KEY_DOWN, 'move_down')
+input_handler.InputHandler.set_keyboard_action(
+    input_handler.KEY_LEFT, 'move_left')
 
 # Size of our actual window
 WINDOW_WIDTH = 1280
@@ -29,14 +45,20 @@ BASE_DIR = Path(__file__).parent
 pygame.mixer.init()
 
 SOUNDS = {
-    'paddle_hit': pygame.mixer.Sound(BASE_DIR / "sounds/paddle_hit.wav"),
-    'selected': pygame.mixer.Sound(BASE_DIR / "sounds/selected.wav"),
-    'brick_hit_1': pygame.mixer.Sound(BASE_DIR / "sounds/brick_hit_1.wav"),
-    'brick_hit_2': pygame.mixer.Sound(BASE_DIR / "sounds/brick_hit_2.wav"),
-    'wall_hit': pygame.mixer.Sound(BASE_DIR / "sounds/wall_hit.wav"),
-    'hurt': pygame.mixer.Sound(BASE_DIR / "sounds/hurt.wav"),
-    'level_complete': pygame.mixer.Sound(BASE_DIR / "sounds/level_complete.wav")
-}
+    'paddle_hit': pygame.mixer.Sound(
+        BASE_DIR / "sounds/paddle_hit.wav"),
+    'selected': pygame.mixer.Sound(
+        BASE_DIR / "sounds/selected.wav"),
+    'brick_hit_1': pygame.mixer.Sound(
+        BASE_DIR / "sounds/brick_hit_1.wav"),
+    'brick_hit_2': pygame.mixer.Sound(
+        BASE_DIR / "sounds/brick_hit_2.wav"),
+    'wall_hit': pygame.mixer.Sound(
+        BASE_DIR / "sounds/wall_hit.wav"),
+    'hurt': pygame.mixer.Sound(
+        BASE_DIR / "sounds/hurt.wav"),
+    'level_complete': pygame.mixer.Sound(
+        BASE_DIR / "sounds/level_complete.wav")}
 
 TEXTURES = {
     'background': pygame.image.load(BASE_DIR / "graphics/background.png"),

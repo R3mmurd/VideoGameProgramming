@@ -1,3 +1,12 @@
+"""
+ISPPJ1 2023
+Study Case: Breakout
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains util functions to load and store highscores.
+"""
 import os
 from typing import List, Any
 
@@ -14,9 +23,9 @@ HIGHSCORES_PATH = os.path.join(BREAKOUT_DIR, 'highscores.dat')
 def read_highscores() -> List[List[Any]]:
     if not os.path.exists(BREAKOUT_DIR):
         os.mkdir(BREAKOUT_DIR)
-    
-    with open(HIGHSCORES_PATH, 'a'): 
-         pass
+
+    with open(HIGHSCORES_PATH, 'a'):
+        pass
 
     highscores = []
 
@@ -26,7 +35,7 @@ def read_highscores() -> List[List[Any]]:
             line = line.split(':')
             line[-1] = int(line[-1])
             highscores.append(line)
-    
+
     return highscores
 
 

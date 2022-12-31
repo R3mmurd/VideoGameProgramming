@@ -1,6 +1,16 @@
+"""
+ISPPJ1 2023
+Study Case: Breakout
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the class Brick.
+"""
 import pygame
 
 import settings
+
 
 class Brick:
     def __init__(self, x: int, y: int) -> None:
@@ -23,4 +33,5 @@ class Brick:
     def render(self, surface: pygame.Surface) -> None:
         if self.in_play:
             frame = self.color * 4 + self.tier
-            surface.blit(self.texture, (self.x, self.y), settings.FRAMES['bricks'][frame])
+            surface.blit(self.texture, (self.x, self.y),
+                         settings.FRAMES['bricks'][frame])

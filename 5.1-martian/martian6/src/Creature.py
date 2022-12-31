@@ -1,3 +1,12 @@
+"""
+ISPPJ1 2023
+Study Case: Super Martian (Platformer)
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the class Creature.
+"""
 from typing import TypeVar
 
 from src.GameEntity import GameEntity
@@ -9,7 +18,7 @@ class Creature(GameEntity):
         game_level: TypeVar('GameLevel'), **definition
     ) -> None:
         super().__init__(
-            x, y, width, height, 
+            x, y, width, height,
             definition['texture_id'],
             game_level,
             states={

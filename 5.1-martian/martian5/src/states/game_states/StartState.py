@@ -1,3 +1,12 @@
+"""
+ISPPJ1 2023
+Study Case: Super Martian (Platformer)
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the class StartState.
+"""
 import pygame
 
 from gale.animation import Animation
@@ -7,6 +16,7 @@ from gale.text import Text, render_text
 from gale.timer import Timer
 
 import settings
+
 
 class StartState(BaseState):
     def arrive(self):
@@ -23,7 +33,8 @@ class StartState(BaseState):
         self.martian_x = -16
         self.martian_end_x = settings.VIRTUAL_WIDTH // 2 - 8
         self.martian_texture = settings.TEXTURES['martian']
-        self.martian_animation = Animation(settings.FRAMES['martian'][9:], 0.15)
+        self.martian_animation = Animation(
+            settings.FRAMES['martian'][9:], 0.15)
 
         self.tweening = True
 
@@ -51,9 +62,10 @@ class StartState(BaseState):
         surface.fill((25, 130, 196))
         self.title.render(surface)
         surface.blit(
-            self.martian_texture, (self.martian_x, settings.VIRTUAL_HEIGHT // 2 - 10),
-            self.martian_animation.get_current_frame()
-        )
+            self.martian_texture,
+            (self.martian_x,
+             settings.VIRTUAL_HEIGHT // 2 - 10),
+            self.martian_animation.get_current_frame())
 
         if not self.tweening:
             render_text(
@@ -71,6 +83,3 @@ class StartState(BaseState):
                 self.arrive()
             else:
                 self.state_machine.change('play')
-
-        
-        

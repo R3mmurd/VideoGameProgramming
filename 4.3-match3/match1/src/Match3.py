@@ -1,3 +1,12 @@
+"""
+ISPPJ1 2023
+Study Case: Match-3
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the class Match3 as a specialization of gale.Game
+"""
 import random
 
 import pygame
@@ -8,9 +17,11 @@ from gale.input_handler import InputHandler, InputData
 import settings
 from src.Tile import Tile
 
+
 class Match3(Game):
     def init(self) -> None:
-        self.board = [[None for _ in range(settings.BOARD_WIDTH)] for _ in range(settings.BOARD_HEIGHT)]
+        self.board = [[None for _ in range(settings.BOARD_WIDTH)] for _ in range(
+            settings.BOARD_HEIGHT)]
         self._generate_board()
 
         # Currently selected tile will be swapped with the next tile we choose.
@@ -38,7 +49,7 @@ class Match3(Game):
             j = (pos_x - settings.BOARD_OFFSET_X) // settings.TILE_SIZE
 
             if not self.highlighted_tile:
-                self.highlighted_tile = True  
+                self.highlighted_tile = True
                 self.highlighted_i = i
                 self.highlighted_j = j
             else:
@@ -51,14 +62,12 @@ class Match3(Game):
                 tile1.i, tile1.j, tile2.i, tile2.j = tile2.i, tile2.j, tile1.i, tile1.j
 
                 self.highlighted_tile = False
-                
-            
-    
+
     def _generate_board(self) -> None:
         for i in range(settings.BOARD_HEIGHT):
             for j in range(settings.BOARD_WIDTH):
                 self.board[i][j] = Tile(
                     x=j * settings.TILE_SIZE,
-                    y=i * settings.TILE_SIZE, 
+                    y=i * settings.TILE_SIZE,
                     frame=random.randint(0, len(settings.FRAMES['tiles']) - 1)
                 )

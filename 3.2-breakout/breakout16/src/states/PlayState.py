@@ -1,4 +1,12 @@
+"""
+ISPPJ1 2023
+Study Case: Breakout
 
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the class to define the Play state.
+"""
 import random
 
 import pygame
@@ -9,6 +17,7 @@ from gale.text import render_text
 
 import settings
 from src import powerups
+
 
 class PlayState(BaseState):
     def enter(self, **params: dict):
@@ -21,7 +30,8 @@ class PlayState(BaseState):
         self.broken_bricks_counter = params['broken_bricks_counter']
         self.live_factor = params['live_factor']
         self.points_to_next_live = params['points_to_next_live']
-        self.points_to_next_grow_up = self.score + settings.PADDLE_GROW_UP_POINTS * (self.paddle.size + 1) * self.level
+        self.points_to_next_grow_up = self.score + \
+            settings.PADDLE_GROW_UP_POINTS * (self.paddle.size + 1) * self.level
         self.powerups = params.get('powerups', [])
 
         if not params.get('resume', False):
@@ -33,7 +43,7 @@ class PlayState(BaseState):
 
     def exit(self) -> None:
         InputHandler.unregister_listener(self)
-    
+
     def update(self, dt: float) -> None:
         self.paddle.update(dt)
 
@@ -91,27 +101,30 @@ class PlayState(BaseState):
                 # Check growing up of the paddle
                 if self.score >= self.points_to_next_grow_up:
                     settings.SOUNDS['grow_up'].play()
-                    self.points_to_next_grow_up += settings.PADDLE_GROW_UP_POINTS * (self.paddle.size + 1) * self.level
+                    self.points_to_next_grow_up += settings.PADDLE_GROW_UP_POINTS * \
+                        (self.paddle.size + 1) * self.level
                     self.paddle.inc_size()
-                
+
                 # Chance to generate two more balls
                 if random.random() < 0.05:
                     r = brick.get_collision_rect()
-                    self.powerups.append(powerups.TwoMoreBall(r.centerx - 8, r.centery - 8))
+                    self.powerups.append(
+                        powerups.TwoMoreBall(
+                            r.centerx - 8, r.centery - 8))
 
                 if not brick.in_play:
                     self.broken_bricks_counter += 1
-        
+
         # Update powerups
         for powerup in self.powerups:
             powerup.update(dt)
 
             if powerup.collides(self.paddle):
                 powerup.take(self)
-        
+
         # Remove powerups that are not in play
         self.powerups = [p for p in self.powerups if p.in_play]
-        
+
         # Check victory
         if self.broken_bricks_counter == len(self.bricks):
             self.state_machine.change(
@@ -125,20 +138,27 @@ class PlayState(BaseState):
                 live_factor=self.live_factor
             )
 
-                
     def render(self, surface: pygame.Surface) -> None:
         heart_x = settings.VIRTUAL_WIDTH - 120
 
         i = 0
         # Draw filled hearts
         while i < self.lives:
-            surface.blit(settings.TEXTURES['hearts'], (heart_x, 5), settings.FRAMES['hearts'][0])
+            surface.blit(
+                settings.TEXTURES['hearts'],
+                (heart_x,
+                 5),
+                settings.FRAMES['hearts'][0])
             heart_x += 11
             i += 1
-        
+
         # Draw empty hearts
         while i < 3:
-            surface.blit(settings.TEXTURES['hearts'], (heart_x, 5), settings.FRAMES['hearts'][1])
+            surface.blit(
+                settings.TEXTURES['hearts'],
+                (heart_x,
+                 5),
+                settings.FRAMES['hearts'][1])
             heart_x += 11
             i += 1
 
@@ -154,7 +174,7 @@ class PlayState(BaseState):
 
         for ball in self.balls:
             ball.render(surface)
-        
+
         for powerup in self.powerups:
             powerup.render(surface)
 
@@ -183,4 +203,3 @@ class PlayState(BaseState):
                 live_factor=self.live_factor,
                 powerups=self.powerups
             )
-

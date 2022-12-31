@@ -1,3 +1,12 @@
+"""
+ISPPJ1 2023
+Study Case: Super Martian (Platformer)
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the definition for creatueres.
+"""
 from typing import Dict, Any
 
 from src.states.entities import creatures_states

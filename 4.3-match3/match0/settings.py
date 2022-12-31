@@ -1,3 +1,14 @@
+"""
+ISPPJ1 2023
+Study Case: Match-3
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the game settings that include the association of the
+inputs with an their ids, constants of values to set up the game, sounds,
+textures, frames, and fonts.
+"""
 from pathlib import Path
 
 import pygame
@@ -5,7 +16,8 @@ import pygame
 from gale import input_handler
 from gale.frames import generate_frames
 
-input_handler.InputHandler.set_keyboard_action(input_handler.KEY_ESCAPE, 'quit')
+input_handler.InputHandler.set_keyboard_action(
+    input_handler.KEY_ESCAPE, 'quit')
 
 WINDOW_WIDTH = 1280
 WINDOW_HEIGHT = 720
@@ -30,3 +42,7 @@ TEXTURES = {
 FRAMES = {
     'tiles': generate_frames(TEXTURES['tiles'], TILE_SIZE, TILE_SIZE)
 }
+
+SOUNDS = {}
+
+FONTS = {}

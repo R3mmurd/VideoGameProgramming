@@ -1,3 +1,12 @@
+"""
+ISPPJ1 2023
+Study Case: Super Martian (Platformer)
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the class SnailWalkState.
+"""
 from src.GameObject import GameObject
 from src.states.entities.BaseEntityState import BaseEntityState
 
@@ -26,7 +35,7 @@ class SnailWalkState(BaseEntityState):
         elif self.entity.x <= 0:
             self.entity.x = 0
             return True
-        
+
         if self.entity.check_collision_on_left() or self.entity.check_collision_on_right():
             return True
 
@@ -37,15 +46,20 @@ class SnailWalkState(BaseEntityState):
             # Snail row
             row = int(self.entity.tilemap.to_i(self.entity.y))
             # Col of the right side of the snail
-            col = int(self.entity.tilemap.to_j(self.entity.x + self.entity.width))
+            col = int(
+                self.entity.tilemap.to_j(
+                    self.entity.x +
+                    self.entity.width))
 
-            can_fall = not self.entity.tilemap.check_solidness(row + 1, col, GameObject.TOP)
+            can_fall = not self.entity.tilemap.check_solidness(
+                row + 1, col, GameObject.TOP)
         elif self.entity.vx < 0:
             # Snail row
             row = int(self.entity.tilemap.to_i(self.entity.y))
             # Col of the left side of the snail
             col = int(self.entity.tilemap.to_j(self.entity.x))
 
-            can_fall = not self.entity.tilemap.check_solidness(row + 1, col, GameObject.TOP)
-        
+            can_fall = not self.entity.tilemap.check_solidness(
+                row + 1, col, GameObject.TOP)
+
         return can_fall

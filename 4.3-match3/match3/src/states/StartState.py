@@ -1,3 +1,12 @@
+"""
+ISPPJ1 2023
+Study Case: Match-3
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the class StartState.
+"""
 import random
 
 import pygame
@@ -8,6 +17,7 @@ from gale.text import render_text
 from gale.timer import Timer
 
 import settings
+
 
 class StartState(BaseState):
     # colors we'll use to change the title text
@@ -45,7 +55,7 @@ class StartState(BaseState):
 
             for i in range(5, 0, -1):
                 self.colors[i] = self.colors[i - 1]
-            
+
             self.colors[0] = last
 
         self.color_timer = Timer.every(0.075, shift_colors)
@@ -59,21 +69,27 @@ class StartState(BaseState):
             self.frames.append(settings.FRAMES['tiles'][color][variety])
 
         # A surface that supports alpha for the screen
-        self.screen_alpha_surface = pygame.Surface((settings.VIRTUAL_WIDTH, settings.VIRTUAL_HEIGHT), pygame.SRCALPHA)
+        self.screen_alpha_surface = pygame.Surface(
+            (settings.VIRTUAL_WIDTH, settings.VIRTUAL_HEIGHT), pygame.SRCALPHA)
 
         # A surface that supports alpha for each tile to draw
-        self.tile_alpha_surface = pygame.Surface((settings.TILE_SIZE, settings.TILE_SIZE), pygame.SRCALPHA)
-        pygame.draw.rect(self.tile_alpha_surface, (0, 0, 0, 255), pygame.Rect(0, 0, settings.TILE_SIZE, settings.TILE_SIZE), border_radius=7)
+        self.tile_alpha_surface = pygame.Surface(
+            (settings.TILE_SIZE, settings.TILE_SIZE), pygame.SRCALPHA)
+        pygame.draw.rect(self.tile_alpha_surface, (0, 0, 0, 255), pygame.Rect(
+            0, 0, settings.TILE_SIZE, settings.TILE_SIZE), border_radius=7)
 
         # A surface that supports alpha for the title and the menu
         self.text_alpha_surface = pygame.Surface((300, 58), pygame.SRCALPHA)
-        pygame.draw.rect(self.text_alpha_surface, (255, 255, 255, 128), pygame.Rect(0, 0, 300, 58))
+        pygame.draw.rect(
+            self.text_alpha_surface, (255, 255, 255, 128), pygame.Rect(
+                0, 0, 300, 58))
 
-        # If we have selected an option, we need to deactivate inputs while we animate out.
+        # If we have selected an option, we need to deactivate inputs while we
+        # animate out.
         self.active = True
 
         InputHandler.register_listener(self)
-    
+
     def exit(self) -> None:
         InputHandler.unregister_listener(self)
 
@@ -87,25 +103,38 @@ class StartState(BaseState):
                 # Frame position in the list
                 f = i * settings.BOARD_HEIGHT + j
 
-                surface.blit(settings.TEXTURES['tiles'], (x + 2, y + 2), self.frames[f])
+                surface.blit(
+                    settings.TEXTURES['tiles'], (x + 2, y + 2), self.frames[f])
                 surface.blit(self.tile_alpha_surface, (x + 2, y + 2))
-                surface.blit(settings.TEXTURES['tiles'], (x, y), self.frames[i * settings.BOARD_HEIGHT + j])
+                surface.blit(
+                    settings.TEXTURES['tiles'], (x, y), self.frames[i * settings.BOARD_HEIGHT + j])
 
         # keep the background and tiles a little darker than normal
-        pygame.draw.rect(self.screen_alpha_surface, (0, 0, 0, 128), pygame.Rect(0, 0, settings.VIRTUAL_WIDTH, settings.VIRTUAL_HEIGHT))
+        pygame.draw.rect(self.screen_alpha_surface, (0, 0, 0, 128), pygame.Rect(
+            0, 0, settings.VIRTUAL_WIDTH, settings.VIRTUAL_HEIGHT))
         surface.blit(self.screen_alpha_surface, (0, 0))
         self._draw_match3_text(surface, -60)
         self._draw_options(surface, 12)
 
-        # draw our transition rect; is normally fully transparent, unless we're moving to a new state
-        pygame.draw.rect(self.screen_alpha_surface, (255, 255, 255, self.alpha_transition), pygame.Rect(0, 0, settings.VIRTUAL_WIDTH, settings.VIRTUAL_HEIGHT))
+        # draw our transition rect; is normally fully transparent, unless we're
+        # moving to a new state
+        pygame.draw.rect(
+            self.screen_alpha_surface,
+            (255,
+             255,
+             255,
+             self.alpha_transition),
+            pygame.Rect(
+                0,
+                0,
+                settings.VIRTUAL_WIDTH,
+                settings.VIRTUAL_HEIGHT))
         surface.blit(self.screen_alpha_surface, (0, 0))
-        
 
     def on_input(self, input_id: str, input_data: InputData) -> None:
         if not self.active:
             return
-        
+
         if input_id in ('up', 'down') and input_data.pressed:
             self.current_menu_item = 1 if self.current_menu_item == 2 else 2
             settings.SOUNDS['select'].play()
@@ -122,21 +151,38 @@ class StartState(BaseState):
 
     def _draw_match3_text(self, surface: pygame.Surface, y: int) -> None:
         # draw semi-transparent rect behind MATCH 3
-        surface.blit(self.text_alpha_surface, (settings.VIRTUAL_WIDTH // 2 - 152, settings.VIRTUAL_HEIGHT // 2 + y - 32))
+        surface.blit(
+            self.text_alpha_surface,
+            (settings.VIRTUAL_WIDTH // 2 - 152,
+             settings.VIRTUAL_HEIGHT // 2 + y - 32))
 
         # draw MATCH 3 text shadows
         for i, (l, x) in enumerate(self.LETTER_TABLE.items()):
             render_text(
-                surface, l, settings.FONTS['huge'],
-                settings.VIRTUAL_WIDTH // 2 + x, settings.VIRTUAL_HEIGHT // 2 + y,
+                surface,
+                l,
+                settings.FONTS['huge'],
+                settings.VIRTUAL_WIDTH // 2 + x,
+                settings.VIRTUAL_HEIGHT // 2 + y,
                 self.colors[i],
-                center=True, shadowed=True
-            )
-    
-    def _draw_options(self, surface: pygame.Surface, y: int) -> None:
-        surface.blit(self.text_alpha_surface, (settings.VIRTUAL_WIDTH // 2 - 152, settings.VIRTUAL_HEIGHT // 2 + y))
+                center=True,
+                shadowed=True)
 
-        text_color = (99, 155, 255, 255) if self.current_menu_item == 1 else (48, 96, 130, 255)
+    def _draw_options(self, surface: pygame.Surface, y: int) -> None:
+        surface.blit(
+            self.text_alpha_surface,
+            (settings.VIRTUAL_WIDTH // 2 - 152,
+             settings.VIRTUAL_HEIGHT // 2 + y))
+
+        text_color = (
+            99,
+            155,
+            255,
+            255) if self.current_menu_item == 1 else (
+            48,
+            96,
+            130,
+            255)
 
         render_text(
             surface, "Start", settings.FONTS['medium'],
@@ -144,7 +190,15 @@ class StartState(BaseState):
             text_color, center=True, shadowed=True
         )
 
-        text_color = (99, 155, 255, 255) if self.current_menu_item == 2 else (48, 96, 130, 255)
+        text_color = (
+            99,
+            155,
+            255,
+            255) if self.current_menu_item == 2 else (
+            48,
+            96,
+            130,
+            255)
 
         render_text(
             surface, "Quit Game", settings.FONTS['medium'],

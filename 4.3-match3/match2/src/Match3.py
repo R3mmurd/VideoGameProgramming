@@ -1,3 +1,21 @@
+"""
+ISPPJ1 2023
+Study Case: Match-3
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the class Match3 as a specialization of gale.Game
+"""
+"""
+ISPPJ1 2023
+Study Case: Match-3
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains the class Match3 as a specialization of gale.Game
+"""
 import random
 
 import pygame
@@ -9,9 +27,11 @@ from gale.timer import Timer
 import settings
 from src.Tile import Tile
 
+
 class Match3(Game):
     def init(self) -> None:
-        self.board = [[None for _ in range(settings.BOARD_WIDTH)] for _ in range(settings.BOARD_HEIGHT)]
+        self.board = [[None for _ in range(settings.BOARD_WIDTH)] for _ in range(
+            settings.BOARD_HEIGHT)]
         self._generate_board()
 
         # Currently selected tile will be swapped with the next tile we choose.
@@ -43,7 +63,7 @@ class Match3(Game):
 
             if 0 <= i < settings.BOARD_HEIGHT and 0 <= j <= settings.BOARD_WIDTH:
                 if not self.highlighted_tile:
-                    self.highlighted_tile = True  
+                    self.highlighted_tile = True
                     self.highlighted_i1 = i
                     self.highlighted_j1 = j
                 else:
@@ -72,17 +92,15 @@ class Match3(Game):
                                 (tile2, {'x': tile1.x, 'y': tile1.y}),
                             ],
                             on_finish=arrive
-                        )                        
+                        )
 
                     self.highlighted_tile = False
-                
-            
-    
+
     def _generate_board(self) -> None:
         for i in range(settings.BOARD_HEIGHT):
             for j in range(settings.BOARD_WIDTH):
                 self.board[i][j] = Tile(
                     x=j * settings.TILE_SIZE,
-                    y=i * settings.TILE_SIZE, 
+                    y=i * settings.TILE_SIZE,
                     frame=random.randint(0, len(settings.FRAMES['tiles']) - 1)
                 )

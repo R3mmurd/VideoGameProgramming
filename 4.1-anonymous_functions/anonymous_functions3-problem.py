@@ -1,3 +1,12 @@
+"""
+ISPPJ1 2023
+Anonymous Functions
+
+Author: Alejandro Mujica
+alejandro.j.mujic4@gmail.com
+
+This file contains an example that shows the dynamic binding of the values to a variable.
+"""
 
 
 def print_the_value_of_i(i: int) -> None:
