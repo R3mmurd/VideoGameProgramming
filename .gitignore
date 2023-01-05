@@ -5,3 +5,17 @@
 **/build
 **/.venv
 **/__pycache__
+**/.internal
+**/build
+**.externalToolBuilders
+**.DS_Store
+**Thumbs.db
+**.lock-wscript
+***.pyc
+**.project
+**.cproject
+**builtins
+**debug.keystore
+**debug.keystore.pass.txt
+**manifest.private.der
+**manifest.public.der
