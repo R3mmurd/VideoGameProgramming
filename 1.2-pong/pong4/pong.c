@@ -39,14 +39,14 @@ void handle_input_pong(struct Pong* pong, ALLEGRO_KEYBOARD_STATE* state)
         {
             pong->state = PLAY;
 
-            pong->ball.vx = rand() % 120 + 480;
+            pong->ball.vx = rand() % 60 + 140;
 
             if (rand() % 2 == 0)
             {
                 pong->ball.vx *= -1;
             }
 
-            pong->ball.vy = rand() % 400 - 200;
+            pong->ball.vy = rand() % 100 - 50;
         }
     }
     else if (pong->state == PLAY)
@@ -122,11 +122,11 @@ void update_pong(struct Pong* pong, double dt)
 
             if (pong->ball.vy < 0)
             {
-                pong->ball.vy = -(rand() % 200 + 200);
+                pong->ball.vy = -(rand() % 100 + 50);
             }
             else
             {
-                pong->ball.vy = rand() % 200 + 200;
+                pong->ball.vy = rand() % 100 + 50;
             }
         }
         else if (collides(ball_hitbox, player2_hitbox))
@@ -136,11 +136,11 @@ void update_pong(struct Pong* pong, double dt)
 
             if (pong->ball.vy < 0)
             {
-                pong->ball.vy = -(rand() % 140 + 50);
+                pong->ball.vy = -(rand() % 100 + 50);
             }
             else
             {
-                pong->ball.vy = rand() % 140 + 50;
+                pong->ball.vy = rand() % 100 + 50;
             }
         }
     }

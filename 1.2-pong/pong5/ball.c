@@ -14,7 +14,7 @@
 #include "ball.h"
 #include "settings.h"
 
-void init_ball(struct Ball* ball, int x, int y, int s)
+void init_ball(struct Ball* ball, float x, float y, float s)
 {
     ball->x = x;
     ball->y = y;
@@ -32,7 +32,7 @@ void build_ball_hitbox(struct Ball ball, struct Hitbox* hitbox)
     hitbox->y2 = ball.y + ball.height;
 }
 
-void update_ball(struct Ball* ball, double dt)
+void update_ball(struct Ball* ball, float dt)
 {
     ball->x += ball->vx * dt;
     ball->y += ball->vy * dt;

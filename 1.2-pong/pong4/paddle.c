@@ -14,7 +14,7 @@
 #include "settings.h"
 #include "paddle.h"
 
-void init_paddle(struct Paddle* paddle, int x, int y, int w, int h)
+void init_paddle(struct Paddle* paddle, float x, float y, float w, float h)
 {
     paddle->x = x;
     paddle->y = y;
@@ -31,7 +31,7 @@ void build_paddle_hitbox(struct Paddle paddle, struct Hitbox* hitbox)
     hitbox->y2 = paddle.y + paddle.height;
 }
 
-void update_paddle(struct Paddle* paddle, double dt)
+void update_paddle(struct Paddle* paddle, float dt)
 {
     paddle->y += paddle->vy * dt;
 

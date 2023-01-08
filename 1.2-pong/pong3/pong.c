@@ -38,14 +38,14 @@ void handle_input_pong(struct Pong* pong, ALLEGRO_KEYBOARD_STATE* state)
         {
             pong->state = PLAY;
 
-            pong->ball.vx = rand() % 60 + 240;
+            pong->ball.vx = rand() % 60 + 140;
 
             if (rand() % 2 == 0)
             {
                 pong->ball.vx *= -1;
             }
 
-            pong->ball.vy = rand() % 200 - 100;
+            pong->ball.vy = rand() % 100 - 50;
         }
     }
     else if (pong->state == PLAY)

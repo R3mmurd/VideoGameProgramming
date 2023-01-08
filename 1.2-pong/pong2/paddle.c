@@ -13,7 +13,7 @@
 
 #include "paddle.h"
 
-void init_paddle(struct Paddle* paddle, int x, int y, int w, int h)
+void init_paddle(struct Paddle* paddle, float x, float y, float w, float h)
 {
     paddle->x = x;
     paddle->y = y;
@@ -22,7 +22,7 @@ void init_paddle(struct Paddle* paddle, int x, int y, int w, int h)
     paddle->vy = 0;
 }
 
-void update_paddle(struct Paddle* paddle, double dt)
+void update_paddle(struct Paddle* paddle, _Float32 dt)
 {
     paddle->y += paddle->vy * dt;
 }

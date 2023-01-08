@@ -15,18 +15,18 @@
 
 struct Ball
 {
-    int x;
-    int y;
-    int width;
-    int height;
-    int vx;
-    int vy;
+    float x;
+    float y;
+    float width;
+    float height;
+    float vx;
+    float vy;
 };
 
-void init_ball(struct Ball* ball, int x, int y, int s);
+void init_ball(struct Ball* ball, float x, float y, float s);
 
 void build_ball_hitbox(struct Ball ball, struct Hitbox* hitbox);
 
-void update_ball(struct Ball* ball, double dt);
+void update_ball(struct Ball* ball, float dt);
 
 void render_ball(struct Ball ball);

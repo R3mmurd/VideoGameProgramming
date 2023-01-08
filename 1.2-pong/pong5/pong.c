@@ -46,14 +46,14 @@ void handle_input_pong(struct Pong* pong, ALLEGRO_KEYBOARD_STATE* state)
         {
             pong->state = PLAY;
 
-            pong->ball.vx = rand() % 120 + 480;
+            pong->ball.vx = rand() % 60 + 140;
 
             if (pong->serving_player == 2)
             {
                 pong->ball.vx *= -1;
             }
 
-            pong->ball.vy = rand() % 400 - 200;
+            pong->ball.vy = rand() % 100 - 50;
         }
     }
     else if (pong->state == PLAY)
@@ -174,11 +174,11 @@ void update_pong(struct Pong* pong, double dt)
 
             if (pong->ball.vy < 0)
             {
-                pong->ball.vy = -(rand() % 200 + 200);
+                pong->ball.vy = -(rand() % 100 + 50);
             }
             else
             {
-                pong->ball.vy = rand() % 200 + 200;
+                pong->ball.vy = rand() % 100 + 50;
             }
         }
         else if (collides(ball_hitbox, player2_hitbox))
@@ -188,11 +188,11 @@ void update_pong(struct Pong* pong, double dt)
 
             if (pong->ball.vy < 0)
             {
-                pong->ball.vy = -(rand() % 140 + 50);
+                pong->ball.vy = -(rand() % 100 + 50);
             }
             else
             {
-                pong->ball.vy = rand() % 140 + 50;
+                pong->ball.vy = rand() % 100 + 50;
             }
         }
     }
@@ -211,9 +211,9 @@ void render_pong(struct Pong pong, struct Fonts fonts)
 
     char score[3];
     sprintf(score, "%d", pong.player1_score);
-    al_draw_text(fonts.score_font, al_map_rgb(255, 255, 255), TABLE_WIDTH / 2 - 300, TABLE_HEIGHT / 6, ALLEGRO_ALIGN_CENTER, score);
+    al_draw_text(fonts.score_font, al_map_rgb(255, 255, 255), TABLE_WIDTH / 2 - 50, TABLE_HEIGHT / 6, ALLEGRO_ALIGN_CENTER, score);
     sprintf(score, "%d", pong.player2_score);
-    al_draw_text(fonts.score_font, al_map_rgb(255, 255, 255), TABLE_WIDTH / 2 + 300, TABLE_HEIGHT / 6, ALLEGRO_ALIGN_CENTER, score);
+    al_draw_text(fonts.score_font, al_map_rgb(255, 255, 255), TABLE_WIDTH / 2 + 50, TABLE_HEIGHT / 6, ALLEGRO_ALIGN_CENTER, score);
 
     if (pong.state == START)
     {

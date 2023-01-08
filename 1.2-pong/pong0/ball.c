@@ -13,7 +13,7 @@
 
 #include "ball.h"
 
-void init_ball(struct Ball* ball, int x, int y, int s)
+void init_ball(struct Ball* ball, float x, float y, float s)
 {
     ball->x = x;
     ball->y = y;
@@ -23,7 +23,7 @@ void init_ball(struct Ball* ball, int x, int y, int s)
     ball->vy = 0;
 }
 
-void update_ball(struct Ball* ball, double dt)
+void update_ball(struct Ball* ball, float dt)
 {
 
 }

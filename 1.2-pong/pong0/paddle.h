@@ -13,15 +13,15 @@
 
 struct Paddle
 {
-    int x;
-    int y;
-    int width;
-    int height;
-    int vy;
+    float x;
+    float y;
+    float width;
+    float height;
+    float vy;
 };
 
-void init_paddle(struct Paddle* paddle, int x, int y, int w, int h);
+void init_paddle(struct Paddle* paddle, float x, float y, float w, float h);
 
-void update_paddle(struct Paddle* paddle, double dt);
+void update_paddle(struct Paddle* paddle, float dt);
 
 void render_paddle(struct Paddle paddle);

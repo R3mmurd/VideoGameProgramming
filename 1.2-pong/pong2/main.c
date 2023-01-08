@@ -25,7 +25,9 @@ int main()
 
     ALLEGRO_EVENT_QUEUE* queue = al_create_event_queue();
 
-    ALLEGRO_DISPLAY* display = al_create_display(TABLE_WIDTH, TABLE_HEIGHT);
+    ALLEGRO_DISPLAY* display = al_create_display(WINDOW_WIDTH, WINDOW_HEIGHT);
+
+    ALLEGRO_BITMAP* render_surface = al_create_bitmap(TABLE_WIDTH, TABLE_HEIGHT);
 
     al_register_event_source(queue, al_get_keyboard_event_source());
     al_register_event_source(queue, al_get_display_event_source(display));
@@ -39,7 +41,7 @@ int main()
     struct Pong pong;
     init_pong(&pong);
 
-    double last_frame_time = al_get_time();
+    float last_frame_time = al_get_time();
 
     while (true)
     {
@@ -62,14 +64,25 @@ int main()
 
         if (redraw && al_is_event_queue_empty(queue))
         {
-            double current_frame_time = al_get_time();
-            double dt = current_frame_time - last_frame_time;
-
-            al_clear_to_color(al_map_rgb(0, 0, 0));
+            float current_frame_time = al_get_time();
+            float dt = current_frame_time - last_frame_time;
 
             update_pong(&pong, dt);
+
+            // All of the following draws will be on render_surface
+            al_set_target_bitmap(render_surface);
+            al_clear_to_color(al_map_rgb(0, 0, 0));
             render_pong(pong);
 
+            // Set the display bitmap as current to render
+            al_set_target_bitmap(al_get_backbuffer(display));
+            
+            al_draw_scaled_bitmap(
+                render_surface,
+                0, 0, TABLE_WIDTH, TABLE_HEIGHT,   // Source x, y, width, height
+                0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, // Target x, y, width, height
+                0 // flags
+            );
             al_flip_display();
 
             redraw = false;
