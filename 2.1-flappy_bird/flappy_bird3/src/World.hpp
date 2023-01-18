@@ -28,6 +28,6 @@ private:
     sf::Sprite background;
     sf::Sprite ground;
 
-    float background_x;
-    float ground_x;
+    float background_x{0.f};
+    float ground_x{0.f};
 };

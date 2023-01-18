@@ -35,5 +35,6 @@ void TitleScreenState::update(float dt) noexcept
 void TitleScreenState::render(sf::RenderTarget& target) const noexcept 
 {
     world.render(target);
-    target.draw(build_text("Press Enter to start", Settings::MEDIUM_TEXT_SIZE, "font", sf::Color::White, true));
+    render_text(target, Settings::VIRTUAL_WIDTH / 2, Settings::VIRTUAL_HEIGHT / 3, "Flappy Bird", Settings::FLAPPY_TEXT_SIZE, "flappy", sf::Color::White, true);
+    render_text(target, Settings::VIRTUAL_WIDTH / 2, 2 * Settings::VIRTUAL_HEIGHT / 3, "Press Enter to start", Settings::MEDIUM_TEXT_SIZE, "font", sf::Color::White, true);
 }

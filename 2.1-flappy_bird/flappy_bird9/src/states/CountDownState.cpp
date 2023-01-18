@@ -40,5 +40,5 @@ void CountDownState::update(float dt) noexcept
 void CountDownState::render(sf::RenderTarget& target) const noexcept
 {
     world.render(target);
-    target.draw(build_text(std::to_string(counter), Settings::HUGE_TEXT_SIZE, "font", sf::Color::White, true));
+    render_text(target, Settings::VIRTUAL_WIDTH / 2, Settings::VIRTUAL_HEIGHT / 2, std::to_string(counter), Settings::HUGE_TEXT_SIZE, "font", sf::Color::White, true);
 }

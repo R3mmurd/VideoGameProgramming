@@ -11,13 +11,18 @@
 
 #pragma once
 
+#include <filesystem>
 #include <string>
 #include <unordered_map>
+
+namespace fs = std::filesystem;
 
 #include <SFML/Graphics.hpp>
 
 struct Settings
 {
+    static const fs::path GRAPHICS_PATH;
+
     static constexpr int WINDOW_WIDTH{1280};
     static constexpr int WINDOW_HEIGHT{720};
     static constexpr int VIRTUAL_WIDTH{512};

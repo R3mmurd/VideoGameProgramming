@@ -71,12 +71,16 @@ void Game::render() noexcept
     bird.render(render_texture);
 
     sf::Text score_text;
-    score_text.move(20, 10);
+    score_text.move(22, 12);
     score_text.setFont(Settings::fonts["flappy"]);
     score_text.setString("Score: " + std::to_string(score));
     score_text.setCharacterSize(Settings::FLAPPY_TEXT_SIZE);
+    score_text.setFillColor(sf::Color::Black);
+    render_texture.draw(score_text);
+    score_text.move(-2, -2);
     score_text.setFillColor(sf::Color::White);
     render_texture.draw(score_text);
+    
 
     render_texture.display();
 

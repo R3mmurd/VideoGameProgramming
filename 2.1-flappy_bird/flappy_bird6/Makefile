@@ -4,7 +4,7 @@ INCLUDE = -I.
 
 BUILD_DIR = build
 
-OBJ_RULES = Settings.o Game.o Bird.o Pipe.o PipePair.o World.o
+OBJ_RULES = Settings.o Game.o Bird.o Log.o LogPair.o World.o
 
 LIBS = -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system $(BUILD_DIR)/*.o
 
@@ -20,11 +20,11 @@ Game.o: $(BUILD_DIR) src/Game.hpp src/Game.cpp
 Bird.o: $(BUILD_DIR) src/Bird.hpp src/Bird.cpp
 	$(CXX) -c $(INCLUDE) src/Bird.cpp -o $(BUILD_DIR)/$@
 	
-Pipe.o: src/Pipe.hpp src/Pipe.cpp
-	$(CXX) -c $(INCLUDE) src/Pipe.cpp -o $(BUILD_DIR)/$@
+Log.o: src/Log.hpp src/Log.cpp
+	$(CXX) -c $(INCLUDE) src/Log.cpp -o $(BUILD_DIR)/$@
 
-PipePair.o: src/PipePair.hpp src/PipePair.cpp
-	$(CXX) -c $(INCLUDE) src/PipePair.cpp -o $(BUILD_DIR)/$@
+LogPair.o: src/LogPair.hpp src/LogPair.cpp
+	$(CXX) -c $(INCLUDE) src/LogPair.cpp -o $(BUILD_DIR)/$@
 
 World.o: $(BUILD_DIR) src/World.hpp src/World.cpp
 	$(CXX) -c $(INCLUDE) src/World.cpp -o $(BUILD_DIR)/$@

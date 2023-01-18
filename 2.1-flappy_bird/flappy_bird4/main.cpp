@@ -12,7 +12,7 @@
 
 #include <Settings.hpp>
 #include <src/Game.hpp>
-
+#include <iostream>
 int main()
 {
     Settings::init();
@@ -35,11 +35,10 @@ int main()
                 game.get_window().close();
             }
         }
-
+        
         game.update(dt.asSeconds());
-        game.render();
-
-        dt = clock.restart();
+        game.render();     
+        dt = clock.restart();  
     }
 
     return EXIT_SUCCESS;

@@ -60,8 +60,5 @@ void PlayingState::render(sf::RenderTarget& target) const noexcept
 {
     world.render(target);
     bird.render(target);
-
-    sf::Text score_text = build_text("Score: " + std::to_string(score), Settings::FLAPPY_TEXT_SIZE, "flappy", sf::Color::White);
-    score_text.move(20, 10);
-    target.draw(score_text);
+    render_text(target, 20, 10, "Score: " + std::to_string(score), Settings::FLAPPY_TEXT_SIZE, "flappy", sf::Color::White);
 }

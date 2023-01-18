@@ -13,11 +13,11 @@
 
 World::World() noexcept
     : background{Settings::textures["background"]}, ground{Settings::textures["ground"]},
-      pipes{}, rng{std::default_random_engine{}()}
+      logs{}, rng{std::default_random_engine{}()}
 {
     ground.setPosition(0, Settings::VIRTUAL_HEIGHT - Settings::GROUND_HEIGHT);
     std::uniform_int_distribution<int> dist(0, 80);
-    last_pipe_y = -Settings::PIPE_HEIGHT + dist(rng) + 20;
+    last_log_y = -Settings::LOG_HEIGHT + dist(rng) + 20;
 }
 
 bool World::collides(const sf::FloatRect& rect) const noexcept
@@ -27,9 +27,9 @@ bool World::collides(const sf::FloatRect& rect) const noexcept
         return true;
     }
     
-    for (const auto& pipe_pair: pipes)
+    for (const auto& Log_pair: logs)
     {
-        if (pipe_pair.collides(rect))
+        if (Log_pair.collides(rect))
         {
             return true;
         }
@@ -40,9 +40,9 @@ bool World::collides(const sf::FloatRect& rect) const noexcept
 
 bool World::update_scored(const sf::FloatRect& rect) noexcept
 {
-    for (auto& pipe_pair: pipes)
+    for (auto& Log_pair: logs)
     {
-        if (pipe_pair.update_scored(rect))
+        if (Log_pair.update_scored(rect))
         {
             return true;
         }
@@ -53,18 +53,18 @@ bool World::update_scored(const sf::FloatRect& rect) noexcept
 
 void World::update(float dt) noexcept
 {
-    pipes_spawn_timer += dt;
+    logs_spawn_timer += dt;
 
-    if (pipes_spawn_timer >= Settings::TIME_TO_SPAWN_PIPES)
+    if (logs_spawn_timer >= Settings::TIME_TO_SPAWN_LOGS)
     {
-        pipes_spawn_timer = 0.f;
+        logs_spawn_timer = 0.f;
 
         std::uniform_int_distribution<int> dist{-20, 20};
-        float y = std::max(-Settings::PIPE_HEIGHT + 10, std::min(last_pipe_y + dist(rng), Settings::VIRTUAL_HEIGHT + 90 - Settings::PIPE_HEIGHT));
+        float y = std::max(-Settings::LOG_HEIGHT + 10, std::min(last_log_y + dist(rng), Settings::VIRTUAL_HEIGHT + 90 - Settings::LOG_HEIGHT));
 
-        last_pipe_y = y;
+        last_log_y = y;
 
-        pipes.push_back(PipePair{y});
+        logs.push_back(log_factory.create(Settings::VIRTUAL_WIDTH, y));
     }
 
     background_x += -Settings::BACK_SCROLL_SPEED * dt;
@@ -85,11 +85,11 @@ void World::update(float dt) noexcept
 
     ground.setPosition(ground_x, Settings::VIRTUAL_HEIGHT - Settings::GROUND_HEIGHT);
 
-    for (auto it = pipes.begin(); it != pipes.end(); )
+    for (auto it = logs.begin(); it != logs.end(); )
     {
         if (it->is_out_of_game())
         {
-            it = pipes.erase(it);
+            it = logs.erase(it);
         }
         else
         {
@@ -103,9 +103,9 @@ void World::render(sf::RenderTarget& target) const noexcept
 {
     target.draw(background);
 
-    for (const auto& pipe_pair: pipes)
+    for (const auto& Log_pair: logs)
     {
-        pipe_pair.render(target);
+        Log_pair.render(target);
     }
 
     target.draw(ground);

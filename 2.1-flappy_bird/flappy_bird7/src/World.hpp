@@ -15,7 +15,8 @@
 
 #include <SFML/Graphics.hpp>
 
-#include <src/PipePair.hpp>
+#include <src/Factory.hpp>
+#include <src/LogPair.hpp>
 
 class World
 {
@@ -37,13 +38,15 @@ private:
     sf::Sprite background;
     sf::Sprite ground;
 
-    float background_x;
-    float ground_x;
+    float background_x{0.f};
+    float ground_x{0.f};
 
-    std::list<PipePair> pipes;
+    Factory<LogPair> log_factory;
+
+    std::list<LogPair> logs;
 
     std::mt19937 rng;
 
-    float pipes_spawn_timer{0.f};
-    float last_pipe_y{0.f};
+    float logs_spawn_timer{0.f};
+    float last_log_y{0.f};
 };

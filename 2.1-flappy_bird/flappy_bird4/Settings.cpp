@@ -12,6 +12,8 @@
 
 #include <Settings.hpp>
 
+const fs::path Settings::GRAPHICS_PATH{"graphics"};
+
 std::unordered_map<std::string, sf::Texture> Settings::textures{};
 
 void Settings::init()
@@ -23,21 +25,21 @@ void Settings::load_textures()
 {
     sf::Texture texture{};
 
-    if (!texture.loadFromFile("graphics/bird.png"))
+    if (!texture.loadFromFile(Settings::GRAPHICS_PATH / "bird.png"))
     {
         throw std::runtime_error{"Error loading texture graphics/bird.png"};
     }
 
     Settings::textures["bird"] = texture;
 
-    if (!texture.loadFromFile("graphics/background.png"))
+    if (!texture.loadFromFile(Settings::GRAPHICS_PATH / "background.png"))
     {
         throw std::runtime_error{"Error loading texture graphics/background.png"};
     }
 
     Settings::textures["background"] = texture;
 
-    if (!texture.loadFromFile("graphics/ground.png"))
+    if (!texture.loadFromFile(Settings::GRAPHICS_PATH / "ground.png"))
     {
         throw std::runtime_error{"Error loading texture graphics/ground.png"};
     }

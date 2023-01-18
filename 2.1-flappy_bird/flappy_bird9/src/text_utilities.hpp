@@ -14,6 +14,4 @@
 
 #include <SFML/Graphics.hpp>
 
-void center_text(sf::Text& text) noexcept;
-
-sf::Text build_text(const std::string& text_str, int size, const std::string& font_name, const sf::Color& color, bool center = false) noexcept;
+void render_text(sf::RenderTarget& target, float x, float y, const std::string& text_str, int size, const std::string& font_name, const sf::Color& color, bool center = false) noexcept;

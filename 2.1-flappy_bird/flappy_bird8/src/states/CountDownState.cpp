@@ -52,7 +52,10 @@ void CountDownState::render(sf::RenderTarget& target) const noexcept
     float local_center_x = round(center_x + text.getLocalBounds().left);
     float local_center_y = round(center_y + text.getLocalBounds().top);
     text.setOrigin(sf::Vector2f{local_center_x, local_center_y});
-    text.setPosition(sf::Vector2f{Settings::VIRTUAL_WIDTH / 2, Settings::VIRTUAL_HEIGHT / 2});
-    
+    text.setPosition(sf::Vector2f{Settings::VIRTUAL_WIDTH / 2 + 2, Settings::VIRTUAL_HEIGHT / 2 + 2});
+    text.setFillColor(sf::Color::Black);
+    target.draw(text);
+    text.move(-2, -2);
+    text.setFillColor(sf::Color::White);
     target.draw(text);
 }

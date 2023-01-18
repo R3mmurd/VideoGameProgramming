@@ -11,14 +11,20 @@
 
 #pragma once
 
+#include <filesystem>
 #include <string>
 #include <unordered_map>
+
+namespace fs = std::filesystem;
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
 struct Settings
 {
+    static const fs::path GRAPHICS_PATH;
+    static const fs::path SOUNDS_PATH;
+
     static constexpr int WINDOW_WIDTH{1280};
     static constexpr int WINDOW_HEIGHT{720};
     static constexpr int VIRTUAL_WIDTH{512};
@@ -26,7 +32,7 @@ struct Settings
     static constexpr float BIRD_WIDTH{38.f};
     static constexpr float BIRD_HEIGHT{24.f};
     static constexpr float GROUND_HEIGHT{16.f};
-    static constexpr float BACKGROUND_LOOPING_POINT{413.f};
+    static constexpr float BACKGROUND_LOOPING_POINT{1157.f};
     static constexpr float MAIN_SCROLL_SPEED{100.f};
     static constexpr float BACK_SCROLL_SPEED{50.f}; // MAIN_SCROLL_SPEED / 2
     static constexpr float GRAVITY{0.2f};

@@ -5,18 +5,18 @@
     Author: Alejandro Mujica
     alejandro.j.mujic4@gmail.com
 
-    This file contains the declaration of the class PipePair.
+    This file contains the declaration of the class LogPair.
 */
 
 #pragma once
 
 #include <src/Bird.hpp>
-#include <src/Pipe.hpp>
+#include <src/Log.hpp>
 
-class PipePair
+class LogPair
 {
 public:
-    PipePair(float _y) noexcept;
+    LogPair(float _x, float _y) noexcept;
 
     bool collides(const sf::FloatRect& rect) const noexcept;
 
@@ -31,8 +31,8 @@ public:
 private:
     float x;
     float y;
-    Pipe top;
-    Pipe bottom;
+    Log top;
+    Log bottom;
 
     bool scored{false};
 };

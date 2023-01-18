@@ -12,6 +12,12 @@
 
 #include <Settings.hpp>
 
+const fs::path Settings::GRAPHICS_PATH{"graphics"};
+
+const fs::path Settings::SOUNDS_PATH{"sounds"};
+
+const fs::path Settings::FONTS_PATH{"fonts"};
+
 std::unordered_map<std::string, sf::Texture> Settings::textures{};
 
 std::unordered_map<std::string, sf::SoundBuffer> Settings::sound_buffers;
@@ -33,33 +39,33 @@ void Settings::load_textures()
 {
     sf::Texture texture{};
 
-    if (!texture.loadFromFile("graphics/bird.png"))
+    if (!texture.loadFromFile(Settings::GRAPHICS_PATH / "bird.png"))
     {
         throw std::runtime_error{"Error loading texture graphics/bird.png"};
     }
 
     Settings::textures["bird"] = texture;
 
-    if (!texture.loadFromFile("graphics/background.png"))
+    if (!texture.loadFromFile(Settings::GRAPHICS_PATH / "background.png"))
     {
         throw std::runtime_error{"Error loading texture graphics/background.png"};
     }
 
     Settings::textures["background"] = texture;
 
-    if (!texture.loadFromFile("graphics/ground.png"))
+    if (!texture.loadFromFile(Settings::GRAPHICS_PATH / "ground.png"))
     {
         throw std::runtime_error{"Error loading texture graphics/ground.png"};
     }
 
     Settings::textures["ground"] = texture;
 
-    if (!texture.loadFromFile("graphics/pipe.png"))
+    if (!texture.loadFromFile(Settings::GRAPHICS_PATH / "log.png"))
     {
-        throw std::runtime_error{"Error loading texture graphics/pipe.png"};
+        throw std::runtime_error{"Error loading texture graphics/log.png"};
     }
 
-    Settings::textures["pipe"] = texture;
+    Settings::textures["Log"] = texture;
 }
 
 void Settings::load_sounds()
@@ -67,7 +73,7 @@ void Settings::load_sounds()
     sf::SoundBuffer buffer;
     sf::Sound sound;
     
-    if (!buffer.loadFromFile("sounds/jump.wav"))
+    if (!buffer.loadFromFile(Settings::SOUNDS_PATH / "jump.wav"))
     {
         throw std::runtime_error{"Error loading sound sounds/jump.wav"};
     }
@@ -77,7 +83,7 @@ void Settings::load_sounds()
     sound.setBuffer(result.first->second);
     Settings::sounds["jump"] = sound;
 
-    if (!buffer.loadFromFile("sounds/explosion.wav"))
+    if (!buffer.loadFromFile(Settings::SOUNDS_PATH / "explosion.wav"))
     {
         throw std::runtime_error{"Error loading sound sounds/explosion.wav"};
     }
@@ -87,7 +93,7 @@ void Settings::load_sounds()
     sound.setBuffer(result.first->second);
     Settings::sounds["explosion"] = sound;
 
-    if (!buffer.loadFromFile("sounds/hurt.wav"))
+    if (!buffer.loadFromFile(Settings::SOUNDS_PATH / "hurt.wav"))
     {
         throw std::runtime_error{"Error loading sound sounds/hurt.wav"};
     }
@@ -97,7 +103,7 @@ void Settings::load_sounds()
     sound.setBuffer(result.first->second);
     Settings::sounds["hurt"] = sound;
 
-    if (!buffer.loadFromFile("sounds/score.wav"))
+    if (!buffer.loadFromFile(Settings::SOUNDS_PATH / "score.wav"))
     {
         throw std::runtime_error{"Error loading sound sounds/score.wav"};
     }
@@ -107,7 +113,7 @@ void Settings::load_sounds()
     sound.setBuffer(result.first->second);
     Settings::sounds["score"] = sound;
 
-    if (!Settings::music.openFromFile("sounds/marios_way.ogg"))
+    if (!Settings::music.openFromFile(Settings::SOUNDS_PATH / "marios_way.ogg"))
     {
         throw std::runtime_error{"Error loading music sounds/marios_way.ogg"};
     }
@@ -117,14 +123,14 @@ void Settings::load_fonts()
 {
     sf::Font font;
 
-    if (!font.loadFromFile("fonts/font.ttf"))
+    if (!font.loadFromFile(Settings::FONTS_PATH / "font.ttf"))
     {
         throw std::runtime_error{"Error loading font fonts/font.ttf"};
     }
 
     Settings::fonts["font"] = font;
 
-    if (!font.loadFromFile("fonts/flappy.ttf"))
+    if (!font.loadFromFile(Settings::FONTS_PATH / "flappy.ttf"))
     {
         throw std::runtime_error{"Error loading font fonts/flappy.ttf"};
     }
