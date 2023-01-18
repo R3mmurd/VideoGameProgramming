@@ -28,7 +28,7 @@ NUM_LEVELS = 1
 BASE_DIR = pathlib.Path(__file__).parent
 
 TEXTURES = {
-    'tiles': pygame.image.load(BASE_DIR / 'graphics/tileset.png')
+    'tiles': pygame.image.load(BASE_DIR / "graphics" / "tileset.png")
 }
 
 FRAMES = {

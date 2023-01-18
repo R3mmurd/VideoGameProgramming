@@ -39,7 +39,8 @@ class StartState(BaseState):
         self.tweening = True
 
         InputHandler.register_listener(self)
-        pygame.mixer.music.load(settings.BASE_DIR / 'sounds/music_intro.ogg')
+        pygame.mixer.music.load(
+            settings.BASE_DIR / "sounds" / "music_intro.ogg")
         pygame.mixer.music.play()
         Timer.tween(
             5,

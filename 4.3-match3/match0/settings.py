@@ -36,7 +36,7 @@ TILE_SIZE = 32
 BASE_DIR = Path(__file__).parent
 
 TEXTURES = {
-    'tiles': pygame.image.load(BASE_DIR / "graphics/match3.png")
+    'tiles': pygame.image.load(BASE_DIR / "graphics" / "match3.png")
 }
 
 FRAMES = {

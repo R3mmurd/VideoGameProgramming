@@ -48,8 +48,8 @@ BACKGROUND_LOOPING_POINT = -1024 + VIRTUAL_WIDTH - 4 + 51
 BASE_DIR = Path(__file__).parent
 
 TEXTURES = {
-    'background': pygame.image.load(BASE_DIR / "graphics/background.png"),
-    'tiles': pygame.image.load(BASE_DIR / "graphics/match3.png")
+    'background': pygame.image.load(BASE_DIR / "graphics" / "background.png"),
+    'tiles': pygame.image.load(BASE_DIR / "graphics" / "match3.png")
 }
 
 FRAMES = {
@@ -59,20 +59,20 @@ FRAMES = {
 pygame.mixer.init()
 
 SOUNDS = {
-    'clock': pygame.mixer.Sound(BASE_DIR / "sounds/clock.wav"),
-    'error': pygame.mixer.Sound(BASE_DIR / "sounds/error.wav"),
-    'game-over': pygame.mixer.Sound(BASE_DIR / "sounds/game-over.wav"),
-    'match': pygame.mixer.Sound(BASE_DIR / "sounds/match.wav"),
-    'music': pygame.mixer.Sound(BASE_DIR / "sounds/music.mp3"),
-    'next-level': pygame.mixer.Sound(BASE_DIR / "sounds/next-level.wav"),
-    'select': pygame.mixer.Sound(BASE_DIR / "sounds/select.wav")
+    'clock': pygame.mixer.Sound(BASE_DIR / "sounds" / "clock.wav"),
+    'error': pygame.mixer.Sound(BASE_DIR / "sounds" / "error.wav"),
+    'game-over': pygame.mixer.Sound(BASE_DIR / "sounds" / "game-over.wav"),
+    'match': pygame.mixer.Sound(BASE_DIR / "sounds" / "match.wav"),
+    'music': pygame.mixer.Sound(BASE_DIR / "sounds" / "music.mp3"),
+    'next-level': pygame.mixer.Sound(BASE_DIR / "sounds" / "next-level.wav"),
+    'select': pygame.mixer.Sound(BASE_DIR / "sounds" / "select.wav")
 }
 
 pygame.font.init()
 
 FONTS = {
-    'small': pygame.font.Font(BASE_DIR / "fonts/font.ttf", 12),
-    'medium': pygame.font.Font(BASE_DIR / "fonts/font.ttf", 24),
-    'large': pygame.font.Font(BASE_DIR / "fonts/font.ttf", 48),
-    'huge': pygame.font.Font(BASE_DIR / "fonts/font.ttf", 64)
+    'small': pygame.font.Font(BASE_DIR / "fonts" / "font.ttf", 12),
+    'medium': pygame.font.Font(BASE_DIR / "fonts" / "font.ttf", 24),
+    'large': pygame.font.Font(BASE_DIR / "fonts" / "font.ttf", 48),
+    'huge': pygame.font.Font(BASE_DIR / "fonts" / "font.ttf", 64)
 }

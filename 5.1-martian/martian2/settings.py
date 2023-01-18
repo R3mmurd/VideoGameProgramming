@@ -40,8 +40,8 @@ NUM_LEVELS = 1
 BASE_DIR = Path(__file__).parent
 
 TEXTURES = {
-    'tiles': pygame.image.load(BASE_DIR / 'graphics/tileset.png'),
-    'martian': pygame.image.load(BASE_DIR / 'graphics/martian.png')
+    'tiles': pygame.image.load(BASE_DIR / "graphics" / "tileset.png"),
+    'martian': pygame.image.load(BASE_DIR / "graphics" / "martian.png")
 }
 
 FRAMES = {

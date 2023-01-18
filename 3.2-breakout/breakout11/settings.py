@@ -46,25 +46,25 @@ pygame.mixer.init()
 
 SOUNDS = {
     'paddle_hit': pygame.mixer.Sound(
-        BASE_DIR / "sounds/paddle_hit.wav"),
+        BASE_DIR / "sounds" / "paddle_hit.wav"),
     'selected': pygame.mixer.Sound(
-        BASE_DIR / "sounds/selected.wav"),
+        BASE_DIR / "sounds" / "selected.wav"),
     'brick_hit_1': pygame.mixer.Sound(
-        BASE_DIR / "sounds/brick_hit_1.wav"),
+        BASE_DIR / "sounds" / "brick_hit_1.wav"),
     'brick_hit_2': pygame.mixer.Sound(
-        BASE_DIR / "sounds/brick_hit_2.wav"),
+        BASE_DIR / "sounds" / "brick_hit_2.wav"),
     'wall_hit': pygame.mixer.Sound(
-        BASE_DIR / "sounds/wall_hit.wav"),
+        BASE_DIR / "sounds" / "wall_hit.wav"),
     'hurt': pygame.mixer.Sound(
-        BASE_DIR / "sounds/hurt.wav"),
+        BASE_DIR / "sounds" / "hurt.wav"),
     'level_complete': pygame.mixer.Sound(
-        BASE_DIR / "sounds/level_complete.wav")}
+        BASE_DIR / "sounds" / "level_complete.wav")}
 
 TEXTURES = {
-    'background': pygame.image.load(BASE_DIR / "graphics/background.png"),
-    'spritesheet': pygame.image.load(BASE_DIR / "graphics/breakout.png"),
-    'hearts': pygame.image.load(BASE_DIR / "graphics/hearts.png"),
-    'arrows': pygame.image.load(BASE_DIR / "graphics/arrows.png")
+    'background': pygame.image.load(BASE_DIR / "graphics" / "background.png"),
+    'spritesheet': pygame.image.load(BASE_DIR / "graphics" / "breakout.png"),
+    'hearts': pygame.image.load(BASE_DIR / "graphics" / "hearts.png"),
+    'arrows': pygame.image.load(BASE_DIR / "graphics" / "arrows.png")
 }
 
 FRAMES = {
@@ -78,8 +78,8 @@ FRAMES = {
 pygame.font.init()
 
 FONTS = {
-    'tiny': pygame.font.Font(BASE_DIR / "fonts/font.ttf", 6),
-    'small': pygame.font.Font(BASE_DIR / "fonts/font.ttf", 8),
-    'medium': pygame.font.Font(BASE_DIR / "fonts/font.ttf", 12),
-    'large': pygame.font.Font(BASE_DIR / "fonts/font.ttf", 24)
+    'tiny': pygame.font.Font(BASE_DIR / "fonts" / "font.ttf", 6),
+    'small': pygame.font.Font(BASE_DIR / "fonts" / "font.ttf", 8),
+    'medium': pygame.font.Font(BASE_DIR / "fonts" / "font.ttf", 12),
+    'large': pygame.font.Font(BASE_DIR / "fonts" / "font.ttf", 24)
 }

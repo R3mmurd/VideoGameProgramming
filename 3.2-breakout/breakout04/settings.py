@@ -45,15 +45,15 @@ BASE_DIR = Path(__file__).parent
 pygame.mixer.init()
 
 SOUNDS = {
-    'paddle_hit': pygame.mixer.Sound(BASE_DIR / "sounds/paddle_hit.wav"),
-    'selected': pygame.mixer.Sound(BASE_DIR / "sounds/selected.wav"),
+    'paddle_hit': pygame.mixer.Sound(BASE_DIR / "sounds" / "paddle_hit.wav"),
+    'selected': pygame.mixer.Sound(BASE_DIR / "sounds" / "selected.wav"),
 }
 
 TEXTURES = {
-    'background': pygame.image.load(BASE_DIR / "graphics/background.png"),
-    'spritesheet': pygame.image.load(BASE_DIR / "graphics/breakout.png"),
-    'hearts': pygame.image.load(BASE_DIR / "graphics/hearts.png"),
-    'arrows': pygame.image.load(BASE_DIR / "graphics/arrows.png")
+    'background': pygame.image.load(BASE_DIR / "graphics" / "background.png"),
+    'spritesheet': pygame.image.load(BASE_DIR / "graphics" / "breakout.png"),
+    'hearts': pygame.image.load(BASE_DIR / "graphics" / "hearts.png"),
+    'arrows': pygame.image.load(BASE_DIR / "graphics" / "arrows.png")
 }
 
 FRAMES = {
@@ -66,8 +66,8 @@ FRAMES = {
 pygame.font.init()
 
 FONTS = {
-    'tiny': pygame.font.Font(BASE_DIR / "fonts/font.ttf", 6),
-    'small': pygame.font.Font(BASE_DIR / "fonts/font.ttf", 8),
-    'medium': pygame.font.Font(BASE_DIR / "fonts/font.ttf", 12),
-    'large': pygame.font.Font(BASE_DIR / "fonts/font.ttf", 24),
+    'tiny': pygame.font.Font(BASE_DIR / "fonts" / "font.ttf", 6),
+    'small': pygame.font.Font(BASE_DIR / "fonts" / "font.ttf", 8),
+    'medium': pygame.font.Font(BASE_DIR / "fonts" / "font.ttf", 12),
+    'large': pygame.font.Font(BASE_DIR / "fonts" / "font.ttf", 24),
 }
