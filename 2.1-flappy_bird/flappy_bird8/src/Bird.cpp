@@ -41,7 +41,7 @@ void Bird::update(float dt) noexcept
         jumping = false;
     }
 
-    y += vy;
+    y += vy * dt;
     sprite.setPosition(x, y);
 }
 

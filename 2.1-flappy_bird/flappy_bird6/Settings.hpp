@@ -29,8 +29,8 @@ struct Settings
     static constexpr int WINDOW_HEIGHT{720};
     static constexpr int VIRTUAL_WIDTH{512};
     static constexpr int VIRTUAL_HEIGHT{288};
-    static constexpr float BIRD_WIDTH{38.f};
-    static constexpr float BIRD_HEIGHT{24.f};
+    static constexpr float BIRD_WIDTH{39.f};
+    static constexpr float BIRD_HEIGHT{28.f};
     static constexpr float LOG_WIDTH{70.f};
     static constexpr float LOG_HEIGHT{288.f};
     static constexpr float LOGS_GAP{90.f};
@@ -38,7 +38,7 @@ struct Settings
     static constexpr float BACKGROUND_LOOPING_POINT{1157.f};
     static constexpr float MAIN_SCROLL_SPEED{100.f};
     static constexpr float BACK_SCROLL_SPEED{50.f}; // MAIN_SCROLL_SPEED / 2
-    static constexpr float GRAVITY{0.2f};
+    static constexpr float GRAVITY{980.f};
     static constexpr float JUMP_TAKEOFF_SPEED{GRAVITY / 6.f};
     static constexpr float TIME_TO_SPAWN_LOGS{1.5f};
 

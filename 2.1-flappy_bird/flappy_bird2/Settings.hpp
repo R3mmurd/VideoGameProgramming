@@ -27,8 +27,8 @@ struct Settings
     static constexpr int WINDOW_HEIGHT{720};
     static constexpr int VIRTUAL_WIDTH{512};
     static constexpr int VIRTUAL_HEIGHT{288};
-    static constexpr float BIRD_WIDTH{38.f};
-    static constexpr float BIRD_HEIGHT{24.f};
+    static constexpr float BIRD_WIDTH{39.f};
+    static constexpr float BIRD_HEIGHT{28.f};
 
     static std::unordered_map<std::string, sf::Texture> textures;
 

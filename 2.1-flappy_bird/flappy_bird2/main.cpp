@@ -36,8 +36,6 @@ int main()
         Settings::BIRD_WIDTH, Settings::BIRD_HEIGHT
     };
 
-    sf::Texture texture{};
-
     while (window.isOpen())
     {
         sf::Event event;

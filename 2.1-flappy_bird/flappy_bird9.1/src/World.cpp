@@ -20,13 +20,9 @@ World::World(bool _generate_logs) noexcept
     last_log_y = -Settings::LOG_HEIGHT + dist(rng) + 20;
 }
 
-void World::reset() noexcept
+void World::reset(bool _generate_logs) noexcept
 {
-    logs.clear();
-    background_x = 0.f;
-    ground_x = 0.f;
-    logs_spawn_timer = 0.f;
-    float last_log_y = 0.f;
+    generate_logs = _generate_logs;
 }
 
 bool World::collides(const sf::FloatRect& rect) const noexcept
@@ -36,9 +32,9 @@ bool World::collides(const sf::FloatRect& rect) const noexcept
         return true;
     }
     
-    for (const auto& log_pair: logs)
+    for (auto log_pair: logs)
     {
-        if (log_pair.collides(rect))
+        if (log_pair->collides(rect))
         {
             return true;
         }
@@ -49,9 +45,9 @@ bool World::collides(const sf::FloatRect& rect) const noexcept
 
 bool World::update_scored(const sf::FloatRect& rect) noexcept
 {
-    for (auto& log_pair: logs)
+    for (auto log_pair: logs)
     {
-        if (log_pair.update_scored(rect))
+        if (log_pair->update_scored(rect))
         {
             return true;
         }
@@ -99,13 +95,16 @@ void World::update(float dt) noexcept
 
     for (auto it = logs.begin(); it != logs.end(); )
     {
-        if (it->is_out_of_game())
+        if ((*it)->is_out_of_game())
         {
+            auto log_pair = *it;
+            log_factory.remove(log_pair);
             it = logs.erase(it);
+            
         }
         else
         {
-            it->update(dt);
+            (*it)->update(dt);
             ++it;
         }
     }
@@ -117,7 +116,7 @@ void World::render(sf::RenderTarget& target) const noexcept
 
     for (const auto& log_pair: logs)
     {
-        log_pair.render(target);
+        log_pair->render(target);
     }
 
     target.draw(ground);

@@ -72,9 +72,9 @@ void World::render(sf::RenderTarget& target) const noexcept
 {
     target.draw(background);
 
-    for (const auto& Log_pair: logs)
+    for (const auto& log_pair: logs)
     {
-        Log_pair.render(target);
+        log_pair.render(target);
     }
 
     target.draw(ground);

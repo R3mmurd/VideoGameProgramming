@@ -20,7 +20,7 @@ Bird::Bird(float _x, float _y, float w, float h) noexcept
 void Bird::update(float dt) noexcept
 {
     vy += Settings::GRAVITY * dt;
-    y += vy;
+    y += vy * dt;
     sprite.setPosition(x, y);
 }
 

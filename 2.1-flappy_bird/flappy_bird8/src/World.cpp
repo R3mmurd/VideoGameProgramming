@@ -38,9 +38,9 @@ bool World::collides(const sf::FloatRect& rect) const noexcept
         return true;
     }
     
-    for (const auto& Log_pair: logs)
+    for (const auto& log_pair: logs)
     {
-        if (Log_pair.collides(rect))
+        if (log_pair.collides(rect))
         {
             return true;
         }
@@ -51,9 +51,9 @@ bool World::collides(const sf::FloatRect& rect) const noexcept
 
 bool World::update_scored(const sf::FloatRect& rect) noexcept
 {
-    for (auto& Log_pair: logs)
+    for (auto& log_pair: logs)
     {
-        if (Log_pair.update_scored(rect))
+        if (log_pair.update_scored(rect))
         {
             return true;
         }
@@ -117,9 +117,9 @@ void World::render(sf::RenderTarget& target) const noexcept
 {
     target.draw(background);
 
-    for (const auto& Log_pair: logs)
+    for (const auto& log_pair: logs)
     {
-        Log_pair.render(target);
+        log_pair.render(target);
     }
 
     target.draw(ground);
