@@ -28,7 +28,7 @@ public:
 
     bool update_scored(const sf::FloatRect& rect) noexcept;
 
-    void set_position(float _x, float _y) noexcept;
+    void reset(float _x, float _y) noexcept;
 
 private:
     float x;

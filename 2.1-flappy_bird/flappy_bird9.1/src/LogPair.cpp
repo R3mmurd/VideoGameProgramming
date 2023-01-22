@@ -59,8 +59,9 @@ bool LogPair::update_scored(const sf::FloatRect& rect) noexcept
     return false;
 }
 
-void LogPair::set_position(float _x, float _y) noexcept
+void LogPair::reset(float _x, float _y) noexcept
 {
     x = _x;
     y = _y;
+    scored = false;
 }
