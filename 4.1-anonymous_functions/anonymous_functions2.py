@@ -11,7 +11,7 @@ from typing import Callable
 
 
 def build_power_function(x: float, y: float) -> Callable:
-    return lambda: x ** y
+    return lambda: x**y
 
 
 power2_3 = build_power_function(2, 3)

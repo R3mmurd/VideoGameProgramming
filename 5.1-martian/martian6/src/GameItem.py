@@ -14,10 +14,13 @@ from src.GameObject import GameObject
 
 class GameItem(GameObject):
     def __init__(
-        self, collidable: bool, consumable: bool,
-        on_collide: Optional[Callable[[TypeVar('GameItem'), Any], Any]] = None,
-        on_consume: Optional[Callable[[TypeVar('GameItem'), Any], Any]] = None,
-        *args, **kwargs
+        self,
+        collidable: bool,
+        consumable: bool,
+        on_collide: Optional[Callable[[TypeVar("GameItem"), Any], Any]] = None,
+        on_consume: Optional[Callable[[TypeVar("GameItem"), Any], Any]] = None,
+        *args,
+        **kwargs
     ) -> None:
         super().__init__(*args, **kwargs)
         self.collidable = collidable
@@ -26,8 +29,7 @@ class GameItem(GameObject):
         self._on_consume = on_consume
         self.in_play = True
 
-    def respawn(self, x: Optional[float] = None,
-                y: Optional[float] = None) -> None:
+    def respawn(self, x: Optional[float] = None, y: Optional[float] = None) -> None:
         if x is not None:
             self.x = x
         if y is not None:

@@ -18,8 +18,6 @@ This file contains the class Match3 as a specialization of gale.Game
 """
 
 
-
-
 import random
 import pygame
 from gale.game import Game
@@ -27,10 +25,14 @@ from gale.input_handler import InputHandler, InputData
 from gale.timer import Timer
 import settings
 from src.Tile import Tile
+
+
 class Match3(Game):
     def init(self) -> None:
-        self.board = [[None for _ in range(settings.BOARD_WIDTH)] for _ in range(
-            settings.BOARD_HEIGHT)]
+        self.board = [
+            [None for _ in range(settings.BOARD_WIDTH)]
+            for _ in range(settings.BOARD_HEIGHT)
+        ]
         self._generate_board()
 
         # Currently selected tile will be swapped with the next tile we choose.
@@ -50,10 +52,10 @@ class Match3(Game):
                 block.render(surface)
 
     def on_input(self, input_id: str, input_data: InputData) -> None:
-        if input_id == 'quit' and input_data.pressed and self.active:
+        if input_id == "quit" and input_data.pressed and self.active:
             self.quit()
 
-        if input_id == 'click' and input_data.pressed and self.active:
+        if input_id == "click" and input_data.pressed and self.active:
             pos_x, pos_y = input_data.position
             pos_x = pos_x * settings.VIRTUAL_WIDTH // settings.WINDOW_WIDTH
             pos_y = pos_y * settings.VIRTUAL_HEIGHT // settings.WINDOW_HEIGHT
@@ -79,18 +81,29 @@ class Match3(Game):
                         def arrive():
                             tile1 = self.board[self.highlighted_i1][self.highlighted_j1]
                             tile2 = self.board[self.highlighted_i2][self.highlighted_j2]
-                            self.board[tile1.i][tile1.j], self.board[tile2.i][tile2.j] = self.board[tile2.i][tile2.j], self.board[tile1.i][tile1.j]
-                            tile1.i, tile1.j, tile2.i, tile2.j = tile2.i, tile2.j, tile1.i, tile1.j
+                            (
+                                self.board[tile1.i][tile1.j],
+                                self.board[tile2.i][tile2.j],
+                            ) = (
+                                self.board[tile2.i][tile2.j],
+                                self.board[tile1.i][tile1.j],
+                            )
+                            tile1.i, tile1.j, tile2.i, tile2.j = (
+                                tile2.i,
+                                tile2.j,
+                                tile1.i,
+                                tile1.j,
+                            )
                             self.active = True
 
                         # Swap tiles
                         Timer.tween(
                             0.2,
                             [
-                                (tile1, {'x': tile2.x, 'y': tile2.y}),
-                                (tile2, {'x': tile1.x, 'y': tile1.y}),
+                                (tile1, {"x": tile2.x, "y": tile2.y}),
+                                (tile2, {"x": tile1.x, "y": tile1.y}),
                             ],
-                            on_finish=arrive
+                            on_finish=arrive,
                         )
 
                     self.highlighted_tile = False
@@ -101,5 +114,5 @@ class Match3(Game):
                 self.board[i][j] = Tile(
                     x=j * settings.TILE_SIZE,
                     y=i * settings.TILE_SIZE,
-                    frame=random.randint(0, len(settings.FRAMES['tiles']) - 1)
+                    frame=random.randint(0, len(settings.FRAMES["tiles"]) - 1),
                 )

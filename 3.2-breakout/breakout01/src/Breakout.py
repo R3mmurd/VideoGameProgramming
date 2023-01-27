@@ -18,16 +18,18 @@ from src import states
 
 class Breakout(Game):
     def init(self) -> None:
-        self.state_machine = StateMachine({
-            'start': states.StartState,
-            'high_score': states.HighScoreState,
-            'enter_high_score': states.EnterHighScoreState,
-            'game_over': states.GameOverState,
-            'paddle_select': states.PaddleSelectState,
-            'serve': states.ServeState,
-            'play': states.PlayState,
-            'victory': states.VictoryState
-        })
+        self.state_machine = StateMachine(
+            {
+                "start": states.StartState,
+                "high_score": states.HighScoreState,
+                "enter_high_score": states.EnterHighScoreState,
+                "game_over": states.GameOverState,
+                "paddle_select": states.PaddleSelectState,
+                "serve": states.ServeState,
+                "play": states.PlayState,
+                "victory": states.VictoryState,
+            }
+        )
         self.state_machine.change("start")
         InputHandler.register_listener(self)
 
@@ -38,5 +40,5 @@ class Breakout(Game):
         self.state_machine.render(surface)
 
     def on_input(self, input_id: str, input_data: InputData) -> None:
-        if input_id == 'quit' and input_data.pressed:
+        if input_id == "quit" and input_data.pressed:
             self.quit()

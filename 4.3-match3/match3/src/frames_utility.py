@@ -14,8 +14,7 @@ import pygame
 import settings
 
 
-def generate_tile_frames(
-        spritesheet: pygame.Surface) -> List[List[pygame.Rect]]:
+def generate_tile_frames(spritesheet: pygame.Surface) -> List[List[pygame.Rect]]:
     frames = []
 
     x, y = 0, 0
@@ -32,11 +31,8 @@ def generate_tile_frames(
 
             for _ in range(6):
                 frames[rows_counter].append(
-                    pygame.Rect(
-                        x,
-                        y,
-                        settings.TILE_SIZE,
-                        settings.TILE_SIZE))
+                    pygame.Rect(x, y, settings.TILE_SIZE, settings.TILE_SIZE)
+                )
                 x += settings.TILE_SIZE
 
             rows_counter += 1

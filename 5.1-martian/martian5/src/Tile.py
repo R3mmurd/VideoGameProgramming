@@ -13,8 +13,15 @@ from src.GameObject import GameObject
 
 
 class Tile(GameObject):
-    def __init__(self, i: int, j: int, width: int, height: int,
-                 frame_index: int, soliness: Dict[str, bool]) -> None:
+    def __init__(
+        self,
+        i: int,
+        j: int,
+        width: int,
+        height: int,
+        frame_index: int,
+        soliness: Dict[str, bool],
+    ) -> None:
         self.i = i
         self.j = j
         super().__init__(
@@ -22,6 +29,7 @@ class Tile(GameObject):
             self.i * height,
             width,
             height,
-            'tiles',
+            "tiles",
             frame_index,
-            soliness)
+            soliness,
+        )

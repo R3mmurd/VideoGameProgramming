@@ -16,8 +16,5 @@ input_binding = {
     "keyboard": {
         pygame.K_SPACE: ActionJump,
     },
-    "mouse": {
-        1: ActionShoot,
-        3: ActionJump
-    }
+    "mouse": {1: ActionShoot, 3: ActionJump},
 }

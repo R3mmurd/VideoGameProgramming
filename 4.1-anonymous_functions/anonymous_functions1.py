@@ -16,7 +16,7 @@ def higher_order_function(f: Callable, *args: tuple, **kwargs: dict) -> Any:
     return f(*args, **kwargs)
 
 
-result = higher_order_function(lambda x, y: x ** y, 2, 3)
+result = higher_order_function(lambda x, y: x**y, 2, 3)
 print(result)
 
 result = higher_order_function(lambda a, b, c: a * b + c, 1, 2, 3)

@@ -20,11 +20,8 @@ from Listener import Listener
 
 class KeyBoardEvent:
     def __init__(
-            self,
-            pressed: bool,
-            released: bool,
-            modifier: int,
-            unicode: str) -> None:
+        self, pressed: bool, released: bool, modifier: int, unicode: str
+    ) -> None:
         self.pressed: bool = pressed
         self.released: bool = released
         self.modifier: int = modifier
@@ -32,8 +29,9 @@ class KeyBoardEvent:
 
 
 class MouseClickEvent:
-    def __init__(self, pressed: bool, released: bool,
-                 button: int, position: Tuple[int, int]) -> None:
+    def __init__(
+        self, pressed: bool, released: bool, button: int, position: Tuple[int, int]
+    ) -> None:
         self.pressed: bool = pressed
         self.released: bool = released
         self.button: int = button
@@ -41,8 +39,9 @@ class MouseClickEvent:
 
 
 class MouseMotionEvent:
-    def __init__(self, position: Tuple[int, int],
-                 buttons: Tuple[int, int, int]) -> None:
+    def __init__(
+        self, position: Tuple[int, int], buttons: Tuple[int, int, int]
+    ) -> None:
         self.position: Tuple[int, int] = position
         self.buttons: Tuple[int, int, int] = buttons
 
@@ -60,11 +59,11 @@ class InputHandler:
         cls.listeners = [l for l in cls.listeners if l != listener]
 
     @classmethod
-    def notify(cls,
-               action: str,
-               event: Optional[Union[KeyBoardEvent,
-                                     MouseClickEvent,
-                                     MouseMotionEvent]]) -> None:
+    def notify(
+        cls,
+        action: str,
+        event: Optional[Union[KeyBoardEvent, MouseClickEvent, MouseMotionEvent]],
+    ) -> None:
         for l in cls.listeners:
             l.on_input(action, event)
 
@@ -94,7 +93,7 @@ class InputHandler:
                             event.type == pygame.MOUSEBUTTONDOWN,
                             event.type == pygame.MOUSEBUTTONUP,
                             event.button,
-                            event.pos
+                            event.pos,
                         )
                         cls.notify(action, evt)
             elif event.type == pygame.MOUSEMOTION:

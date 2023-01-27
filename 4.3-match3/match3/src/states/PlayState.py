@@ -21,9 +21,9 @@ import settings
 
 class PlayState(BaseState):
     def enter(self, **enter_params: Dict[str, Any]) -> None:
-        self.level = enter_params['level']
-        self.board = enter_params['board']
-        self.score = enter_params['score']
+        self.level = enter_params["level"]
+        self.board = enter_params["board"]
+        self.score = enter_params["score"]
 
         # Position in the grid which we are highlighting
         self.board_highlight_i1 = -1
@@ -41,22 +41,27 @@ class PlayState(BaseState):
 
         # A surface that supports alpha to highlight a selected tile
         self.tile_alpha_surface = pygame.Surface(
-            (settings.TILE_SIZE, settings.TILE_SIZE), pygame.SRCALPHA)
-        pygame.draw.rect(self.tile_alpha_surface, (255, 255, 255, 96), pygame.Rect(
-            0, 0, settings.TILE_SIZE, settings.TILE_SIZE), border_radius=7)
+            (settings.TILE_SIZE, settings.TILE_SIZE), pygame.SRCALPHA
+        )
+        pygame.draw.rect(
+            self.tile_alpha_surface,
+            (255, 255, 255, 96),
+            pygame.Rect(0, 0, settings.TILE_SIZE, settings.TILE_SIZE),
+            border_radius=7,
+        )
 
         # A surface that supports alpha to draw behind the text.
         self.text_alpha_surface = pygame.Surface((212, 136), pygame.SRCALPHA)
         pygame.draw.rect(
-            self.text_alpha_surface, (56, 56, 56, 234), pygame.Rect(
-                0, 0, 212, 136))
+            self.text_alpha_surface, (56, 56, 56, 234), pygame.Rect(0, 0, 212, 136)
+        )
 
         def decrement_timer():
             self.timer -= 1
 
             # Play warning sound on timer if we get low
             if self.timer <= 5:
-                settings.SOUNDS['clock'].play()
+                settings.SOUNDS["clock"].play()
 
         Timer.every(1, decrement_timer)
 
@@ -68,14 +73,13 @@ class PlayState(BaseState):
     def update(self, _: float) -> None:
         if self.timer <= 0:
             Timer.clear()
-            settings.SOUNDS['game-over'].play()
-            self.state_machine.change('game-over', score=self.score)
+            settings.SOUNDS["game-over"].play()
+            self.state_machine.change("game-over", score=self.score)
 
         if self.score >= self.goal_score:
             Timer.clear()
-            settings.SOUNDS['next-level'].play()
-            self.state_machine.change(
-                'begin', level=self.level + 1, score=self.score)
+            settings.SOUNDS["next-level"].play()
+            self.state_machine.change("begin", level=self.level + 1, score=self.score)
 
     def render(self, surface: pygame.Surface) -> None:
         self.board.render(surface)
@@ -89,49 +93,45 @@ class PlayState(BaseState):
         render_text(
             surface,
             f"Level: {self.level}",
-            settings.FONTS['medium'],
+            settings.FONTS["medium"],
             30,
             24,
-            (99,
-             155,
-             255),
-            shadowed=True)
+            (99, 155, 255),
+            shadowed=True,
+        )
         render_text(
             surface,
             f"Score: {self.score}",
-            settings.FONTS['medium'],
+            settings.FONTS["medium"],
             30,
             52,
-            (99,
-             155,
-             255),
-            shadowed=True)
+            (99, 155, 255),
+            shadowed=True,
+        )
         render_text(
             surface,
             f"Goal: {self.goal_score}",
-            settings.FONTS['medium'],
+            settings.FONTS["medium"],
             30,
             80,
-            (99,
-             155,
-             255),
-            shadowed=True)
+            (99, 155, 255),
+            shadowed=True,
+        )
         render_text(
             surface,
             f"Timer: {self.timer}",
-            settings.FONTS['medium'],
+            settings.FONTS["medium"],
             30,
             108,
-            (99,
-             155,
-             255),
-            shadowed=True)
+            (99, 155, 255),
+            shadowed=True,
+        )
 
     def on_input(self, input_id: str, input_data: InputData) -> None:
         if not self.active:
             return
 
-        if input_id == 'click' and input_data.pressed:
+        if input_id == "click" and input_data.pressed:
             pos_x, pos_y = input_data.position
             pos_x = pos_x * settings.VIRTUAL_WIDTH // settings.WINDOW_WIDTH
             pos_y = pos_y * settings.VIRTUAL_HEIGHT // settings.WINDOW_HEIGHT
@@ -151,25 +151,43 @@ class PlayState(BaseState):
 
                     if di <= 1 and dj <= 1 and di != dj:
                         self.active = False
-                        tile1 = self.board.tiles[self.highlighted_i1][self.highlighted_j1]
-                        tile2 = self.board.tiles[self.highlighted_i2][self.highlighted_j2]
+                        tile1 = self.board.tiles[self.highlighted_i1][
+                            self.highlighted_j1
+                        ]
+                        tile2 = self.board.tiles[self.highlighted_i2][
+                            self.highlighted_j2
+                        ]
 
                         def arrive():
-                            tile1 = self.board.tiles[self.highlighted_i1][self.highlighted_j1]
-                            tile2 = self.board.tiles[self.highlighted_i2][self.highlighted_j2]
-                            self.board.tiles[tile1.i][tile1.j], self.board.tiles[tile2.i][
-                                tile2.j] = self.board.tiles[tile2.i][tile2.j], self.board.tiles[tile1.i][tile1.j]
-                            tile1.i, tile1.j, tile2.i, tile2.j = tile2.i, tile2.j, tile1.i, tile1.j
+                            tile1 = self.board.tiles[self.highlighted_i1][
+                                self.highlighted_j1
+                            ]
+                            tile2 = self.board.tiles[self.highlighted_i2][
+                                self.highlighted_j2
+                            ]
+                            (
+                                self.board.tiles[tile1.i][tile1.j],
+                                self.board.tiles[tile2.i][tile2.j],
+                            ) = (
+                                self.board.tiles[tile2.i][tile2.j],
+                                self.board.tiles[tile1.i][tile1.j],
+                            )
+                            tile1.i, tile1.j, tile2.i, tile2.j = (
+                                tile2.i,
+                                tile2.j,
+                                tile1.i,
+                                tile1.j,
+                            )
                             self._calculate_matches()
 
                         # Swap tiles
                         Timer.tween(
                             0.25,
                             [
-                                (tile1, {'x': tile2.x, 'y': tile2.y}),
-                                (tile2, {'x': tile1.x, 'y': tile1.y}),
+                                (tile1, {"x": tile2.x, "y": tile2.y}),
+                                (tile2, {"x": tile1.x, "y": tile1.y}),
                             ],
-                            on_finish=arrive
+                            on_finish=arrive,
                         )
 
                     self.highlighted_tile = False
@@ -181,8 +199,8 @@ class PlayState(BaseState):
             self.active = True
             return
 
-        settings.SOUNDS['match'].stop()
-        settings.SOUNDS['match'].play()
+        settings.SOUNDS["match"].stop()
+        settings.SOUNDS["match"].play()
 
         for match in matches:
             self.score += len(match) * 50
@@ -191,8 +209,4 @@ class PlayState(BaseState):
 
         falling_tiles = self.board.get_falling_tiles()
 
-        Timer.tween(
-            0.25,
-            falling_tiles,
-            on_finish=lambda: self._calculate_matches()
-        )
+        Timer.tween(0.25, falling_tiles, on_finish=lambda: self._calculate_matches())

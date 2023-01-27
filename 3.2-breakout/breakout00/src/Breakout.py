@@ -26,5 +26,5 @@ class Breakout(Game):
         self.state_machine.render(surface)
 
     def on_input(self, input_id: str, input_data: InputData) -> None:
-        if input_id == 'quit' and input_data.pressed:
+        if input_id == "quit" and input_data.pressed:
             self.quit()

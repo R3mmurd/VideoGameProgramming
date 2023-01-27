@@ -19,13 +19,10 @@ from src.Player import Player
 
 
 def pickup_coin(
-        coin: GameItem,
-        player: Player,
-        points: int,
-        color: int,
-        time: float) -> None:
-    settings.SOUNDS['pickup_coin'].stop()
-    settings.SOUNDS['pickup_coin'].play()
+    coin: GameItem, player: Player, points: int, color: int, time: float
+) -> None:
+    settings.SOUNDS["pickup_coin"].stop()
+    settings.SOUNDS["pickup_coin"].play()
     player.score += points
     player.coins_counter[color] += 1
     Timer.after(time, lambda: coin.respawn())
@@ -48,34 +45,34 @@ def pickup_yellow_coin(coin: GameItem, player: Player):
 
 
 ITEMS: Dict[str, Dict[int, Dict[str, Any]]] = {
-    'coins': {
+    "coins": {
         62: {
-            'texture_id': "tiles",
-            'solidness': dict(top=False, right=False, bottom=False, left=False),
-            'consumable': True,
-            'collidable': True,
-            'on_consume': pickup_green_coin
+            "texture_id": "tiles",
+            "solidness": dict(top=False, right=False, bottom=False, left=False),
+            "consumable": True,
+            "collidable": True,
+            "on_consume": pickup_green_coin,
         },
         61: {
-            'texture_id': "tiles",
-            'solidness': dict(top=False, right=False, bottom=False, left=False),
-            'consumable': True,
-            'collidable': True,
-            'on_consume': pickup_blue_coin
+            "texture_id": "tiles",
+            "solidness": dict(top=False, right=False, bottom=False, left=False),
+            "consumable": True,
+            "collidable": True,
+            "on_consume": pickup_blue_coin,
         },
         55: {
-            'texture_id': "tiles",
-            'solidness': dict(top=False, right=False, bottom=False, left=False),
-            'consumable': True,
-            'collidable': True,
-            'on_consume': pickup_red_coin
+            "texture_id": "tiles",
+            "solidness": dict(top=False, right=False, bottom=False, left=False),
+            "consumable": True,
+            "collidable": True,
+            "on_consume": pickup_red_coin,
         },
         54: {
-            'texture_id': "tiles",
-            'solidness': dict(top=False, right=False, bottom=False, left=False),
-            'consumable': True,
-            'collidable': True,
-            'on_consume': pickup_yellow_coin
-        }
+            "texture_id": "tiles",
+            "solidness": dict(top=False, right=False, bottom=False, left=False),
+            "consumable": True,
+            "collidable": True,
+            "on_consume": pickup_yellow_coin,
+        },
     }
 }

@@ -13,13 +13,12 @@ from gale.animation import Animation
 
 
 class AnimatedMixin:
-    def _generate_animations(
-            self, animation_defs: Dict[str, Dict[str, Any]]) -> None:
+    def _generate_animations(self, animation_defs: Dict[str, Dict[str, Any]]) -> None:
         for animation_id, values in animation_defs.items():
             animation = Animation(
-                values['frames'],
-                values.get('interval', 0),  # Given interval or zero
-                loops=values.get('loops')   # Given loops or None
+                values["frames"],
+                values.get("interval", 0),  # Given interval or zero
+                loops=values.get("loops"),  # Given loops or None
             )
             self.animations[animation_id] = animation
 

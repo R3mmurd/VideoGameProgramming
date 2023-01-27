@@ -19,9 +19,9 @@ class Brick:
         self.width = 32
         self.height = 16
 
-        self.texture = settings.TEXTURES['spritesheet']
+        self.texture = settings.TEXTURES["spritesheet"]
 
-        self.tier = 0   # [0, 3]
+        self.tier = 0  # [0, 3]
         self.color = 0  # [0, 4]
 
         # To decide whether render it or not and collision detection
@@ -33,5 +33,6 @@ class Brick:
     def render(self, surface: pygame.Surface) -> None:
         if self.in_play:
             frame = self.color * 4 + self.tier
-            surface.blit(self.texture, (self.x, self.y),
-                         settings.FRAMES['bricks'][frame])
+            surface.blit(
+                self.texture, (self.x, self.y), settings.FRAMES["bricks"][frame]
+            )

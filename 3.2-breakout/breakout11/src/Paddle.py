@@ -16,8 +16,8 @@ class Paddle:
         # By default, the 64-pixels-width paddle.
         self.size = 1
 
-        self.texture = settings.TEXTURES['spritesheet']
-        self.frames = settings.FRAMES['paddles']
+        self.texture = settings.TEXTURES["spritesheet"]
+        self.frames = settings.FRAMES["paddles"]
 
         # The paddle only move horizontally
         self.vx = 0
@@ -44,5 +44,4 @@ class Paddle:
             self.x = min(settings.VIRTUAL_WIDTH - self.width, next_x)
 
     def render(self, surface: pygame.Surface) -> None:
-        surface.blit(self.texture, (self.x, self.y),
-                     self.frames[self.skin][self.size])
+        surface.blit(self.texture, (self.x, self.y), self.frames[self.skin][self.size])

@@ -49,18 +49,39 @@ class TimerGame(Game):
             self.counter3 += 1
 
     def render(self, surface: pygame.Surface) -> None:
-        render_text(surface, str(self.counter1), self.font,
-                    640, 260, (255, 255, 255), center=True)
-        render_text(surface, str(self.counter2), self.font,
-                    640, 360, (255, 255, 255), center=True)
-        render_text(surface, str(self.counter3), self.font,
-                    640, 460, (255, 255, 255), center=True)
+        render_text(
+            surface,
+            str(self.counter1),
+            self.font,
+            640,
+            260,
+            (255, 255, 255),
+            center=True,
+        )
+        render_text(
+            surface,
+            str(self.counter2),
+            self.font,
+            640,
+            360,
+            (255, 255, 255),
+            center=True,
+        )
+        render_text(
+            surface,
+            str(self.counter3),
+            self.font,
+            640,
+            460,
+            (255, 255, 255),
+            center=True,
+        )
 
     def on_input(self, input_id: str, input_data: InputData) -> None:
-        if input_id == 'quit' and input_data.pressed:
+        if input_id == "quit" and input_data.pressed:
             self.quit()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     timer_game = TimerGame("Timer 0", 1280, 720)
     timer_game.exec()

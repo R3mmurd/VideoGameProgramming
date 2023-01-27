@@ -16,22 +16,15 @@ import pygame
 from gale import frames
 from gale import input_handler
 
-input_handler.InputHandler.set_keyboard_action(input_handler.KEY_p, 'pause')
-input_handler.InputHandler.set_keyboard_action(
-    input_handler.KEY_RETURN, 'enter')
-input_handler.InputHandler.set_keyboard_action(
-    input_handler.KEY_KP_ENTER, 'enter')
-input_handler.InputHandler.set_keyboard_action(
-    input_handler.KEY_RIGHT, 'move_right')
-input_handler.InputHandler.set_keyboard_action(
-    input_handler.KEY_d, 'move_right')
-input_handler.InputHandler.set_keyboard_action(
-    input_handler.KEY_LEFT, 'move_left')
-input_handler.InputHandler.set_keyboard_action(
-    input_handler.KEY_a, 'move_left')
-input_handler.InputHandler.set_keyboard_action(input_handler.KEY_SPACE, 'jump')
-input_handler.InputHandler.set_mouse_click_action(
-    input_handler.MOUSE_BUTTON_1, 'jump')
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_p, "pause")
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_RETURN, "enter")
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_KP_ENTER, "enter")
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_RIGHT, "move_right")
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_d, "move_right")
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_LEFT, "move_left")
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_a, "move_left")
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_SPACE, "jump")
+input_handler.InputHandler.set_mouse_click_action(input_handler.MOUSE_BUTTON_1, "jump")
 
 # Size we want to emulate
 VIRTUAL_WIDTH = 400
@@ -50,33 +43,33 @@ NUM_LEVELS = 1
 BASE_DIR = pathlib.Path(__file__).parent
 
 TEXTURES = {
-    'tiles': pygame.image.load(BASE_DIR / "graphics" / "tileset.png"),
-    'martian': pygame.image.load(BASE_DIR / "graphics" / "martian.png"),
-    'creatures': pygame.image.load(BASE_DIR / "graphics" / "creatures.png")
+    "tiles": pygame.image.load(BASE_DIR / "graphics" / "tileset.png"),
+    "martian": pygame.image.load(BASE_DIR / "graphics" / "martian.png"),
+    "creatures": pygame.image.load(BASE_DIR / "graphics" / "creatures.png"),
 }
 
 FRAMES = {
-    'tiles': frames.generate_frames(TEXTURES['tiles'], 16, 16),
-    'martian': frames.generate_frames(TEXTURES['martian'], 16, 20),
-    'creatures': frames.generate_frames(TEXTURES['creatures'], 16, 16)
+    "tiles": frames.generate_frames(TEXTURES["tiles"], 16, 16),
+    "martian": frames.generate_frames(TEXTURES["martian"], 16, 20),
+    "creatures": frames.generate_frames(TEXTURES["creatures"], 16, 16),
 }
 
 TILEMAPS = {
-    f'level{i}': f"{BASE_DIR}/tilemaps/level{i}.tmx" for i in range(1, NUM_LEVELS + 1)
+    f"level{i}": f"{BASE_DIR}/tilemaps/level{i}.tmx" for i in range(1, NUM_LEVELS + 1)
 }
 
 pygame.mixer.init()
 
 SOUNDS = {
-    'pickup_coin': pygame.mixer.Sound(BASE_DIR / "sounds" / "pickup_coin.wav"),
-    'jump': pygame.mixer.Sound(BASE_DIR / "sounds" / "jump.wav"),
-    'timer': pygame.mixer.Sound(BASE_DIR / "sounds" / "timer.wav"),
-    'count': pygame.mixer.Sound(BASE_DIR / "sounds" / "count.wav")
+    "pickup_coin": pygame.mixer.Sound(BASE_DIR / "sounds" / "pickup_coin.wav"),
+    "jump": pygame.mixer.Sound(BASE_DIR / "sounds" / "jump.wav"),
+    "timer": pygame.mixer.Sound(BASE_DIR / "sounds" / "timer.wav"),
+    "count": pygame.mixer.Sound(BASE_DIR / "sounds" / "count.wav"),
 }
 
 pygame.font.init()
 
 FONTS = {
-    'small': pygame.font.Font(BASE_DIR / "fonts" / "font.ttf", 8),
-    'medium': pygame.font.Font(BASE_DIR / "fonts" / "font.ttf", 16)
+    "small": pygame.font.Font(BASE_DIR / "fonts" / "font.ttf", 8),
+    "medium": pygame.font.Font(BASE_DIR / "fonts" / "font.ttf", 16),
 }

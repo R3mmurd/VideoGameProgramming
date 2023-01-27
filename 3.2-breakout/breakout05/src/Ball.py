@@ -24,7 +24,7 @@ class Ball:
         self.vx = 0
         self.vy = 0
 
-        self.texture = settings.TEXTURES['spritesheet']
+        self.texture = settings.TEXTURES["spritesheet"]
         self.frame = random.randint(0, 6)
         self.in_play = True
 
@@ -36,5 +36,6 @@ class Ball:
         self.y += self.vy * dt
 
     def render(self, surface):
-        surface.blit(self.texture, (self.x, self.y),
-                     settings.FRAMES['balls'][self.frame])
+        surface.blit(
+            self.texture, (self.x, self.y), settings.FRAMES["balls"][self.frame]
+        )

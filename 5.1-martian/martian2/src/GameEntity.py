@@ -16,9 +16,15 @@ from src import mixins
 
 class GameEntity(mixins.DrawableMixin, mixins.AnimatedMixin):
     def __init__(
-        self, x: float, y: float, width: float, height: float,
-        texture_id: str, game_level: TypeVar('GameLevel'),
-        states: Dict[str, BaseState], animation_defs: Dict[str, Dict[str, Any]]
+        self,
+        x: float,
+        y: float,
+        width: float,
+        height: float,
+        texture_id: str,
+        game_level: TypeVar("GameLevel"),
+        states: Dict[str, BaseState],
+        animation_defs: Dict[str, Dict[str, Any]],
     ) -> None:
         self.x = x
         self.y = y
@@ -36,8 +42,9 @@ class GameEntity(mixins.DrawableMixin, mixins.AnimatedMixin):
         self._generate_animations(animation_defs)
         self.flipped = False
 
-    def change_state(self, state_id: str, *
-                     args: Tuple[Any], **kwargs: Dict[str, Any]) -> None:
+    def change_state(
+        self, state_id: str, *args: Tuple[Any], **kwargs: Dict[str, Any]
+    ) -> None:
         self.state_machine.change(state_id, *args, **kwargs)
 
     def update(self, dt: float) -> None:

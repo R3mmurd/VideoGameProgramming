@@ -20,15 +20,15 @@ import settings
 
 class PlayState(BaseState):
     def enter(self, **params: dict):
-        self.level = params['level']
-        self.score = params['score']
-        self.lives = params['lives']
-        self.paddle = params['paddle']
-        self.ball = params['ball']
-        self.bricks = params['bricks']
-        self.broken_bricks_counter = params['broken_bricks_counter']
+        self.level = params["level"]
+        self.score = params["score"]
+        self.lives = params["lives"]
+        self.paddle = params["paddle"]
+        self.ball = params["ball"]
+        self.bricks = params["bricks"]
+        self.broken_bricks_counter = params["broken_bricks_counter"]
 
-        settings.SOUNDS['paddle_hit'].play()
+        settings.SOUNDS["paddle_hit"].play()
 
         self.ball.vx = random.randint(-80, 80)
         self.ball.vy = random.randint(-170, -100)
@@ -49,19 +49,19 @@ class PlayState(BaseState):
             else:
                 self.paddle.dec_size()
                 self.state_machine.change(
-                    'serve',
+                    "serve",
                     level=self.level,
                     score=self.score,
                     lives=self.lives,
                     paddle=self.paddle,
                     bricks=self.bricks,
-                    broken_bricks_counter=self.broken_bricks_counter
+                    broken_bricks_counter=self.broken_bricks_counter,
                 )
 
         # Check collision with the paddle
         if self.ball.collides(self.paddle):
-            settings.SOUNDS['paddle_hit'].stop()
-            settings.SOUNDS['paddle_hit'].play()
+            settings.SOUNDS["paddle_hit"].stop()
+            settings.SOUNDS["paddle_hit"].play()
             self.ball.rebound(self.paddle)
             self.ball.push(self.paddle)
 
@@ -82,12 +82,12 @@ class PlayState(BaseState):
         # Check victory
         if self.broken_bricks_counter == len(self.bricks):
             self.state_machine.change(
-                'victory',
+                "victory",
                 lives=self.lives,
                 level=self.level,
                 score=self.score,
                 paddle=self.paddle,
-                ball=self.ball
+                ball=self.ball,
             )
 
     def render(self, surface: pygame.Surface) -> None:
@@ -97,26 +97,26 @@ class PlayState(BaseState):
         # Draw filled hearts
         while i < self.lives:
             surface.blit(
-                settings.TEXTURES['hearts'],
-                (heart_x,
-                 5),
-                settings.FRAMES['hearts'][0])
+                settings.TEXTURES["hearts"], (heart_x, 5), settings.FRAMES["hearts"][0]
+            )
             heart_x += 11
             i += 1
 
         # Draw empty hearts
         while i < 3:
             surface.blit(
-                settings.TEXTURES['hearts'],
-                (heart_x,
-                 5),
-                settings.FRAMES['hearts'][1])
+                settings.TEXTURES["hearts"], (heart_x, 5), settings.FRAMES["hearts"][1]
+            )
             heart_x += 11
             i += 1
 
         render_text(
-            surface, f'Score: {self.score}', settings.FONTS['tiny'],
-            settings.VIRTUAL_WIDTH - 80, 5, (255, 255, 255)
+            surface,
+            f"Score: {self.score}",
+            settings.FONTS["tiny"],
+            settings.VIRTUAL_WIDTH - 80,
+            5,
+            (255, 255, 255),
         )
 
         for brick in self.bricks:
@@ -126,12 +126,12 @@ class PlayState(BaseState):
         self.ball.render(surface)
 
     def on_input(self, input_id: str, input_data: InputData) -> None:
-        if input_id == 'move_left':
+        if input_id == "move_left":
             if input_data.pressed:
                 self.paddle.vx = -settings.PADDLE_SPEED
             elif input_data.released and self.paddle.vx < 0:
                 self.paddle.vx = 0
-        elif input_id == 'move_right':
+        elif input_id == "move_right":
             if input_data.pressed:
                 self.paddle.vx = settings.PADDLE_SPEED
             elif input_data.released and self.paddle.vx > 0:

@@ -11,17 +11,12 @@ textures, frames, and fonts.
 """
 from gale import input_handler
 
-input_handler.InputHandler.set_keyboard_action(
-    input_handler.KEY_RETURN, 'enter')
-input_handler.InputHandler.set_keyboard_action(input_handler.KEY_UP, 'move_up')
-input_handler.InputHandler.set_keyboard_action(
-    input_handler.KEY_RIGHT, 'move_right')
-input_handler.InputHandler.set_keyboard_action(
-    input_handler.KEY_DOWN, 'move_down')
-input_handler.InputHandler.set_keyboard_action(
-    input_handler.KEY_LEFT, 'move_left')
-input_handler.InputHandler.set_keyboard_action(
-    input_handler.KEY_ESCAPE, 'quit')
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_RETURN, "enter")
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_UP, "move_up")
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_RIGHT, "move_right")
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_DOWN, "move_down")
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_LEFT, "move_left")
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_ESCAPE, "quit")
 
 # Size of our actual window
 WINDOW_WIDTH = 1280

@@ -16,8 +16,7 @@ import pygame
 from gale import input_handler
 from gale.frames import generate_frames
 
-input_handler.InputHandler.set_keyboard_action(
-    input_handler.KEY_ESCAPE, 'quit')
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_ESCAPE, "quit")
 
 WINDOW_WIDTH = 1280
 WINDOW_HEIGHT = 720
@@ -35,13 +34,9 @@ TILE_SIZE = 32
 
 BASE_DIR = Path(__file__).parent
 
-TEXTURES = {
-    'tiles': pygame.image.load(BASE_DIR / "graphics" / "match3.png")
-}
+TEXTURES = {"tiles": pygame.image.load(BASE_DIR / "graphics" / "match3.png")}
 
-FRAMES = {
-    'tiles': generate_frames(TEXTURES['tiles'], TILE_SIZE, TILE_SIZE)
-}
+FRAMES = {"tiles": generate_frames(TEXTURES["tiles"], TILE_SIZE, TILE_SIZE)}
 
 SOUNDS = {}
 

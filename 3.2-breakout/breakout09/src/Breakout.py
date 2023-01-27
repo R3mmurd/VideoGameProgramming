@@ -21,17 +21,19 @@ from src import states
 class Breakout(Game):
     def init(self) -> None:
         InputHandler.register_listener(self)
-        self.state_machine = StateMachine({
-            'start': states.StartState,
-            'high_score': states.HighScoreState,
-            'enter_high_score': states.EnterHighScoreState,
-            'game_over': states.GameOverState,
-            'paddle_select': states.PaddleSelectState,
-            'serve': states.ServeState,
-            'play': states.PlayState,
-            'victory': states.VictoryState
-        })
-        self.state_machine.change('start')
+        self.state_machine = StateMachine(
+            {
+                "start": states.StartState,
+                "high_score": states.HighScoreState,
+                "enter_high_score": states.EnterHighScoreState,
+                "game_over": states.GameOverState,
+                "paddle_select": states.PaddleSelectState,
+                "serve": states.ServeState,
+                "play": states.PlayState,
+                "victory": states.VictoryState,
+            }
+        )
+        self.state_machine.change("start")
         pygame.mixer_music.load(settings.BASE_DIR / "sounds" / "music.wav")
         pygame.mixer_music.play(loops=-1)
 
@@ -39,11 +41,9 @@ class Breakout(Game):
         self.state_machine.update(dt)
 
     def render(self, surface: pygame.Surface) -> None:
-        surface.blit(
-            settings.TEXTURES['background'], (0, 0)
-        )
+        surface.blit(settings.TEXTURES["background"], (0, 0))
         self.state_machine.render(surface)
 
     def on_input(self, input_id: str, input_data: InputData) -> None:
-        if input_id == 'quit' and input_data.pressed:
+        if input_id == "quit" and input_data.pressed:
             self.quit()

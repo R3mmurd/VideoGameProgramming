@@ -20,17 +20,15 @@ from src.level_maker import create_level
 
 class ServeState(BaseState):
     def enter(self, **params: dict) -> None:
-        self.level = params['level']
-        self.paddle = params['paddle']
+        self.level = params["level"]
+        self.paddle = params["paddle"]
         self.paddle.x = settings.VIRTUAL_WIDTH // 2 - 32
         self.paddle.y = settings.VIRTUAL_HEIGHT - 32
-        self.ball = Ball(
-            self.paddle.x + self.paddle.width // 2 - 4, self.paddle.y - 8
-        )
-        self.bricks = params.get('bricks', create_level(self.level))
-        self.score = params.get('score', 0)
-        self.lives = params.get('lives', 3)
-        self.broken_bricks_counter = params.get('broken_bricks_counter', 0)
+        self.ball = Ball(self.paddle.x + self.paddle.width // 2 - 4, self.paddle.y - 8)
+        self.bricks = params.get("bricks", create_level(self.level))
+        self.score = params.get("score", 0)
+        self.lives = params.get("lives", 3)
+        self.broken_bricks_counter = params.get("broken_bricks_counter", 0)
         InputHandler.register_listener(self)
 
     def exit(self) -> None:
@@ -47,26 +45,26 @@ class ServeState(BaseState):
         # Draw filled hearts
         while i < self.lives:
             surface.blit(
-                settings.TEXTURES['hearts'],
-                (heart_x,
-                 5),
-                settings.FRAMES['hearts'][0])
+                settings.TEXTURES["hearts"], (heart_x, 5), settings.FRAMES["hearts"][0]
+            )
             heart_x += 11
             i += 1
 
         # Draw empty hearts
         while i < 3:
             surface.blit(
-                settings.TEXTURES['hearts'],
-                (heart_x,
-                 5),
-                settings.FRAMES['hearts'][1])
+                settings.TEXTURES["hearts"], (heart_x, 5), settings.FRAMES["hearts"][1]
+            )
             heart_x += 11
             i += 1
 
         render_text(
-            surface, f'Score: {self.score}', settings.FONTS['tiny'],
-            settings.VIRTUAL_WIDTH - 80, 5, (255, 255, 255)
+            surface,
+            f"Score: {self.score}",
+            settings.FONTS["tiny"],
+            settings.VIRTUAL_WIDTH - 80,
+            5,
+            (255, 255, 255),
         )
 
         for brick in self.bricks:
@@ -76,35 +74,43 @@ class ServeState(BaseState):
         self.ball.render(surface)
 
         render_text(
-            surface, f'Level {self.level}', settings.FONTS['large'],
-            settings.VIRTUAL_WIDTH // 2, settings.VIRTUAL_HEIGHT // 2 - 30,
-            (255, 255, 255), center=True
+            surface,
+            f"Level {self.level}",
+            settings.FONTS["large"],
+            settings.VIRTUAL_WIDTH // 2,
+            settings.VIRTUAL_HEIGHT // 2 - 30,
+            (255, 255, 255),
+            center=True,
         )
         render_text(
-            surface, 'Press Enter to serve!', settings.FONTS['medium'],
-            settings.VIRTUAL_WIDTH // 2, settings.VIRTUAL_HEIGHT // 2,
-            (255, 255, 255), center=True
+            surface,
+            "Press Enter to serve!",
+            settings.FONTS["medium"],
+            settings.VIRTUAL_WIDTH // 2,
+            settings.VIRTUAL_HEIGHT // 2,
+            (255, 255, 255),
+            center=True,
         )
 
     def on_input(self, input_id: str, input_data: InputData) -> None:
-        if input_id == 'enter' and input_data.pressed:
+        if input_id == "enter" and input_data.pressed:
             self.state_machine.change(
-                'play',
+                "play",
                 level=self.level,
                 score=self.score,
                 lives=self.lives,
                 paddle=self.paddle,
                 ball=self.ball,
                 bricks=self.bricks,
-                broken_bricks_counter=self.broken_bricks_counter
+                broken_bricks_counter=self.broken_bricks_counter,
             )
 
-        if input_id == 'move_left':
+        if input_id == "move_left":
             if input_data.pressed:
                 self.paddle.vx = -settings.PADDLE_SPEED
             elif input_data.released and self.paddle.vx < 0:
                 self.paddle.vx = 0
-        elif input_id == 'move_right':
+        elif input_id == "move_right":
             if input_data.pressed:
                 self.paddle.vx = settings.PADDLE_SPEED
             elif input_data.released and self.paddle.vx > 0:

@@ -17,16 +17,12 @@ from gale import input_handler
 
 from src.frames_utility import generate_tile_frames
 
-input_handler.InputHandler.set_keyboard_action(
-    input_handler.KEY_ESCAPE, 'quit')
-input_handler.InputHandler.set_keyboard_action(
-    input_handler.KEY_KP_ENTER, 'enter')
-input_handler.InputHandler.set_keyboard_action(
-    input_handler.KEY_RETURN, 'enter')
-input_handler.InputHandler.set_keyboard_action(input_handler.KEY_UP, 'up')
-input_handler.InputHandler.set_keyboard_action(input_handler.KEY_DOWN, 'down')
-input_handler.InputHandler.set_mouse_click_action(
-    input_handler.MOUSE_BUTTON_1, 'click')
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_ESCAPE, "quit")
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_KP_ENTER, "enter")
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_RETURN, "enter")
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_UP, "up")
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_DOWN, "down")
+input_handler.InputHandler.set_mouse_click_action(input_handler.MOUSE_BUTTON_1, "click")
 
 WINDOW_WIDTH = 1280
 WINDOW_HEIGHT = 720
@@ -48,31 +44,29 @@ BACKGROUND_LOOPING_POINT = -1024 + VIRTUAL_WIDTH - 4 + 51
 BASE_DIR = Path(__file__).parent
 
 TEXTURES = {
-    'background': pygame.image.load(BASE_DIR / "graphics" / "background.png"),
-    'tiles': pygame.image.load(BASE_DIR / "graphics" / "match3.png")
+    "background": pygame.image.load(BASE_DIR / "graphics" / "background.png"),
+    "tiles": pygame.image.load(BASE_DIR / "graphics" / "match3.png"),
 }
 
-FRAMES = {
-    'tiles': generate_tile_frames(TEXTURES['tiles'])
-}
+FRAMES = {"tiles": generate_tile_frames(TEXTURES["tiles"])}
 
 pygame.mixer.init()
 
 SOUNDS = {
-    'clock': pygame.mixer.Sound(BASE_DIR / "sounds" / "clock.wav"),
-    'error': pygame.mixer.Sound(BASE_DIR / "sounds" / "error.wav"),
-    'game-over': pygame.mixer.Sound(BASE_DIR / "sounds" / "game-over.wav"),
-    'match': pygame.mixer.Sound(BASE_DIR / "sounds" / "match.wav"),
-    'music': pygame.mixer.Sound(BASE_DIR / "sounds" / "music.mp3"),
-    'next-level': pygame.mixer.Sound(BASE_DIR / "sounds" / "next-level.wav"),
-    'select': pygame.mixer.Sound(BASE_DIR / "sounds" / "select.wav")
+    "clock": pygame.mixer.Sound(BASE_DIR / "sounds" / "clock.wav"),
+    "error": pygame.mixer.Sound(BASE_DIR / "sounds" / "error.wav"),
+    "game-over": pygame.mixer.Sound(BASE_DIR / "sounds" / "game-over.wav"),
+    "match": pygame.mixer.Sound(BASE_DIR / "sounds" / "match.wav"),
+    "music": pygame.mixer.Sound(BASE_DIR / "sounds" / "music.mp3"),
+    "next-level": pygame.mixer.Sound(BASE_DIR / "sounds" / "next-level.wav"),
+    "select": pygame.mixer.Sound(BASE_DIR / "sounds" / "select.wav"),
 }
 
 pygame.font.init()
 
 FONTS = {
-    'small': pygame.font.Font(BASE_DIR / "fonts" / "font.ttf", 12),
-    'medium': pygame.font.Font(BASE_DIR / "fonts" / "font.ttf", 24),
-    'large': pygame.font.Font(BASE_DIR / "fonts" / "font.ttf", 48),
-    'huge': pygame.font.Font(BASE_DIR / "fonts" / "font.ttf", 64)
+    "small": pygame.font.Font(BASE_DIR / "fonts" / "font.ttf", 12),
+    "medium": pygame.font.Font(BASE_DIR / "fonts" / "font.ttf", 24),
+    "large": pygame.font.Font(BASE_DIR / "fonts" / "font.ttf", 48),
+    "huge": pygame.font.Font(BASE_DIR / "fonts" / "font.ttf", 64),
 }

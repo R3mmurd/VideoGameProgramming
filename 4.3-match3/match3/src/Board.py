@@ -31,18 +31,24 @@ class Board:
                 tile.render(surface, self.x, self.y)
 
     def _is_match_generated(self, i: int, j: int, color: int) -> bool:
-        if i >= 2 and self.tiles[i -
-                                 1][j].color == color and self.tiles[i -
-                                                                     2][j].color:
+        if (
+            i >= 2
+            and self.tiles[i - 1][j].color == color
+            and self.tiles[i - 2][j].color
+        ):
             return True
 
-        return j >= 2 and self.tiles[i][j -
-                                        1].color == color and self.tiles[i][j -
-                                                                            2].color
+        return (
+            j >= 2
+            and self.tiles[i][j - 1].color == color
+            and self.tiles[i][j - 2].color
+        )
 
     def _initialize_tiles(self) -> None:
-        self.tiles = [[None for _ in range(settings.BOARD_WIDTH)] for _ in range(
-            settings.BOARD_HEIGHT)]
+        self.tiles = [
+            [None for _ in range(settings.BOARD_WIDTH)]
+            for _ in range(settings.BOARD_HEIGHT)
+        ]
         for i in range(settings.BOARD_HEIGHT):
             for j in range(settings.BOARD_WIDTH):
                 color = random.randint(0, settings.NUM_COLORS - 1)
@@ -50,10 +56,10 @@ class Board:
                     color = random.randint(0, settings.NUM_COLORS - 1)
 
                 self.tiles[i][j] = Tile(
-                    i, j, color, random.randint(
-                        0, settings.NUM_VARIETIES - 1))
+                    i, j, color, random.randint(0, settings.NUM_VARIETIES - 1)
+                )
 
-        assert (not self.calculate_matches())
+        assert not self.calculate_matches()
 
     def calculate_matches(self) -> Optional[List[List[Tile]]]:
         match_num: int
@@ -89,8 +95,9 @@ class Board:
             if match_num >= 3:
                 match = []
 
-                for x in range(settings.BOARD_WIDTH - 1,
-                               settings.BOARD_WIDTH - 1 - match_num, -1):
+                for x in range(
+                    settings.BOARD_WIDTH - 1, settings.BOARD_WIDTH - 1 - match_num, -1
+                ):
                     match.append(self.tiles[y][x])
 
                 self.matches.append(match)
@@ -126,8 +133,9 @@ class Board:
             if match_num >= 3:
                 match = []
 
-                for y in range(settings.BOARD_HEIGHT - 1,
-                               settings.BOARD_HEIGHT - 1 - match_num, -1):
+                for y in range(
+                    settings.BOARD_HEIGHT - 1, settings.BOARD_HEIGHT - 1 - match_num, -1
+                ):
                     match.append(self.tiles[y][x])
 
                 self.matches.append(match)
@@ -165,8 +173,7 @@ class Board:
                         # set its prior position to None
                         self.tiles[i][j] = None
 
-                        tweens.append(
-                            (tile, {'y': tile.i * settings.TILE_SIZE}))
+                        tweens.append((tile, {"y": tile.i * settings.TILE_SIZE}))
                         space = False
                         i = space_i
                         space_i = -1
@@ -187,16 +194,11 @@ class Board:
                     tile = Tile(
                         i,
                         j,
-                        random.randint(
-                            0,
-                            settings.NUM_COLORS -
-                            1),
-                        random.randint(
-                            0,
-                            settings.NUM_VARIETIES -
-                            1))
+                        random.randint(0, settings.NUM_COLORS - 1),
+                        random.randint(0, settings.NUM_VARIETIES - 1),
+                    )
                     tile.y -= settings.TILE_SIZE
                     self.tiles[i][j] = tile
-                    tweens.append((tile, {'y': tile.i * settings.TILE_SIZE}))
+                    tweens.append((tile, {"y": tile.i * settings.TILE_SIZE}))
 
         return tweens

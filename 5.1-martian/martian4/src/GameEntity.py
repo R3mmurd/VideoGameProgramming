@@ -16,14 +16,17 @@ from src import mixins
 from src.GameObject import GameObject
 
 
-class GameEntity(
-        mixins.DrawableMixin,
-        mixins.AnimatedMixin,
-        mixins.CollidableMixin):
+class GameEntity(mixins.DrawableMixin, mixins.AnimatedMixin, mixins.CollidableMixin):
     def __init__(
-        self, x: float, y: float, width: float, height: float,
-        texture_id: str, game_level: TypeVar('GameLevel'),
-        states: Dict[str, BaseState], animation_defs: Dict[str, Dict[str, Any]]
+        self,
+        x: float,
+        y: float,
+        width: float,
+        height: float,
+        texture_id: str,
+        game_level: TypeVar("GameLevel"),
+        states: Dict[str, BaseState],
+        animation_defs: Dict[str, Dict[str, Any]],
     ) -> None:
         self.x = x
         self.y = y
@@ -42,8 +45,9 @@ class GameEntity(
         self.flipped = False
         self.is_dead = False
 
-    def change_state(self, state_id: str, *
-                     args: Tuple[Any], **kwargs: Dict[str, Any]) -> None:
+    def change_state(
+        self, state_id: str, *args: Tuple[Any], **kwargs: Dict[str, Any]
+    ) -> None:
         self.state_machine.change(state_id, *args, **kwargs)
 
     def update(self, dt: float) -> None:
@@ -74,8 +78,9 @@ class GameEntity(
         left = self.tilemap.to_j(collision_rect.left)
         right = self.tilemap.to_j(collision_rect.right)
 
-        if (self.tilemap.collides_tile_on(i - 1, left, self, GameObject.BOTTOM)
-                or self.tilemap.collides_tile_on(i - 1, right, self, GameObject.BOTTOM)):
+        if self.tilemap.collides_tile_on(
+            i - 1, left, self, GameObject.BOTTOM
+        ) or self.tilemap.collides_tile_on(i - 1, right, self, GameObject.BOTTOM):
             # Fix the entity position
             self.y = self.tilemap.to_y(i)
             return True
@@ -92,8 +97,9 @@ class GameEntity(
         left = self.tilemap.to_j(collision_rect.left)
         right = self.tilemap.to_j(collision_rect.right)
 
-        if (self.tilemap.collides_tile_on(i + 1, left, self, GameObject.TOP)
-                or self.tilemap.collides_tile_on(i + 1, right, self, GameObject.TOP)):
+        if self.tilemap.collides_tile_on(
+            i + 1, left, self, GameObject.TOP
+        ) or self.tilemap.collides_tile_on(i + 1, right, self, GameObject.TOP):
             # Fix the entity position
             self.y = self.tilemap.to_y(i + 1) - self.height
             return True
@@ -109,8 +115,9 @@ class GameEntity(
         top = self.tilemap.to_i(collision_rect.top)
         center = self.tilemap.to_i(collision_rect.centery)
 
-        if (self.tilemap.collides_tile_on(top, j + 1, self, GameObject.LEFT) or
-                self.tilemap.collides_tile_on(center, j + 1, self, GameObject.LEFT)):
+        if self.tilemap.collides_tile_on(
+            top, j + 1, self, GameObject.LEFT
+        ) or self.tilemap.collides_tile_on(center, j + 1, self, GameObject.LEFT):
             # Fix the entity position
             self.x = self.tilemap.to_x(j + 1) - self.width
             return True
@@ -126,8 +133,9 @@ class GameEntity(
         top = self.tilemap.to_i(collision_rect.top)
         center = self.tilemap.to_i(collision_rect.centery)
 
-        if (self.tilemap.collides_tile_on(top, j - 1, self, GameObject.RIGHT) or
-                self.tilemap.collides_tile_on(center, j - 1, self, GameObject.RIGHT)):
+        if self.tilemap.collides_tile_on(
+            top, j - 1, self, GameObject.RIGHT
+        ) or self.tilemap.collides_tile_on(center, j - 1, self, GameObject.RIGHT):
             # Fix the entity position
             self.x = self.tilemap.to_x(j)
             return True

@@ -26,20 +26,30 @@ class GameOverState(BaseState):
         InputHandler.unregister_listener(self)
 
     def on_input(self, input_id: str, input_data: InputData) -> None:
-        if input_id == 'enter' and input_data.pressed:
-            self.state_machine.change('play')
+        if input_id == "enter" and input_data.pressed:
+            self.state_machine.change("play")
 
     def render(self, surface: pygame.Surface) -> None:
         surface.fill((25, 130, 196))
 
         render_text(
-            surface, 'Game Over!', settings.FONTS['medium'],
-            settings.VIRTUAL_WIDTH // 2, 20,
-            (255, 255, 255), center=True, shadowed=True
+            surface,
+            "Game Over!",
+            settings.FONTS["medium"],
+            settings.VIRTUAL_WIDTH // 2,
+            20,
+            (255, 255, 255),
+            center=True,
+            shadowed=True,
         )
 
         render_text(
-            surface, 'Press Enter to play again', settings.FONTS['small'],
-            settings.VIRTUAL_WIDTH // 2, settings.VIRTUAL_HEIGHT - 20,
-            (255, 255, 255), center=True, shadowed=True
+            surface,
+            "Press Enter to play again",
+            settings.FONTS["small"],
+            settings.VIRTUAL_WIDTH // 2,
+            settings.VIRTUAL_HEIGHT - 20,
+            (255, 255, 255),
+            center=True,
+            shadowed=True,
         )

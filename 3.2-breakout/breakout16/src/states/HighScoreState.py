@@ -26,19 +26,23 @@ class HighScoreState(BaseState):
         InputHandler.unregister_listener(self)
 
     def on_input(self, input_id: str, input_data: InputData):
-        if input_id == 'enter' and input_data.pressed:
-            self.state_machine.change('start')
+        if input_id == "enter" and input_data.pressed:
+            self.state_machine.change("start")
 
     def render(self, surface: pygame.Surface) -> None:
         render_text(
-            surface, 'High Scores', settings.FONTS['medium'],
-            settings.VIRTUAL_WIDTH // 2, 20,
-            (255, 255, 255), center=True
+            surface,
+            "High Scores",
+            settings.FONTS["medium"],
+            settings.VIRTUAL_WIDTH // 2,
+            20,
+            (255, 255, 255),
+            center=True,
         )
 
         for i in range(settings.NUM_HIGHSCORES):
-            name = '---'
-            score = '---'
+            name = "---"
+            score = "---"
 
             if i < len(self.hs):
                 item = self.hs[i]
@@ -46,17 +50,29 @@ class HighScoreState(BaseState):
                 score = str(item[1])
 
             render_text(
-                surface, f'{i + 1}.', settings.FONTS['small'],
-                settings.VIRTUAL_WIDTH // 2 - 60, 50 + i * 17,
-                (255, 255, 255), center=True
+                surface,
+                f"{i + 1}.",
+                settings.FONTS["small"],
+                settings.VIRTUAL_WIDTH // 2 - 60,
+                50 + i * 17,
+                (255, 255, 255),
+                center=True,
             )
             render_text(
-                surface, name, settings.FONTS['small'],
-                settings.VIRTUAL_WIDTH // 2, 50 + i * 17,
-                (255, 255, 255), center=True
+                surface,
+                name,
+                settings.FONTS["small"],
+                settings.VIRTUAL_WIDTH // 2,
+                50 + i * 17,
+                (255, 255, 255),
+                center=True,
             )
             render_text(
-                surface, score, settings.FONTS['small'],
-                settings.VIRTUAL_WIDTH // 2 + 60, 50 + i * 17,
-                (255, 255, 255), center=True
+                surface,
+                score,
+                settings.FONTS["small"],
+                settings.VIRTUAL_WIDTH // 2 + 60,
+                50 + i * 17,
+                (255, 255, 255),
+                center=True,
             )

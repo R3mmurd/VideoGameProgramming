@@ -16,7 +16,7 @@ from src.TileMap import TileMap
 
 class GameLevel:
     def __init__(self, num_level: int, camera: Camera) -> None:
-        self.tilemap = TileMap(settings.TILEMAPS[f'level{num_level}'])
+        self.tilemap = TileMap(settings.TILEMAPS[f"level{num_level}"])
         self.camera = camera
 
     def update(self, dt: float) -> None:

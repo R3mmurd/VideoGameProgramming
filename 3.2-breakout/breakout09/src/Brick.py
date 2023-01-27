@@ -15,11 +15,11 @@ from gale.particle_system import ParticleSystem
 import settings
 
 COLOR_PALETTE = (
-    (99, 155, 255),   # blue
-    (106, 190, 47),   # green
-    (217, 87, 99),    # red
+    (99, 155, 255),  # blue
+    (106, 190, 47),  # green
+    (217, 87, 99),  # red
     (215, 123, 186),  # purple
-    (251, 242, 54)    # gold
+    (251, 242, 54),  # gold
 )
 
 
@@ -30,9 +30,9 @@ class Brick:
         self.width = 32
         self.height = 16
 
-        self.texture = settings.TEXTURES['spritesheet']
+        self.texture = settings.TEXTURES["spritesheet"]
 
-        self.tier = 0   # [0, 3]
+        self.tier = 0  # [0, 3]
         self.color = 0  # [0, 4]
 
         # To decide whether render it or not and collision detection
@@ -44,8 +44,8 @@ class Brick:
         self.particle_system.set_area_spread(4, 7)
 
     def hit(self) -> None:
-        settings.SOUNDS['brick_hit_2'].stop()
-        settings.SOUNDS['brick_hit_2'].play()
+        settings.SOUNDS["brick_hit_2"].stop()
+        settings.SOUNDS["brick_hit_2"].play()
 
         r, g, b = COLOR_PALETTE[self.color]
         self.particle_system.set_colors([(r, g, b, 10), (r, g, b, 50)])
@@ -54,8 +54,8 @@ class Brick:
         if self.tier == 0:
             if self.color == 0:
                 self.in_play = False
-                settings.SOUNDS['brick_hit_1'].stop()
-                settings.SOUNDS['brick_hit_1'].play()
+                settings.SOUNDS["brick_hit_1"].stop()
+                settings.SOUNDS["brick_hit_1"].play()
             else:
                 self.tier = 3
                 self.color -= 1
@@ -71,6 +71,7 @@ class Brick:
     def render(self, surface: pygame.Surface) -> None:
         if self.in_play:
             frame = self.color * 4 + self.tier
-            surface.blit(self.texture, (self.x, self.y),
-                         settings.FRAMES['bricks'][frame])
+            surface.blit(
+                self.texture, (self.x, self.y), settings.FRAMES["bricks"][frame]
+            )
         self.particle_system.render(surface)

@@ -21,24 +21,25 @@ from src import powerups
 
 class PlayState(BaseState):
     def enter(self, **params: dict):
-        self.level = params['level']
-        self.score = params['score']
-        self.lives = params['lives']
-        self.paddle = params['paddle']
-        self.balls = params['balls']
-        self.bricks = params['bricks']
-        self.broken_bricks_counter = params['broken_bricks_counter']
-        self.live_factor = params['live_factor']
-        self.points_to_next_live = params['points_to_next_live']
-        self.points_to_next_grow_up = self.score + \
-            settings.PADDLE_GROW_UP_POINTS * \
-            (self.paddle.size + 1) * self.level
-        self.powerups = params.get('powerups', [])
+        self.level = params["level"]
+        self.score = params["score"]
+        self.lives = params["lives"]
+        self.paddle = params["paddle"]
+        self.balls = params["balls"]
+        self.bricks = params["bricks"]
+        self.broken_bricks_counter = params["broken_bricks_counter"]
+        self.live_factor = params["live_factor"]
+        self.points_to_next_live = params["points_to_next_live"]
+        self.points_to_next_grow_up = (
+            self.score
+            + settings.PADDLE_GROW_UP_POINTS * (self.paddle.size + 1) * self.level
+        )
+        self.powerups = params.get("powerups", [])
 
-        if not params.get('resume', False):
+        if not params.get("resume", False):
             self.balls[0].vx = random.randint(-80, 80)
             self.balls[0].vy = random.randint(-170, -100)
-            settings.SOUNDS['paddle_hit'].play()
+            settings.SOUNDS["paddle_hit"].play()
 
         InputHandler.register_listener(self)
 
@@ -54,8 +55,8 @@ class PlayState(BaseState):
 
             # Check collision with the paddle
             if ball.collides(self.paddle):
-                settings.SOUNDS['paddle_hit'].stop()
-                settings.SOUNDS['paddle_hit'].play()
+                settings.SOUNDS["paddle_hit"].stop()
+                settings.SOUNDS["paddle_hit"].play()
                 ball.rebound(self.paddle)
                 ball.push(self.paddle)
 
@@ -69,7 +70,7 @@ class PlayState(BaseState):
             else:
                 self.paddle.dec_size()
                 self.state_machine.change(
-                    'serve',
+                    "serve",
                     level=self.level,
                     score=self.score,
                     lives=self.lives,
@@ -77,7 +78,7 @@ class PlayState(BaseState):
                     bricks=self.bricks,
                     broken_bricks_counter=self.broken_bricks_counter,
                     points_to_next_live=self.points_to_next_live,
-                    live_factor=self.live_factor
+                    live_factor=self.live_factor,
                 )
 
         # Check collision with bricks
@@ -94,24 +95,29 @@ class PlayState(BaseState):
 
                 # Check earn life
                 if self.score >= self.points_to_next_live:
-                    settings.SOUNDS['life'].play()
+                    settings.SOUNDS["life"].play()
                     self.lives = min(3, self.lives + 1)
                     self.live_factor += 0.5
-                    self.points_to_next_live += settings.LIVE_POINTS_BASE * self.live_factor
+                    self.points_to_next_live += (
+                        settings.LIVE_POINTS_BASE * self.live_factor
+                    )
 
                 # Check growing up of the paddle
                 if self.score >= self.points_to_next_grow_up:
-                    settings.SOUNDS['grow_up'].play()
-                    self.points_to_next_grow_up += settings.PADDLE_GROW_UP_POINTS * \
-                        (self.paddle.size + 1) * self.level
+                    settings.SOUNDS["grow_up"].play()
+                    self.points_to_next_grow_up += (
+                        settings.PADDLE_GROW_UP_POINTS
+                        * (self.paddle.size + 1)
+                        * self.level
+                    )
                     self.paddle.inc_size()
 
                 # Chance to generate two more balls
                 if random.random() < 0.05:
                     r = brick.get_collision_rect()
                     self.powerups.append(
-                        powerups.TwoMoreBall(
-                            r.centerx - 8, r.centery - 8))
+                        powerups.TwoMoreBall(r.centerx - 8, r.centery - 8)
+                    )
 
                 if not brick.in_play:
                     self.broken_bricks_counter += 1
@@ -129,14 +135,14 @@ class PlayState(BaseState):
         # Check victory
         if self.broken_bricks_counter == len(self.bricks):
             self.state_machine.change(
-                'victory',
+                "victory",
                 lives=self.lives,
                 level=self.level,
                 score=self.score,
                 paddle=self.paddle,
                 balls=self.balls,
                 points_to_next_live=self.points_to_next_live,
-                live_factor=self.live_factor
+                live_factor=self.live_factor,
             )
 
     def render(self, surface: pygame.Surface) -> None:
@@ -146,26 +152,26 @@ class PlayState(BaseState):
         # Draw filled hearts
         while i < self.lives:
             surface.blit(
-                settings.TEXTURES['hearts'],
-                (heart_x,
-                 5),
-                settings.FRAMES['hearts'][0])
+                settings.TEXTURES["hearts"], (heart_x, 5), settings.FRAMES["hearts"][0]
+            )
             heart_x += 11
             i += 1
 
         # Draw empty hearts
         while i < 3:
             surface.blit(
-                settings.TEXTURES['hearts'],
-                (heart_x,
-                 5),
-                settings.FRAMES['hearts'][1])
+                settings.TEXTURES["hearts"], (heart_x, 5), settings.FRAMES["hearts"][1]
+            )
             heart_x += 11
             i += 1
 
         render_text(
-            surface, f'Score: {self.score}', settings.FONTS['tiny'],
-            settings.VIRTUAL_WIDTH - 80, 5, (255, 255, 255)
+            surface,
+            f"Score: {self.score}",
+            settings.FONTS["tiny"],
+            settings.VIRTUAL_WIDTH - 80,
+            5,
+            (255, 255, 255),
         )
 
         for brick in self.bricks:
@@ -180,17 +186,17 @@ class PlayState(BaseState):
             powerup.render(surface)
 
     def on_input(self, input_id: str, input_data: InputData) -> None:
-        if input_id == 'move_left':
+        if input_id == "move_left":
             if input_data.pressed:
                 self.paddle.vx = -settings.PADDLE_SPEED
             elif input_data.released and self.paddle.vx < 0:
                 self.paddle.vx = 0
-        elif input_id == 'move_right':
+        elif input_id == "move_right":
             if input_data.pressed:
                 self.paddle.vx = settings.PADDLE_SPEED
             elif input_data.released and self.paddle.vx > 0:
                 self.paddle.vx = 0
-        elif input_id == 'pause' and input_data.pressed:
+        elif input_id == "pause" and input_data.pressed:
             self.state_machine.change(
                 "pause",
                 level=self.level,
@@ -202,5 +208,5 @@ class PlayState(BaseState):
                 broken_bricks_counter=self.broken_bricks_counter,
                 points_to_next_live=self.points_to_next_live,
                 live_factor=self.live_factor,
-                powerups=self.powerups
+                powerups=self.powerups,
             )

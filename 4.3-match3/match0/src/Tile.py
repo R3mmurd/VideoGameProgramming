@@ -20,7 +20,7 @@ class Tile:
 
     def render(self, surface: pygame.Surface) -> None:
         surface.blit(
-            settings.TEXTURES['tiles'],
+            settings.TEXTURES["tiles"],
             (self.x + settings.BOARD_OFFSET_X, self.y + settings.BOARD_OFFSET_Y),
-            settings.FRAMES['tiles'][self.frame]
+            settings.FRAMES["tiles"][self.frame],
         )

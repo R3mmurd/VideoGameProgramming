@@ -19,14 +19,16 @@ from src import states
 
 class Match3(Game):
     def init(self) -> None:
-        settings.SOUNDS['music'].play(loops=-1)
-        self.state_machine = StateMachine({
-            'start': lambda sm: states.StartState(sm, self),
-            'begin': states.BeginGameState,
-            'play': states.PlayState,
-            'game-over': states.GameOverState
-        })
-        self.state_machine.change('start')
+        settings.SOUNDS["music"].play(loops=-1)
+        self.state_machine = StateMachine(
+            {
+                "start": lambda sm: states.StartState(sm, self),
+                "begin": states.BeginGameState,
+                "play": states.PlayState,
+                "game-over": states.GameOverState,
+            }
+        )
+        self.state_machine.change("start")
         self.background_x = 0
         InputHandler.register_listener(self)
 
@@ -39,9 +41,9 @@ class Match3(Game):
         self.state_machine.update(dt)
 
     def render(self, surface: pygame.Surface) -> None:
-        surface.blit(settings.TEXTURES['background'], (self.background_x, 0))
+        surface.blit(settings.TEXTURES["background"], (self.background_x, 0))
         self.state_machine.render(surface)
 
     def on_input(self, input_id: str, input_data: InputData) -> None:
-        if input_id == 'quit' and input_data.pressed:
+        if input_id == "quit" and input_data.pressed:
             self.quit()

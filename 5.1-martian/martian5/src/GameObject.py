@@ -16,21 +16,22 @@ from src import mixins
 
 class GameObject(mixins.DrawableMixin, mixins.CollidableMixin):
     # Object sides
-    TOP = 'top'
-    RIGHT = 'right'
-    BOTTOM = 'bottom'
-    LEFT = 'left'
+    TOP = "top"
+    RIGHT = "right"
+    BOTTOM = "bottom"
+    LEFT = "left"
 
-    DEFAULT_SOLIDNESS = {
-        TOP: False,
-        RIGHT: False,
-        BOTTOM: False,
-        LEFT: False
-    }
+    DEFAULT_SOLIDNESS = {TOP: False, RIGHT: False, BOTTOM: False, LEFT: False}
 
     def __init__(
-        self, x: float, y: float, width: float, height: float,
-        texture_id: str, frame_index: int, solidness: Dict[str, bool]
+        self,
+        x: float,
+        y: float,
+        width: float,
+        height: float,
+        texture_id: str,
+        frame_index: int,
+        solidness: Dict[str, bool],
     ) -> None:
         self.x = x
         self.y = y

@@ -26,5 +26,5 @@ from src.states.PauseState import PauseState
     ServeState,
     PlayState,
     VictoryState,
-    PauseState
+    PauseState,
 )
