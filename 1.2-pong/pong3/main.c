@@ -30,6 +30,7 @@ int main()
 
     ALLEGRO_BITMAP* render_surface = al_create_bitmap(TABLE_WIDTH, TABLE_HEIGHT);
     
+    al_init_font_addon();
     al_init_ttf_addon();
 
     struct Fonts fonts;
