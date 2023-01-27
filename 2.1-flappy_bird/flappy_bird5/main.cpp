@@ -19,8 +19,6 @@ int main()
 
     Game game{};
 
-    sf::Texture texture{};
-
     sf::Clock clock;
     sf::Time dt;
 
