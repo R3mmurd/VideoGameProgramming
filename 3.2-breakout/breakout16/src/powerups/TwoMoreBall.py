@@ -21,14 +21,14 @@ class TwoMoreBall(PowerUp):
     """
 
     def __init__(self, x: int, y: int) -> None:
-        super().__init__(x, y)
-        self.frame = 8
+        super().__init__(x, y, 8)
 
     def take(self, play_state: TypeVar("PlayState")) -> None:
         paddle = play_state.paddle
 
         for _ in range(2):
             b = Ball(paddle.x + paddle.width // 2 - 4, paddle.y - 8)
+            settings.SOUNDS["paddle_hit"].stop()
             settings.SOUNDS["paddle_hit"].play()
 
             b.vx = random.randint(-80, 80)

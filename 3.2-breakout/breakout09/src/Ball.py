@@ -79,9 +79,9 @@ class Ball:
 
         # Compute x shift
         if r1.centerx < r2.centerx:
-            x_shift = r1.right - r2.x
+            x_shift = r2.x - r1.right
         else:
-            x_shift = r1.x - r2.right
+            x_shift = r2.right - r1.x
 
         # Compute y shift
         if r1.centery < r2.centery:

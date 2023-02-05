@@ -15,10 +15,10 @@ import settings
 
 from Action import Action
 
-
 class InputHandler:
-    @classmethod
-    def handle_input(cls) -> Action:
+    
+    @staticmethod
+    def handle_input() -> Action:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()

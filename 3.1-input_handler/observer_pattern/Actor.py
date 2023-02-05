@@ -7,6 +7,8 @@ alejandro.j.mujic4@gmail.com
 
 This file contains the class Actor, a Listener of input events.
 """
+from typing import Any
+
 from Listener import Listener
 
 
@@ -17,7 +19,7 @@ class Actor(Listener):
     def __str__(self) -> str:
         return self.name
 
-    def on_input(self, input_id: str, event: dict) -> None:
+    def on_input(self, input_id: str, event: Any) -> None:
         if input_id == "jump" and event.pressed:
             print(f"{self} is jumping")
         elif input_id == "shoot" and event.pressed:

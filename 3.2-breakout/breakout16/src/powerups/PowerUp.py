@@ -19,12 +19,12 @@ class PowerUp:
     The base power-up.
     """
 
-    def __init__(self, x: int, y: int) -> None:
+    def __init__(self, x: int, y: int, frame: int) -> None:
         self.x = x
         self.y = y
         self.vy = settings.POWERUP_SPEED
         self.in_play = True
-        self.frame = -1
+        self.frame = frame
 
     def get_collision_rect(self) -> pygame.Rect:
         return pygame.Rect(self.x, self.y, 16, 16)

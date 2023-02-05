@@ -85,8 +85,11 @@ class PlayState(BaseState):
         for brick in self.bricks:
             brick.update(dt)
 
+            if not brick.in_play:
+                continue
+
             for ball in self.balls:
-                if not ball.collides(brick) or not brick.in_play:
+                if not ball.collides(brick):
                     continue
 
                 brick.hit()
@@ -113,7 +116,7 @@ class PlayState(BaseState):
                     self.paddle.inc_size()
 
                 # Chance to generate two more balls
-                if random.random() < 0.05:
+                if random.random() < 0.1:
                     r = brick.get_collision_rect()
                     self.powerups.append(
                         powerups.TwoMoreBall(r.centerx - 8, r.centery - 8)

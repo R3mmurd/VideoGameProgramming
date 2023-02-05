@@ -5,8 +5,6 @@ from gale.input_handler import InputHandler, InputData, InputData
 from gale.text import render_text
 
 import settings
-from src.Ball import Ball
-from src.level_maker import create_level
 
 
 class PauseState(BaseState):

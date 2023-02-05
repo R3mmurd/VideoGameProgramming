@@ -66,7 +66,7 @@ class PlayState(BaseState):
 
         # Check collision with bricks
         for brick in self.bricks:
-            if not self.ball.collides(brick):
+            if not (brick.in_play and self.ball.collides(brick)):
                 continue
 
             brick.hit()
