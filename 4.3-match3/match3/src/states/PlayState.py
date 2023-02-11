@@ -7,7 +7,7 @@ alejandro.j.mujic4@gmail.com
 
 This file contains the class PlayState.
 """
-from typing import Dict, Any
+from typing import Dict, Any, List
 
 import pygame
 
@@ -178,7 +178,7 @@ class PlayState(BaseState):
                                 tile1.i,
                                 tile1.j,
                             )
-                            self.__calculate_matches()
+                            self.__calculate_matches([tile1, tile2])
 
                         # Swap tiles
                         Timer.tween(
@@ -192,8 +192,8 @@ class PlayState(BaseState):
 
                     self.highlighted_tile = False
 
-    def __calculate_matches(self) -> None:
-        matches = self.board.calculate_matches()
+    def __calculate_matches(self, tiles: List) -> None:
+        matches = self.board.calculate_matches_for(tiles)
 
         if matches is None:
             self.active = True
@@ -209,4 +209,4 @@ class PlayState(BaseState):
 
         falling_tiles = self.board.get_falling_tiles()
 
-        Timer.tween(0.25, falling_tiles, on_finish=lambda: self.__calculate_matches())
+        Timer.tween(0.25, falling_tiles, on_finish=lambda: self.__calculate_matches([item[0] for item in falling_tiles]))

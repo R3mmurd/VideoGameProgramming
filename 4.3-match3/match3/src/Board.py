@@ -7,7 +7,7 @@ alejandro.j.mujic4@gmail.com
 
 This file contains the class Board.
 """
-from typing import List, Optional, Tuple, Any, Dict
+from typing import List, Optional, Tuple, Any, Dict, Set
 
 import pygame
 
@@ -59,88 +59,91 @@ class Board:
                     i, j, color, random.randint(0, settings.NUM_VARIETIES - 1)
                 )
 
-        assert not self.calculate_matches()
+    def __calculate_match_rec(self, tile: Tile) -> Set[Tile]:
+        if tile in self.in_stack:
+            return []
 
-    def calculate_matches(self) -> Optional[List[List[Tile]]]:
-        match_num: int
+        self.in_stack.add(tile)
 
-        # Horizontal matches
-        for y in range(settings.BOARD_HEIGHT):
-            color_to_match = self.tiles[y][0].color
+        color_to_match = tile.color
 
-            match_num = 1
+        ## Check horizontal match
+        h_match: List[Tile] = []
 
-            for x in range(1, settings.BOARD_WIDTH):
-                if self.tiles[y][x].color == color_to_match:
-                    match_num += 1
-                else:
-                    color_to_match = self.tiles[y][x].color
+        # Check left
+        if tile.j > 0:
+            left = max(0, tile.j - 2)
+            for j in range(tile.j - 1, left - 1, -1):
+                if self.tiles[tile.i][j].color != color_to_match:
+                    break
+                h_match.append(self.tiles[tile.i][j])
+            
+        # Check right
+        if tile.j < settings.BOARD_WIDTH - 1:
+            right = min(settings.BOARD_WIDTH - 1, tile.j + 2)
+            for j in range(tile.j + 1, right + 1):
+                if self.tiles[tile.i][j].color != color_to_match:
+                    break
+                h_match.append(self.tiles[tile.i][j])
 
-                    if match_num >= 3:
-                        match: List[Tile] = []
+        ## Check vertical match
+        v_match: List[Tile] = []
 
-                        for x2 in range(x - 1, x - match_num - 1, -1):
-                            match.append(self.tiles[y][x2])
+        # Check top
+        if tile.i > 0:
+            top = max(0, tile.i - 2)
+            for i in range(tile.i - 1, top - 1, -1):
+                if self.tiles[i][tile.j].color != color_to_match:
+                    break
+                v_match.append(self.tiles[i][tile.j])
+            
+        # Check bottom
+        if tile.i < settings.BOARD_HEIGHT - 1:
+            bottom = min(settings.BOARD_HEIGHT - 1, tile.i + 2)
+            for i in range(tile.i + 1, bottom + 1):
+                if self.tiles[i][tile.j].color != color_to_match:
+                    break
+                v_match.append(self.tiles[i][tile.j])
 
-                        self.matches.append(match)
+        match: List[Tile] = []
 
-                    # We don't need to check last two if they won't be in a
-                    # match
-                    if x >= settings.BOARD_WIDTH - 2:
-                        break
+        if len(h_match) >= 2:
+            for t in h_match:
+                if t not in self.in_match:
+                    self.in_match.add(t)
+                    match.append(t)
+        
+        if len(v_match) >= 2:
+            for t in v_match:
+                if t not in self.in_match:
+                    self.in_match.add(t)
+                    match.append(t)
+        
+        if len(match) > 0:
+            if tile not in self.in_match:
+                self.in_match.add(tile)
+                match.append(tile)
 
-                    match_num = 1
+        for t in match:
+            match += self.__calculate_match_rec(t)
+        
+        self.in_stack.remove(tile)
+        return match
+    
+    def calculate_matches_for(self, new_tiles: List[Tile]) -> Optional[List[List[Tile]]]:
+        self.in_match: Set[Tile] = set()
+        self.in_stack: Set[Tile] = set()
 
-            # account for the last row ending with a match
-            if match_num >= 3:
-                match = []
-
-                for x in range(
-                    settings.BOARD_WIDTH - 1, settings.BOARD_WIDTH - 1 - match_num, -1
-                ):
-                    match.append(self.tiles[y][x])
-
+        for tile in new_tiles:
+            if tile in self.in_match:
+                continue
+            match = self.__calculate_match_rec(tile)
+            if len(match) > 0:
                 self.matches.append(match)
 
-        # Vertical matches
-        for x in range(settings.BOARD_WIDTH):
-            color_to_match = self.tiles[0][x].color
+        delattr(self, "in_match")
+        delattr(self, "in_stack")
 
-            match_num = 1
-
-            for y in range(1, settings.BOARD_HEIGHT):
-                if self.tiles[y][x].color == color_to_match:
-                    match_num += 1
-                else:
-                    color_to_match = self.tiles[y][x].color
-
-                    if match_num >= 3:
-                        match: List[Tile] = []
-
-                        for y2 in range(y - 1, y - match_num - 1, -1):
-                            match.append(self.tiles[y2][x])
-
-                        self.matches.append(match)
-
-                    # We don't need to check last two if they won't be in a
-                    # match
-                    if y >= settings.BOARD_HEIGHT - 2:
-                        break
-
-                    match_num = 1
-
-            # account for the last column ending with a match
-            if match_num >= 3:
-                match = []
-
-                for y in range(
-                    settings.BOARD_HEIGHT - 1, settings.BOARD_HEIGHT - 1 - match_num, -1
-                ):
-                    match.append(self.tiles[y][x])
-
-                self.matches.append(match)
-
-        # Returns a list of matches or None
         return self.matches if len(self.matches) > 0 else None
 
     def remove_matches(self) -> None:
@@ -152,7 +155,7 @@ class Board:
 
     def get_falling_tiles(self) -> Tuple[Any, Dict[str, Any]]:
         # List of tweens to create
-        tweens: Tuple[Any, Dict[str, Any]] = []
+        tweens: Tuple[Tile, Dict[str, Any]] = []
 
         # for each column, go up tile by tile until we hit a space
         for j in range(settings.BOARD_WIDTH):
