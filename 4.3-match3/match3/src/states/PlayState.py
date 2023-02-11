@@ -209,4 +209,10 @@ class PlayState(BaseState):
 
         falling_tiles = self.board.get_falling_tiles()
 
-        Timer.tween(0.25, falling_tiles, on_finish=lambda: self.__calculate_matches([item[0] for item in falling_tiles]))
+        Timer.tween(
+            0.25,
+            falling_tiles,
+            on_finish=lambda: self.__calculate_matches(
+                [item[0] for item in falling_tiles]
+            ),
+        )

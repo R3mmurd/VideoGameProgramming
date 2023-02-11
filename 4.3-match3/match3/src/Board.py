@@ -77,7 +77,7 @@ class Board:
                 if self.tiles[tile.i][j].color != color_to_match:
                     break
                 h_match.append(self.tiles[tile.i][j])
-            
+
         # Check right
         if tile.j < settings.BOARD_WIDTH - 1:
             right = min(settings.BOARD_WIDTH - 1, tile.j + 2)
@@ -96,7 +96,7 @@ class Board:
                 if self.tiles[i][tile.j].color != color_to_match:
                     break
                 v_match.append(self.tiles[i][tile.j])
-            
+
         # Check bottom
         if tile.i < settings.BOARD_HEIGHT - 1:
             bottom = min(settings.BOARD_HEIGHT - 1, tile.i + 2)
@@ -112,13 +112,13 @@ class Board:
                 if t not in self.in_match:
                     self.in_match.add(t)
                     match.append(t)
-        
+
         if len(v_match) >= 2:
             for t in v_match:
                 if t not in self.in_match:
                     self.in_match.add(t)
                     match.append(t)
-        
+
         if len(match) > 0:
             if tile not in self.in_match:
                 self.in_match.add(tile)
@@ -126,11 +126,13 @@ class Board:
 
         for t in match:
             match += self.__calculate_match_rec(t)
-        
+
         self.in_stack.remove(tile)
         return match
-    
-    def calculate_matches_for(self, new_tiles: List[Tile]) -> Optional[List[List[Tile]]]:
+
+    def calculate_matches_for(
+        self, new_tiles: List[Tile]
+    ) -> Optional[List[List[Tile]]]:
         self.in_match: Set[Tile] = set()
         self.in_stack: Set[Tile] = set()
 

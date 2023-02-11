@@ -59,10 +59,11 @@ SOUNDS = {
     "error": pygame.mixer.Sound(BASE_DIR / "sounds" / "error.wav"),
     "game-over": pygame.mixer.Sound(BASE_DIR / "sounds" / "game-over.wav"),
     "match": pygame.mixer.Sound(BASE_DIR / "sounds" / "match.wav"),
-    "music": pygame.mixer.Sound(BASE_DIR / "sounds" / "music.mp3"),
     "next-level": pygame.mixer.Sound(BASE_DIR / "sounds" / "next-level.wav"),
     "select": pygame.mixer.Sound(BASE_DIR / "sounds" / "select.wav"),
 }
+
+pygame.mixer.music.load(BASE_DIR / "sounds" / "music.mp3")
 
 pygame.font.init()
 

@@ -19,7 +19,7 @@ from src import states
 
 class Match3(Game):
     def init(self) -> None:
-        settings.SOUNDS["music"].play(loops=-1)
+        pygame.mixer.music.play(loops=-1)
         self.state_machine = StateMachine(
             {
                 "start": lambda sm: states.StartState(sm, self),
