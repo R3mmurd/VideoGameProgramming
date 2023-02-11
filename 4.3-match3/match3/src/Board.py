@@ -23,14 +23,14 @@ class Board:
         self.y = y
         self.matches: List[List[Tile]] = []
         self.tiles: List[List[Tile]] = []
-        self._initialize_tiles()
+        self.__initialize_tiles()
 
     def render(self, surface: pygame.Surface) -> None:
         for row in self.tiles:
             for tile in row:
                 tile.render(surface, self.x, self.y)
 
-    def _is_match_generated(self, i: int, j: int, color: int) -> bool:
+    def __is_match_generated(self, i: int, j: int, color: int) -> bool:
         if (
             i >= 2
             and self.tiles[i - 1][j].color == color
@@ -44,7 +44,7 @@ class Board:
             and self.tiles[i][j - 2].color
         )
 
-    def _initialize_tiles(self) -> None:
+    def __initialize_tiles(self) -> None:
         self.tiles = [
             [None for _ in range(settings.BOARD_WIDTH)]
             for _ in range(settings.BOARD_HEIGHT)
@@ -52,7 +52,7 @@ class Board:
         for i in range(settings.BOARD_HEIGHT):
             for j in range(settings.BOARD_WIDTH):
                 color = random.randint(0, settings.NUM_COLORS - 1)
-                while self._is_match_generated(i, j, color):
+                while self.__is_match_generated(i, j, color):
                     color = random.randint(0, settings.NUM_COLORS - 1)
 
                 self.tiles[i][j] = Tile(
@@ -154,7 +154,7 @@ class Board:
         # List of tweens to create
         tweens: Tuple[Any, Dict[str, Any]] = []
 
-        # for each column, go up tile by tile unill we hit a space
+        # for each column, go up tile by tile until we hit a space
         for j in range(settings.BOARD_WIDTH):
             space = False
             space_i = -1

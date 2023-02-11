@@ -117,8 +117,8 @@ class StartState(BaseState):
             pygame.Rect(0, 0, settings.VIRTUAL_WIDTH, settings.VIRTUAL_HEIGHT),
         )
         surface.blit(self.screen_alpha_surface, (0, 0))
-        self._draw_match3_text(surface, -60)
-        self._draw_options(surface, 12)
+        self.__draw_match3_text(surface, -60)
+        self.__draw_options(surface, 12)
 
         # draw our transition rect; is normally fully transparent, unless we're
         # moving to a new state
@@ -147,7 +147,7 @@ class StartState(BaseState):
             else:
                 self.game.quit()
 
-    def _draw_match3_text(self, surface: pygame.Surface, y: int) -> None:
+    def __draw_match3_text(self, surface: pygame.Surface, y: int) -> None:
         # draw semi-transparent rect behind MATCH 3
         surface.blit(
             self.text_alpha_surface,
@@ -167,7 +167,7 @@ class StartState(BaseState):
                 shadowed=True,
             )
 
-    def _draw_options(self, surface: pygame.Surface, y: int) -> None:
+    def __draw_options(self, surface: pygame.Surface, y: int) -> None:
         surface.blit(
             self.text_alpha_surface,
             (settings.VIRTUAL_WIDTH // 2 - 152, settings.VIRTUAL_HEIGHT // 2 + y),

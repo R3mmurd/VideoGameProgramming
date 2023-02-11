@@ -35,7 +35,7 @@ class PlayState(BaseState):
 
         self.active = True
 
-        self.timer = 60
+        self.timer = settings.LEVEL_TIME
 
         self.goal_score = self.level * 1.25 * 1000
 
@@ -178,7 +178,7 @@ class PlayState(BaseState):
                                 tile1.i,
                                 tile1.j,
                             )
-                            self._calculate_matches()
+                            self.__calculate_matches()
 
                         # Swap tiles
                         Timer.tween(
@@ -192,7 +192,7 @@ class PlayState(BaseState):
 
                     self.highlighted_tile = False
 
-    def _calculate_matches(self) -> None:
+    def __calculate_matches(self) -> None:
         matches = self.board.calculate_matches()
 
         if matches is None:
@@ -209,4 +209,4 @@ class PlayState(BaseState):
 
         falling_tiles = self.board.get_falling_tiles()
 
-        Timer.tween(0.25, falling_tiles, on_finish=lambda: self._calculate_matches())
+        Timer.tween(0.25, falling_tiles, on_finish=lambda: self.__calculate_matches())
