@@ -15,8 +15,8 @@ import settings
 
 from Action import Action
 
+
 class InputHandler:
-    
     @staticmethod
     def handle_input() -> Action:
         for event in pygame.event.get():

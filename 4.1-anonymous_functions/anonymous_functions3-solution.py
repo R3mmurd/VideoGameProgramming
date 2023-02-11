@@ -16,8 +16,10 @@ def create_print_the_value_of_i(i: int) -> Callable:
 
     return print_the_value_of_i
 
+
 def create_print_the_value_of_i(i: int) -> Callable:
     return lambda: print(i)
+
 
 fs = []
 

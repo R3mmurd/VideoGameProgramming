@@ -19,6 +19,7 @@ from gale.text import render_text
 import settings
 import src.powerups
 
+
 class PlayState(BaseState):
     def enter(self, **params: dict):
         self.level = params["level"]
