@@ -5,7 +5,7 @@ Anonymous Functions
 Author: Alejandro Mujica
 alejandro.j.mujic4@gmail.com
 
-This file contains an example that solve the previous problem by creating a closure.
+This file contains an example that solves the previous problem by creating a closure.
 """
 from typing import Callable
 
@@ -16,6 +16,8 @@ def create_print_the_value_of_i(i: int) -> Callable:
 
     return print_the_value_of_i
 
+def create_print_the_value_of_i(i: int) -> Callable:
+    return lambda: print(i)
 
 fs = []
 

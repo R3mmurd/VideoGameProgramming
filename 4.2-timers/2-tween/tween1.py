@@ -48,7 +48,7 @@ class TweenGame(Game):
             self.timer += dt
 
             for rect in self.rects:
-                rect["rect"].left = min(
+                rect["rect"].x = min(
                     self.end_x, self.end_x * (self.timer / rect["rate"])
                 )
 

@@ -37,14 +37,14 @@ class TweenGame(Game):
             rect = pygame.Rect(0, y, self.SQUARE_SIZE, self.SQUARE_SIZE)
             rate = random.uniform(0.5, TIMER_MAX)
 
-            self.rects.append({"rect": rect, "rate": rate})
+            self.rects.append(rect)
             Timer.tween(rate, [(rect, {"left": WINDOW_WIDTH - self.SQUARE_SIZE})])
 
         InputHandler.register_listener(self)
 
     def render(self, surface: pygame.Surface) -> None:
         for rect in self.rects:
-            pygame.draw.rect(surface, (255, 255, 255), rect["rect"])
+            pygame.draw.rect(surface, (255, 255, 255), rect)
 
     def on_input(self, input_id: str, input_data: InputData) -> None:
         if input_id == "quit" and input_data.pressed:

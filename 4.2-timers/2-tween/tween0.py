@@ -37,9 +37,8 @@ class TweenGame(Game):
         InputHandler.register_listener(self)
 
     def update(self, dt: float) -> None:
-        if self.timer < MOVE_DURATION:
-            self.timer += dt
-            self.rect.left = min(self.end_x, self.end_x * (self.timer / MOVE_DURATION))
+        self.timer += dt
+        self.rect.x = min(self.end_x, self.end_x * (self.timer / MOVE_DURATION))
 
     def render(self, surface: pygame.Surface) -> None:
         pygame.draw.rect(surface, (255, 255, 255), self.rect)
@@ -50,5 +49,5 @@ class TweenGame(Game):
 
 
 if __name__ == "__main__":
-    tween_game = TweenGame("Tween Game", WINDOW_WIDTH, WINDOW_HEIGHT)
+    tween_game = TweenGame("Tween Game", WINDOW_WIDTH, WINDOW_HEIGHT, fps=60)
     tween_game.exec()
