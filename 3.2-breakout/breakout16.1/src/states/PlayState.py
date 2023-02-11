@@ -11,13 +11,13 @@ import random
 
 import pygame
 
+from gale.factory import AbstractFactory
 from gale.state_machine import BaseState
 from gale.input_handler import InputHandler, InputData, InputData
 from gale.text import render_text
 
 import settings
-from src.powerups import PowerUpAbstractFactory
-
+import src.powerups
 
 class PlayState(BaseState):
     def enter(self, **params: dict):
@@ -39,6 +39,8 @@ class PlayState(BaseState):
             self.balls[0].vx = random.randint(-80, 80)
             self.balls[0].vy = random.randint(-170, -100)
             settings.SOUNDS["paddle_hit"].play()
+
+        self.powerups_abstract_factory = AbstractFactory("src.powerups")
 
         InputHandler.register_listener(self)
 
@@ -91,7 +93,7 @@ class PlayState(BaseState):
             if random.random() < 0.7:
                 r = brick.get_collision_rect()
                 self.powerups.append(
-                    PowerUpAbstractFactory.get_factory("TwoMoreBall").create(
+                    self.powerups_abstract_factory.get_factory("TwoMoreBall").create(
                         r.centerx - 8, r.centery - 8
                     )
                 )
