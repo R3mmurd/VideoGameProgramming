@@ -23,9 +23,9 @@ class TileMap:
         self.cols = 0
         self.tilewidth = 0
         self.tileheight = 0
-        self._load(filename)
+        self.__load(filename)
 
-    def _load(self, filename: str) -> None:
+    def __load(self, filename: str) -> None:
         tree = ET.parse(filename)
         root = tree.getroot()
 

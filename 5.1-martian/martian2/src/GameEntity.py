@@ -39,7 +39,7 @@ class GameEntity(mixins.DrawableMixin, mixins.AnimatedMixin):
         self.state_machine = StateMachine(states)
         self.current_animation = None
         self.animations = {}
-        self._generate_animations(animation_defs)
+        self.generate_animations(animation_defs)
         self.flipped = False
 
     def change_state(

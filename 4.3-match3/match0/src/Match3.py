@@ -24,7 +24,7 @@ class Match3(Game):
             [None for _ in range(settings.BOARD_WIDTH)]
             for _ in range(settings.BOARD_HEIGHT)
         ]
-        self._generate_board()
+        self.__generate_board()
         InputHandler.register_listener(self)
 
     def render(self, surface: pygame.Surface) -> None:
@@ -36,7 +36,7 @@ class Match3(Game):
         if input_id == "quit" and input_data.pressed:
             self.quit()
 
-    def _generate_board(self) -> None:
+    def __generate_board(self) -> None:
         for i in range(settings.BOARD_HEIGHT):
             for j in range(settings.BOARD_WIDTH):
                 self.board[i][j] = Tile(

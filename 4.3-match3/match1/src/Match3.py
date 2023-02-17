@@ -24,7 +24,7 @@ class Match3(Game):
             [None for _ in range(settings.BOARD_WIDTH)]
             for _ in range(settings.BOARD_HEIGHT)
         ]
-        self._generate_board()
+        self.__generate_board()
 
         # Currently selected tile will be swapped with the next tile we choose.
         # We make it a flag instead of a reference so we can remove it later.
@@ -68,7 +68,7 @@ class Match3(Game):
 
                 self.highlighted_tile = False
 
-    def _generate_board(self) -> None:
+    def __generate_board(self) -> None:
         for i in range(settings.BOARD_HEIGHT):
             for j in range(settings.BOARD_WIDTH):
                 self.board[i][j] = Tile(

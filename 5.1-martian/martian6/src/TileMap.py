@@ -26,13 +26,13 @@ class TileMap:
         self.cols = 0
         self.tilewidth = 0
         self.tileheight = 0
-        self._load(filename)
+        self.__load(filename)
         self.width = self.cols * self.tilewidth
         self.height = self.rows * self.tileheight
         self.render_rows_range = (0, self.rows)
         self.render_cols_range = (0, self.cols)
 
-    def _load(self, filename: str) -> None:
+    def __load(self, filename: str) -> None:
         tree = ET.parse(filename)
         root = tree.getroot()
 
@@ -44,13 +44,13 @@ class TileMap:
         for child in root.findall("group"):
             group_name = child.attrib["name"]
             if group_name == "tilemap":
-                self._load_tilemap(child)
+                self.__load_tilemap(child)
             elif group_name == "creatures":
-                self._load_creatures(child)
+                self.__load_creatures(child)
             elif group_name == "items":
-                self._load_items(child)
+                self.__load_items(child)
 
-    def _load_tilemap(self, node: ET.Element) -> None:
+    def __load_tilemap(self, node: ET.Element) -> None:
         for child in node.findall("layer"):
             data = [s for s in child.find("data").text.split("\n") if len(s) > 0]
             layer: List[List[Tile]] = [
@@ -72,7 +72,7 @@ class TileMap:
 
             self.layers.append(layer)
 
-    def _load_creatures(self, node: ET.Element) -> None:
+    def __load_creatures(self, node: ET.Element) -> None:
         for child in node.findall("layer"):
             data = [s for s in child.find("data").text.split("\n") if len(s) > 0]
             for i in range(self.rows):
@@ -93,7 +93,7 @@ class TileMap:
                         }
                     )
 
-    def _load_items(self, node: ET.Element) -> None:
+    def __load_items(self, node: ET.Element) -> None:
         for child in node.findall("layer"):
             data = [s for s in child.find("data").text.split("\n") if len(s) > 0]
             item_name = child.attrib["name"]

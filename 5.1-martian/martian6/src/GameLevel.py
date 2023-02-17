@@ -21,12 +21,12 @@ class GameLevel:
     def __init__(self, num_level: int, camera: Camera) -> None:
         self.tilemap = TileMap(settings.TILEMAPS[f"level{num_level}"])
         self.creatures = []
-        self._load_creatures()
+        self.__load_creatures()
         self.items = []
-        self._load_items()
+        self.__load_items()
         self.camera = camera
 
-    def _load_creatures(self) -> None:
+    def __load_creatures(self) -> None:
         for creature_tile in self.tilemap.creatures:
             definition = creatures.CREATURES[creature_tile["tile_index"]]
             self.creatures.append(
@@ -40,7 +40,7 @@ class GameLevel:
                 )
             )
 
-    def _load_items(self) -> None:
+    def __load_items(self) -> None:
         for item_tile in self.tilemap.items:
             item_name = item_tile.pop("item_name")
             definition = items.ITEMS[item_name][item_tile["frame_index"]]

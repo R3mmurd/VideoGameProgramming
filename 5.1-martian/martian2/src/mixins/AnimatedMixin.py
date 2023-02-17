@@ -13,7 +13,7 @@ from gale.animation import Animation
 
 
 class AnimatedMixin:
-    def _generate_animations(self, animation_defs: Dict[str, Dict[str, Any]]) -> None:
+    def generate_animations(self, animation_defs: Dict[str, Dict[str, Any]]) -> None:
         for animation_id, values in animation_defs.items():
             animation = Animation(
                 values["frames"],
