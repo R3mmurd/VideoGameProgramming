@@ -16,6 +16,9 @@ import pygame
 from gale import frames
 from gale import input_handler
 
+from src import loaders
+
+input_handler.InputHandler.set_keyboard_action(input_handler.KEY_ESCAPE, "quit")
 input_handler.InputHandler.set_keyboard_action(input_handler.KEY_p, "pause")
 input_handler.InputHandler.set_keyboard_action(input_handler.KEY_RETURN, "enter")
 input_handler.InputHandler.set_keyboard_action(input_handler.KEY_KP_ENTER, "enter")
@@ -42,6 +45,8 @@ NUM_LEVELS = 1
 
 BASE_DIR = pathlib.Path(__file__).parent
 
+LevelLoader = loaders.TmxLevelLoader
+
 TEXTURES = {
     "tiles": pygame.image.load(BASE_DIR / "graphics" / "tileset.png"),
     "martian": pygame.image.load(BASE_DIR / "graphics" / "martian.png"),
@@ -54,9 +59,7 @@ FRAMES = {
     "creatures": frames.generate_frames(TEXTURES["creatures"], 16, 16),
 }
 
-TILEMAPS = {
-    f"level{i}": f"{BASE_DIR}/tilemaps/level{i}.tmx" for i in range(1, NUM_LEVELS + 1)
-}
+TILEMAPS = {i: BASE_DIR / "tilemaps" / f"level{i}" for i in range(1, NUM_LEVELS + 1)}
 
 pygame.mixer.init()
 

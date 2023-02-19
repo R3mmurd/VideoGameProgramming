@@ -7,11 +7,13 @@ alejandro.j.mujic4@gmail.com
 
 This file contains the class GameLevel.
 """
+from typing import Any, Dict
+
 import pygame
 
 import settings
 from src.Camera import Camera
-from src.TileMap import TileMap
+from src.Tilemap import Tilemap
 from src.Creature import Creature
 from src.GameItem import GameItem
 from src.definitions import creatures, items
@@ -19,33 +21,30 @@ from src.definitions import creatures, items
 
 class GameLevel:
     def __init__(self, num_level: int, camera: Camera) -> None:
-        self.tilemap = TileMap(settings.TILEMAPS[f"level{num_level}"])
+        self.tilemap = None
         self.creatures = []
-        self.__load_creatures()
         self.items = []
-        self.__load_items()
         self.camera = camera
+        settings.LevelLoader().load(self, settings.TILEMAPS[num_level])
 
-    def __load_creatures(self) -> None:
-        for creature_tile in self.tilemap.creatures:
-            definition = creatures.CREATURES[creature_tile["tile_index"]]
-            self.creatures.append(
-                Creature(
-                    creature_tile["x"],
-                    creature_tile["y"],
-                    creature_tile["width"],
-                    creature_tile["height"],
-                    self,
-                    **definition,
-                )
+    def add_item(self, item_data: Dict[str, Any]) -> None:
+        item_name = item_data.pop("item_name")
+        definition = items.ITEMS[item_name][item_data["frame_index"]]
+        definition.update(item_data)
+        self.items.append(GameItem(**definition))
+
+    def add_creature(self, creature_data: Dict[str, Any]) -> None:
+        definition = creatures.CREATURES[creature_data["tile_index"]]
+        self.creatures.append(
+            Creature(
+                creature_data["x"],
+                creature_data["y"],
+                creature_data["width"],
+                creature_data["height"],
+                self,
+                **definition,
             )
-
-    def __load_items(self) -> None:
-        for item_tile in self.tilemap.items:
-            item_name = item_tile.pop("item_name")
-            definition = items.ITEMS[item_name][item_tile["frame_index"]]
-            definition.update(item_tile)
-            self.items.append(GameItem(**definition))
+        )
 
     def update(self, dt: float) -> None:
         self.tilemap.set_render_boundaries(self.camera.get_rect())

@@ -7,35 +7,35 @@ alejandro.j.mujic4@gmail.com
 
 This file contains the class GameLevel.
 """
+from typing import Any, Dict
+
 import pygame
 
 import settings
 from src.Camera import Camera
-from src.TileMap import TileMap
 from src.Creature import Creature
 from src.definitions import creatures
 
 
 class GameLevel:
     def __init__(self, num_level: int, camera: Camera) -> None:
-        self.tilemap = TileMap(settings.TILEMAPS[f"level{num_level}"])
+        self.tilemap = None
         self.creatures = []
-        self.__load_creatures()
         self.camera = camera
+        settings.LevelLoader().load(self, settings.TILEMAPS[num_level])
 
-    def __load_creatures(self) -> None:
-        for creature_tile in self.tilemap.creatures:
-            definition = creatures.CREATURES[creature_tile["tile_index"]]
-            self.creatures.append(
-                Creature(
-                    creature_tile["x"],
-                    creature_tile["y"],
-                    creature_tile["width"],
-                    creature_tile["height"],
-                    self,
-                    **definition,
-                )
+    def add_creature(self, creature_data: Dict[str, Any]) -> None:
+        definition = creatures.CREATURES[creature_data["tile_index"]]
+        self.creatures.append(
+            Creature(
+                creature_data["x"],
+                creature_data["y"],
+                creature_data["width"],
+                creature_data["height"],
+                self,
+                **definition,
             )
+        )
 
     def update(self, dt: float) -> None:
         self.tilemap.set_render_boundaries(self.camera.get_rect())
