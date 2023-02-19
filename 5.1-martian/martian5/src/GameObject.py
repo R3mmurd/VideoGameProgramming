@@ -9,8 +9,6 @@ This file contains the base class GameObject.
 """
 from typing import Dict
 
-import pygame
-
 from src import mixins
 
 
@@ -43,4 +41,7 @@ class GameObject(mixins.DrawableMixin, mixins.CollidableMixin):
         self.flipped = False
 
     def collides_on(self, another: mixins.CollidableMixin, side: str) -> bool:
-        return self.solidness[side] and self.collides(another)
+        return self.is_solid_on(side) and self.collides(another)
+
+    def is_solid_on(self, side: str) -> bool:
+        return self.solidness[side]

@@ -23,7 +23,7 @@ class IdleState(BaseEntityState):
         InputHandler.unregister_listener(self)
 
     def update(self, dt: float) -> None:
-        if self.entity.check_collision_on_bottom():
+        if self.entity.handle_tilemap_collision_on_bottom():
             self.entity.vy = 0
 
     def on_input(self, input_id: str, input_data: InputData) -> None:

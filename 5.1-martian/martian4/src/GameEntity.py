@@ -51,7 +51,8 @@ class GameEntity(mixins.DrawableMixin, mixins.AnimatedMixin, mixins.CollidableMi
         self.state_machine.change(state_id, *args, **kwargs)
 
     def update(self, dt: float) -> None:
-        self.vy += settings.GRAVITY * dt
+        self.state_machine.update(dt)
+        mixins.AnimatedMixin.update(self, dt)
         self.y += self.vy * dt
 
         next_x = self.x + self.vx * dt
@@ -61,14 +62,10 @@ class GameEntity(mixins.DrawableMixin, mixins.AnimatedMixin, mixins.CollidableMi
         else:
             self.x = min(self.tilemap.width - self.width, next_x)
 
-        self.state_machine.update(dt)
-
-        mixins.AnimatedMixin.update(self, dt)
-
         if self.y >= self.tilemap.height:
             self.is_dead = True
 
-    def check_collision_on_top(self) -> bool:
+    def handle_tilemap_collision_on_top(self) -> bool:
         collision_rect = self.get_collision_rect()
 
         # Row for the center of the player
@@ -87,7 +84,7 @@ class GameEntity(mixins.DrawableMixin, mixins.AnimatedMixin, mixins.CollidableMi
 
         return False
 
-    def check_collision_on_bottom(self) -> bool:
+    def handle_tilemap_collision_on_bottom(self) -> bool:
         collision_rect = self.get_collision_rect()
 
         # Row for the center of the player
@@ -106,7 +103,7 @@ class GameEntity(mixins.DrawableMixin, mixins.AnimatedMixin, mixins.CollidableMi
 
         return False
 
-    def check_collision_on_right(self) -> bool:
+    def handle_tilemap_collision_on_right(self) -> bool:
         collision_rect = self.get_collision_rect()
 
         # Column for the center of the player
@@ -124,7 +121,7 @@ class GameEntity(mixins.DrawableMixin, mixins.AnimatedMixin, mixins.CollidableMi
 
         return False
 
-    def check_collision_on_left(self) -> bool:
+    def handle_tilemap_collision_on_left(self) -> bool:
         collision_rect = self.get_collision_rect()
 
         # Column for the center of the player
@@ -141,3 +138,18 @@ class GameEntity(mixins.DrawableMixin, mixins.AnimatedMixin, mixins.CollidableMi
             return True
 
         return False
+
+    def check_floor(self) -> bool:
+        """
+        Check whether the entity is on a solid tile.
+        """
+        collision_rect = self.get_collision_rect()
+
+        # Row for the center of the player
+        i = self.tilemap.to_i(collision_rect.centery)
+        # Left and right columns
+        left = self.tilemap.to_j(collision_rect.left)
+        right = self.tilemap.to_j(collision_rect.right)
+        return self.tilemap.check_solidness_on(
+            i + 1, left, GameObject.TOP
+        ) or self.tilemap.check_solidness_on(i + 1, right, GameObject.TOP)

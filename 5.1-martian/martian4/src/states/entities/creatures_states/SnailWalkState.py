@@ -20,8 +20,6 @@ class SnailWalkState(BaseEntityState):
             self.entity.vx *= -1
 
     def update(self, dt: float) -> None:
-        if self.entity.check_collision_on_bottom():
-            self.entity.vy = 0
         if self.check_boundary():
             self.entity.vx *= -1
             self.entity.flipped = not self.entity.flipped
@@ -37,8 +35,8 @@ class SnailWalkState(BaseEntityState):
             return True
 
         if (
-            self.entity.check_collision_on_left()
-            or self.entity.check_collision_on_right()
+            self.entity.handle_tilemap_collision_on_left()
+            or self.entity.handle_tilemap_collision_on_right()
         ):
             return True
 
@@ -51,7 +49,7 @@ class SnailWalkState(BaseEntityState):
             # Col of the right side of the snail
             col = int(self.entity.tilemap.to_j(self.entity.x + self.entity.width))
 
-            can_fall = not self.entity.tilemap.check_solidness(
+            can_fall = not self.entity.tilemap.check_solidness_on(
                 row + 1, col, GameObject.TOP
             )
         elif self.entity.vx < 0:
@@ -60,7 +58,7 @@ class SnailWalkState(BaseEntityState):
             # Col of the left side of the snail
             col = int(self.entity.tilemap.to_j(self.entity.x))
 
-            can_fall = not self.entity.tilemap.check_solidness(
+            can_fall = not self.entity.tilemap.check_solidness_on(
                 row + 1, col, GameObject.TOP
             )
 

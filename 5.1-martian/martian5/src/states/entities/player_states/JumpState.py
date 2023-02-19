@@ -24,13 +24,12 @@ class JumpState(BaseEntityState):
         InputHandler.unregister_listener(self)
 
     def update(self, dt: float) -> None:
-        if (
-            self.entity.check_collision_on_left()
-            or self.entity.check_collision_on_right()
-        ):
-            pass
+        self.entity.vy += settings.GRAVITY * dt
 
-        if self.entity.check_collision_on_top():
+        # If there is a collision on the right, correct x. Else, correct x if there is collision on the left.
+        self.entity.handle_tilemap_collision_on_right() or self.entity.handle_tilemap_collision_on_left()
+
+        if self.entity.handle_tilemap_collision_on_top():
             self.entity.vy = 0
 
         if self.entity.vy >= 0:

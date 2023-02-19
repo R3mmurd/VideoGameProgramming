@@ -70,6 +70,8 @@ SOUNDS = {
     "count": pygame.mixer.Sound(BASE_DIR / "sounds" / "count.wav"),
 }
 
+SOUNDS["pickup_coin"].set_volume(0.5)
+
 pygame.font.init()
 
 FONTS = {

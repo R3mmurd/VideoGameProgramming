@@ -26,14 +26,11 @@ class WalkState(BaseEntityState):
         InputHandler.unregister_listener(self)
 
     def update(self, dt: float) -> None:
-        if self.entity.check_collision_on_bottom():
-            self.entity.vy = 0
+        if not self.entity.check_floor():
+            self.entity.change_state("fall")
 
-        if (
-            self.entity.check_collision_on_left()
-            or self.entity.check_collision_on_right()
-        ):
-            self.entity.vx = 0
+        # If there is a collision on the right, correct x. Else, correct x if there is collision on the left.
+        self.entity.handle_tilemap_collision_on_right() or self.entity.handle_tilemap_collision_on_left()
 
     def on_input(self, input_id: str, input_data: InputData) -> None:
         if input_id == "move_left":
