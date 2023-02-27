@@ -34,14 +34,14 @@ class Board:
         if (
             i >= 2
             and self.tiles[i - 1][j].color == color
-            and self.tiles[i - 2][j].color
+            and self.tiles[i - 2][j].color == color
         ):
             return True
 
         return (
             j >= 2
             and self.tiles[i][j - 1].color == color
-            and self.tiles[i][j - 2].color
+            and self.tiles[i][j - 2].color == color
         )
 
     def __initialize_tiles(self) -> None:
