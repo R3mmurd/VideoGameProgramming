@@ -40,6 +40,7 @@ class PlayState(BaseState):
                 self.tilemap.width - settings.VIRTUAL_WIDTH,
             ),
         )
+
         self.camera.y = max(
             0,
             min(

@@ -26,12 +26,14 @@ class PauseState(BaseState):
         self.tilemap = self.game_level.tilemap
         self.player = enter_params["player"]
         self.timer = enter_params["timer"]
+        pygame.mixer.music.pause()
         InputHandler.unregister_listener(self.player.state_machine.current)
         InputHandler.register_listener(self)
 
     def exit(self) -> None:
         InputHandler.unregister_listener(self)
         InputHandler.register_listener(self.player.state_machine.current)
+        pygame.mixer.music.unpause()
 
     def render(self, surface: pygame.Surface) -> None:
         world_surface = pygame.Surface((self.tilemap.width, self.tilemap.height))

@@ -45,37 +45,6 @@ class Tilemap:
             i, j, self.tilewidth, self.tileheight, frame_index, solidness
         )
 
-    def __load(self, filename: str) -> None:
-        tree = ET.parse(filename)
-        root = tree.getroot()
-
-        self.rows = int(root.attrib["height"])
-        self.cols = int(root.attrib["width"])
-        self.tilewidth = int(root.attrib["tilewidth"])
-        self.tileheight = int(root.attrib["tileheight"])
-
-        for child in root.findall("layer"):
-            layer: List[List[Tile]] = [
-                [None for _ in range(self.cols)] for _ in range(self.rows)
-            ]
-            data = [s for s in child.find("data").text.split("\n") if len(s) > 0]
-
-            for i in range(self.rows):
-                line = [s for s in data[i].split(",") if len(s) > 0]
-                for j in range(self.cols):
-                    frame_index = int(line[j]) - 1
-                    tile_def = tiles.TILES.get(frame_index)
-                    solidness = (
-                        tile_def["solidness"]
-                        if tile_def is not None
-                        else Tile.DEFAULT_SOLIDNESS
-                    )
-                    layer[i][j] = Tile(
-                        i, j, self.tilewidth, self.tileheight, frame_index, solidness
-                    )
-
-            self.layers.append(layer)
-
     def set_render_boundaries(self, render_rect: pygame.Rect) -> None:
         self.render_rows_range = (
             max(render_rect.y // self.tileheight, 0),

@@ -27,5 +27,5 @@ class IdleState(BaseEntityState):
             self.entity.flipped = True
             self.entity.change_state("walk", "left")
         elif input_id == "move_right" and input_data.pressed:
-            self.entity.flipped = True
+            self.entity.flipped = False
             self.entity.change_state("walk", "right")

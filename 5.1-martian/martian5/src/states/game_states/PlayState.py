@@ -28,15 +28,15 @@ class PlayState(BaseState):
         self.camera = enter_params.get(
             "camera", Camera(0, 0, settings.VIRTUAL_WIDTH, settings.VIRTUAL_HEIGHT)
         )
+
         self.game_level = enter_params.get("game_level")
         if self.game_level is None:
             self.game_level = GameLevel(self.level, self.camera)
             pygame.mixer.music.load(settings.BASE_DIR / "sounds/music_grassland.ogg")
             pygame.mixer.music.play(loops=-1)
-        else:
-            pygame.mixer.music.unpause()
 
         self.tilemap = self.game_level.tilemap
+
         self.player = enter_params.get("player")
         if self.player is None:
             self.player = Player(0, settings.VIRTUAL_HEIGHT - 66, self.game_level)
@@ -45,7 +45,7 @@ class PlayState(BaseState):
         self.timer = enter_params.get("timer", 30)
 
         def countdown_timer():
-            self.timer -= 1
+            # self.timer -= 1
 
             if 0 < self.timer <= 5:
                 settings.SOUNDS["timer"].play()
@@ -104,7 +104,6 @@ class PlayState(BaseState):
 
     def on_input(self, input_id: str, input_data: InputData) -> None:
         if input_id == "pause" and input_data.pressed:
-            pygame.mixer.music.pause()
             self.state_machine.change(
                 "pause",
                 level=self.level,
