@@ -1,6 +1,6 @@
 --[[
     ISPPJ1 2023
-    Study Case: Final Fantasy (RPG)
+    Study Case: Ultimate Fantasy (RPG)
     Author: Alejandro Mujica
     alejandro.j.mujic4@gmail.com
 
@@ -10,7 +10,7 @@ require 'settings'
 
 function love.load()
     math.randomseed(os.time())
-    love.window.setTitle('Final Fantasy')
+    love.window.setTitle('Ultimate Fantasy')
     love.graphics.setDefaultFilter('nearest', 'nearest')
 
     push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, {

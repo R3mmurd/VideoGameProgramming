@@ -1,6 +1,6 @@
 --[[
     ISPPJ1 2023
-    Study Case: Final Fantasy (RPG)
+    Study Case: Ultimate Fantasy (RPG)
 
     Author: Alejandro Mujica
     alejandro.j.mujic4@gmail.com

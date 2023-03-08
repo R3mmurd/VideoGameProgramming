@@ -1,6 +1,6 @@
 --[[
     ISPPJ1 2023
-    Study Case: Final Fantasy (RPG)
+    Study Case: Ultimate Fantasy (RPG)
 
     Author: Alejandro Mujica
     alejandro.j.mujic4@gmail.com
@@ -36,10 +36,10 @@ function StartState:render()
 
     love.graphics.setFont(FONTS['ff'])
     love.graphics.setColor(love.math.colorFromBytes(34, 34, 34, 255))
-    love.graphics.printf('FINAL FANTASY', 2, VIRTUAL_HEIGHT / 2 - 30, VIRTUAL_WIDTH, 'center')
+    love.graphics.printf('ULTIMATE FANTASY', 2, VIRTUAL_HEIGHT / 2 - 30, VIRTUAL_WIDTH, 'center')
 
     love.graphics.setColor(love.math.colorFromBytes(212, 175, 55, 255))
-    love.graphics.printf('FINAL FANTASY', 0, VIRTUAL_HEIGHT / 2 - 32, VIRTUAL_WIDTH, 'center')
+    love.graphics.printf('ULTIMATE FANTASY', 0, VIRTUAL_HEIGHT / 2 - 32, VIRTUAL_WIDTH, 'center')
 
     love.graphics.setColor(love.math.colorFromBytes(255, 255, 255, 255))
     love.graphics.setFont(FONTS['ff-small'])
