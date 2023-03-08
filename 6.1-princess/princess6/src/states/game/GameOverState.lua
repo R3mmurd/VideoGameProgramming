@@ -11,6 +11,14 @@
 ]]
 GameOverState = Class{__includes = BaseState}
 
+function GameOverState:init()
+    SOUNDS['game-over-music']:play()
+end
+
+function GameOverState:exit()
+    SOUNDS['game-over-music']:stop()
+end
+
 function GameOverState:update(dt)
     if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
         stateMachine:change('start')

@@ -36,5 +36,5 @@ FONTS = {
 }
 
 SOUNDS = {
-    ['music'] = love.audio.newSource('sounds/music.mp3', 'static')
+    ['start-music'] = love.audio.newSource('sounds/start_music.mp3', 'static')
 }

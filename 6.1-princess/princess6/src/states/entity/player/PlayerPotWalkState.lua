@@ -54,7 +54,7 @@ function PlayerPotWalkState:update(dt)
         if self.entity.direction == 'left' then
             
             -- temporarily adjust position
-            self.entity.x = self.entity.x - PLAYER_WALK_SPEED * dt
+            self.entity.x = self.entity.x - self.entity.walkSpeed * dt
             
             for k, doorway in pairs(self.dungeon.currentRoom.doorways) do
                 if self.entity:collides(doorway) and doorway.open then
@@ -66,11 +66,11 @@ function PlayerPotWalkState:update(dt)
             end
 
             -- readjust
-            self.entity.x = self.entity.x + PLAYER_WALK_SPEED * dt
+            self.entity.x = self.entity.x + self.entity.walkSpeed * dt
         elseif self.entity.direction == 'right' then
             
             -- temporarily adjust position
-            self.entity.x = self.entity.x + PLAYER_WALK_SPEED * dt
+            self.entity.x = self.entity.x + self.entity.walkSpeed * dt
             
             for k, doorway in pairs(self.dungeon.currentRoom.doorways) do
                 if self.entity:collides(doorway) and doorway.open then
@@ -82,11 +82,11 @@ function PlayerPotWalkState:update(dt)
             end
 
             -- readjust
-            self.entity.x = self.entity.x - PLAYER_WALK_SPEED * dt
+            self.entity.x = self.entity.x - self.entity.walkSpeed * dt
         elseif self.entity.direction == 'up' then
             
             -- temporarily adjust position
-            self.entity.y = self.entity.y - PLAYER_WALK_SPEED * dt
+            self.entity.y = self.entity.y - self.entity.walkSpeed * dt
             
             for k, doorway in pairs(self.dungeon.currentRoom.doorways) do
                 if self.entity:collides(doorway) and doorway.open then
@@ -98,11 +98,11 @@ function PlayerPotWalkState:update(dt)
             end
 
             -- readjust
-            self.entity.y = self.entity.y + PLAYER_WALK_SPEED * dt
+            self.entity.y = self.entity.y + self.entity.walkSpeed * dt
         else
             
             -- temporarily adjust position
-            self.entity.y = self.entity.y + PLAYER_WALK_SPEED * dt
+            self.entity.y = self.entity.y + self.entity.walkSpeed * dt
             
             for k, doorway in pairs(self.dungeon.currentRoom.doorways) do
                 if self.entity:collides(doorway) and doorway.open then
@@ -114,7 +114,7 @@ function PlayerPotWalkState:update(dt)
             end
 
             -- readjust
-            self.entity.y = self.entity.y - PLAYER_WALK_SPEED * dt
+            self.entity.y = self.entity.y - self.entity.walkSpeed * dt
         end
     end
     self.pot.x = self.entity.x

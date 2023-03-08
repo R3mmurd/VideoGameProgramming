@@ -40,6 +40,13 @@ function PlayState:init()
         ['pot-walk'] = function() return PlayerPotWalkState(self.player, self.dungeon) end
     }
     self.player:changeState('idle')
+
+    SOUNDS['dungeon-music']:setLooping(true)
+    SOUNDS['dungeon-music']:play()
+end
+
+function PlayState:exit()
+    SOUNDS['dungeon-music']:stop()
 end
 
 function PlayState:update(dt)

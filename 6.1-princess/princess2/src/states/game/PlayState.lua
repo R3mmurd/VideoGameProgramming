@@ -13,6 +13,8 @@ PlayState = Class{__includes = BaseState}
 
 function PlayState:init()
     self.dungeon = Dungeon()
+    SOUNDS['dungeon-music']:setLooping(true)
+    SOUNDS['dungeon-music']:play()
 end
 
 function PlayState:update(dt)

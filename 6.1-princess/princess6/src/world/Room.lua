@@ -61,7 +61,7 @@ function Room:update(dt)
         if entity.health <= 0 then
             entity.dead = true
             -- chance to drop a heart
-            if not entity.dropped and math.random(3) == 1 then
+            if not entity.dropped and math.random(10) == 1 then
                 table.insert(self.objects, GameObject(GAME_OBJECT_DEFS['heart'], entity.x, entity.y))
             end
             -- whether the entity dropped or not, it is assumed that it dropped

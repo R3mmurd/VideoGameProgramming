@@ -102,7 +102,8 @@ FONTS = {
 }
 
 SOUNDS = {
-    ['music'] = love.audio.newSource('sounds/music.mp3', 'static'),
+    ['start-music'] = love.audio.newSource('sounds/start_music.mp3', 'static'),
+    ['dungeon-music'] = love.audio.newSource('sounds/dungeon_music.mp3', 'static'),
     ['sword'] = love.audio.newSource('sounds/sword.wav', 'static'),
     ['door'] = love.audio.newSource('sounds/door.wav', 'static')
 }

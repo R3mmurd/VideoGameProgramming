@@ -16,7 +16,6 @@ function love.load()
 
     push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, {
         fullscreen = false,
-        vsync = true,
         resizable = false
     })
 
@@ -27,9 +26,6 @@ function love.load()
     }
 
     stateMachine:change('start')
-
-    SOUNDS['music']:setLooping(true)
-    SOUNDS['music']:play()
 
     love.keyboard.keysPressed = {}
 end

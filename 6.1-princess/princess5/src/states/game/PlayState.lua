@@ -37,6 +37,13 @@ function PlayState:init()
         ['swing-sword'] = function() return PlayerSwingSwordState(self.player, self.dungeon) end
     }
     self.player:changeState('idle')
+
+    SOUNDS['dungeon-music']:setLooping(true)
+    SOUNDS['dungeon-music']:play()
+end
+
+function PlayState:exit()
+    SOUNDS['dungeon-music']:stop()
 end
 
 function PlayState:update(dt)
