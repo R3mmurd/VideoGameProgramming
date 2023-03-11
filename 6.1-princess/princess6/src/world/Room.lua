@@ -278,12 +278,12 @@ function Room:render()
     -- stencil out the door arches so it looks like the player is going through
     love.graphics.stencil(function()
         -- left
-        love.graphics.rectangle('fill', -TILE_SIZE - 6, MAP_RENDER_OFFSET_Y + (MAP_HEIGHT / 2) * TILE_SIZE - TILE_SIZE,
-            TILE_SIZE * 2 + 6, TILE_SIZE * 2)
+        love.graphics.rectangle('fill', -TILE_SIZE - 6, MAP_RENDER_OFFSET_Y + (MAP_HEIGHT / 2) * TILE_SIZE - TILE_SIZE * 2,
+            TILE_SIZE * 2 + 6, TILE_SIZE * 3)
         
         -- right
         love.graphics.rectangle('fill', MAP_RENDER_OFFSET_X + (MAP_WIDTH * TILE_SIZE) - 6,
-            MAP_RENDER_OFFSET_Y + (MAP_HEIGHT / 2) * TILE_SIZE - TILE_SIZE, TILE_SIZE * 2 + 6, TILE_SIZE * 2)
+            MAP_RENDER_OFFSET_Y + (MAP_HEIGHT / 2) * TILE_SIZE - TILE_SIZE * 2, TILE_SIZE * 2 + 6, TILE_SIZE * 3)
         
         -- top
         love.graphics.rectangle('fill', MAP_RENDER_OFFSET_X + (MAP_WIDTH / 2) * TILE_SIZE - TILE_SIZE,
@@ -294,6 +294,8 @@ function Room:render()
             VIRTUAL_HEIGHT - TILE_SIZE - 6, TILE_SIZE * 2, TILE_SIZE * 2 + 12)
     end, 'replace', 1)
 
+    love.graphics.setStencilTest('less', 1)
+
     if self.player then
         self.player:render()
     end
@@ -301,4 +303,6 @@ function Room:render()
     for k, projectile in pairs(self.projectiles) do
         projectile:render()
     end
+
+    love.graphics.setStencilTest()
 end

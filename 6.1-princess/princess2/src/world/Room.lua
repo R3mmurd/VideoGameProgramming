@@ -81,28 +81,7 @@ function Room:render()
         end
     end
 
-    -- render doorways; stencils are placed where the arches are after so the player can
-    -- move through them convincingly
     for k, doorway in pairs(self.doorways) do
         doorway:render()
     end
-
-    -- stencil out the door arches so it looks like the player is going through
-    love.graphics.stencil(function()
-        -- left
-        love.graphics.rectangle('fill', -TILE_SIZE - 6, MAP_RENDER_OFFSET_Y + (MAP_HEIGHT / 2) * TILE_SIZE - TILE_SIZE,
-            TILE_SIZE * 2 + 6, TILE_SIZE * 2)
-        
-        -- right
-        love.graphics.rectangle('fill', MAP_RENDER_OFFSET_X + (MAP_WIDTH * TILE_SIZE) - 6,
-            MAP_RENDER_OFFSET_Y + (MAP_HEIGHT / 2) * TILE_SIZE - TILE_SIZE, TILE_SIZE * 2 + 6, TILE_SIZE * 2)
-        
-        -- top
-        love.graphics.rectangle('fill', MAP_RENDER_OFFSET_X + (MAP_WIDTH / 2) * TILE_SIZE - TILE_SIZE,
-            -TILE_SIZE - 6, TILE_SIZE * 2, TILE_SIZE * 2 + 12)
-        
-        --bottom
-        love.graphics.rectangle('fill', MAP_RENDER_OFFSET_X + (MAP_WIDTH / 2) * TILE_SIZE - TILE_SIZE,
-            VIRTUAL_HEIGHT - TILE_SIZE - 6, TILE_SIZE * 2, TILE_SIZE * 2 + 12)
-    end, 'replace', 1)
 end

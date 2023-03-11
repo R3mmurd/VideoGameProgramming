@@ -231,7 +231,11 @@ function Room:render()
             VIRTUAL_HEIGHT - TILE_SIZE - 6, TILE_SIZE * 2, TILE_SIZE * 2 + 12)
     end, 'replace', 1)
 
+    love.graphics.setStencilTest('less', 1)
+
     if self.player then
         self.player:render()
     end
+
+    love.graphics.setStencilTest()
 end

@@ -73,10 +73,19 @@ function Dungeon:beginShifting(shiftX, shiftY)
 
     -- tween the camera in whichever direction the new room is in, as well as the player to be
     -- at the opposite door in the next room, walking through the wall (which is stenciled)
-    Timer.tween(1, {
+
+    local toTween = {
         [self] = {cameraX = shiftX, cameraY = shiftY},
         [self.player] = {x = playerX, y = playerY}
-    }):finish(function()
+    }
+
+    local pot = self.player.stateMachine.current.pot
+
+    if pot ~= nil then
+        toTween[pot] = {x = playerX, y = playerY - pot.height / 2}
+    end
+    
+    Timer.tween(1, toTween):finish(function()
         self:finishShifting()
 
         -- reset player to the correct location in the room
@@ -98,6 +107,9 @@ function Dungeon:beginShifting(shiftX, shiftY)
         for k, doorway in pairs(self.currentRoom.doorways) do
             doorway.open = false
         end
+
+        -- Avoid to receive damage when entering to the new room
+        self.player:goInvulnerable(1)
 
         SOUNDS['door']:play()
     end)

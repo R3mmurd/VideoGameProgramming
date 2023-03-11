@@ -99,6 +99,9 @@ function Dungeon:beginShifting(shiftX, shiftY)
             doorway.open = false
         end
 
+        -- Avoid to receive damage when entering to the new room
+        self.player:goInvulnerable(1)
+
         SOUNDS['door']:play()
     end)
 end

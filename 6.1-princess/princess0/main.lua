@@ -21,5 +21,6 @@ end
 
 function love.draw()
     push:start()
+    -- render my game
     push:finish()
 end
