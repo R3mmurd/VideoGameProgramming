@@ -40,7 +40,7 @@ class PlayState(BaseState):
             self.player = Player(0, settings.VIRTUAL_HEIGHT - 66, self.game_level)
             self.player.change_state("idle")
 
-        self.timer = enter_params.get("timer", 5)
+        self.timer = enter_params.get("timer", 30)
 
         def countdown_timer():
             self.timer -= 1
