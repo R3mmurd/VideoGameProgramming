@@ -27,6 +27,7 @@ class Player(GameEntity):
                 "walk": lambda sm: player_states.WalkState(self, sm),
                 "jump": lambda sm: player_states.JumpState(self, sm),
                 "fall": lambda sm: player_states.FallState(self, sm),
+                "dead": lambda sm: player_states.DeadState(self, sm),
             },
             animation_defs={
                 "idle": {"frames": [0]},

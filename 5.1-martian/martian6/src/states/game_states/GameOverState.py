@@ -20,7 +20,6 @@ class GameOverState(BaseState):
     def enter(self, player) -> None:
         self.player = player
         InputHandler.register_listener(self)
-        InputHandler.unregister_listener(self.player.state_machine.current)
 
     def exit(self) -> None:
         InputHandler.unregister_listener(self)

@@ -40,13 +40,16 @@ class PlayState(BaseState):
             self.player = Player(0, settings.VIRTUAL_HEIGHT - 66, self.game_level)
             self.player.change_state("idle")
 
-        self.timer = enter_params.get("timer", 30)
+        self.timer = enter_params.get("timer", 5)
 
         def countdown_timer():
             self.timer -= 1
 
             if 0 < self.timer <= 5:
                 settings.SOUNDS["timer"].play()
+
+            if self.timer == 0:
+                self.player.change_state("dead")
 
         Timer.every(1, countdown_timer)
         InputHandler.register_listener(self)
@@ -56,12 +59,15 @@ class PlayState(BaseState):
         Timer.clear()
 
     def update(self, dt: float) -> None:
-        if self.player.is_dead or self.timer == 0:
+        if self.player.is_dead:
             pygame.mixer.music.stop()
             pygame.mixer.music.unload()
             self.state_machine.change("game_over", self.player)
 
         self.player.update(dt)
+    
+        if self.player.y >= self.player.tilemap.height:
+            self.player.change_state("dead")
 
         self.camera.x = max(
             0,
@@ -82,7 +88,7 @@ class PlayState(BaseState):
 
         for creature in self.game_level.creatures:
             if self.player.collides(creature):
-                self.player.is_dead = True
+                self.player.change_state("dead")
 
         for item in self.game_level.items:
             if not item.in_play or not item.collidable:

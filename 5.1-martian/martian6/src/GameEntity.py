@@ -62,9 +62,6 @@ class GameEntity(mixins.DrawableMixin, mixins.AnimatedMixin, mixins.CollidableMi
         else:
             self.x = min(self.tilemap.width - self.width, next_x)
 
-        if self.y >= self.tilemap.height:
-            self.is_dead = True
-
     def handle_tilemap_collision_on_top(self) -> bool:
         collision_rect = self.get_collision_rect()
 
