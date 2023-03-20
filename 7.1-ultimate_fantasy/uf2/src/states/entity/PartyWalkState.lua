@@ -41,7 +41,7 @@ function PartyWalkState:checkForEncounter()
             -- callback that will execute once the fade in is complete
             function()
                 stateStack:push(BattleState(self.party, self.party.world.current_region, 
-                function() self.party:setPosition(x, y, direction) end))
+                    function() self.party:setPosition(x, y, direction) end))
                 stateStack:push(FadeOutState({
                     r = 255, g = 255, b = 255,
                 }, 1,

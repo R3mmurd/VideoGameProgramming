@@ -133,18 +133,6 @@ function TakeTurnState:checkAllDeath(team)
     return true
 end
 
-function TakeTurnState:checkDeaths()
-    if self.playerPokemon.currentHP <= 0 then
-        self:faint()
-        return true
-    elseif self.opponentPokemon.currentHP <= 0 then
-        self:victory()
-        return true
-    end
-
-    return false
-end
-
 function TakeTurnState:faint()
     SOUNDS['battle']:stop()
     SOUNDS['game-over']:play()

@@ -43,7 +43,7 @@ function SelectCharacterState:update(dt)
                     party = self.party
                 }))
                 stateStack:push(DialogueState("" .. 
-                "Welcome to the world of Final Fifty! There is a curse that has to be broken. "..
+                "Welcome to the world of Ultimate Fantasy! There is a curse that has to be broken. "..
                 "To break the curse you have to defeat the Man-eater flower at the west from this town. "..
                 "Go north to gain experience with weak slimes, go south to face second level worms, "..
                 "go east for third level snakes, and finally, go west to deal with strong pumpkins and "..

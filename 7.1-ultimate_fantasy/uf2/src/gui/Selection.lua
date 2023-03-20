@@ -1,6 +1,6 @@
 --[[
     GD50
-    Final Fifty
+    Ultimate Fantasy
 
     Author: Colton Ogden
     cogden@cs50.harvard.edu

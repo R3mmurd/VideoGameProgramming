@@ -74,6 +74,7 @@ ENTITY_DEFS = {
                     strength = 1.5,
                     require_target = true,
                     func = function(entity, target, strength)
+                        -- TODO: Amount only depends on entity
                         local amount = math.max(0, math.floor(entity:computeAttack()*strength) - target:computeDefense())
                         target:damage(amount)
                         return amount
