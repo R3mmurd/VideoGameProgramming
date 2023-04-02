@@ -12,10 +12,10 @@
 **Thumbs.db
 **.lock-wscript
 ***.pyc
-**.project
 **.cproject
 **builtins
 **debug.keystore
 **debug.keystore.pass.txt
 **manifest.private.der
 **manifest.public.der
+!8.1-throw_a_bird/*/main
