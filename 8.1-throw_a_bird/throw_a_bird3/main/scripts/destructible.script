@@ -1,0 +1,48 @@
+go.property("energy", 200)
+go.property("undamaged", hash("elementStone011"))
+go.property("damaged", hash("elementStone014"))
+go.property("almost_destroyed", hash("elementStone046"))
+go.property("debris", true)
+
+function init(self)
+	self.mass = go.get("#collisionobject", "mass")
+	self.initial_energy = self.energy
+	self.damage_levels = { self.almost_destroyed, self.damaged, self.undamaged }
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("collision_response") then
+		local other_url = msg.url(nil, message.other_id, "collisionobject")
+		local other_speed = vmath.length(go.get(other_url, "linear_velocity"))
+		local other_mass = go.get(other_url, "mass")
+
+		local speed = other_speed
+		if message.group == hash("ground") then
+			speed = vmath.length(go.get("#collisionobject", "linear_velocity"))
+			other_mass = 1000
+		end
+
+		-- Only apply damage if the speed is high enough
+		if speed > 20 then
+			local damage = speed * 0.01 * other_mass / self.mass
+			self.energy = self.energy - damage
+
+			if self.energy <= 0 then
+				go.delete()
+
+				if self.debris then
+					i = 1, 5 do
+						local pos = go.get_world_position() + vmath.vector3(math.random(-30, 30), math.random(-30, 30), 0)
+						local rot = vmath.quat_rotation_z(math.rad(math.random(360)))
+						local scale = math.random(5, 8) / 10
+						factory.create("#factory", pos, rot, {}, scale)
+					end
+					self.debris = false
+				end
+			else
+				local damage_level = math.ceil(3 * self.energy / self.initial_energy)
+				msg.post("#sprite", "play_animation", { id = self.damage_levels[damage_level] })
+			end
+		end
+	end
+end

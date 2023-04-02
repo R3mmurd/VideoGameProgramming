@@ -1,0 +1,39 @@
+[project]
+title = throw_a_bird3
+
+[bootstrap]
+main_collection = /main/collections/main.collectionc
+render = /builtins/render/default.renderc
+
+[input]
+game_binding = /input/game.input_bindingc
+use_accelerometer = 0
+
+[ios]
+app_icon_120x120 = /assets/app_icons/icon_120.png
+app_icon_180x180 = /assets/app_icons/icon_180.png
+app_icon_76x76 = /assets/app_icons/icon_76.png
+app_icon_152x152 = /assets/app_icons/icon_152.png
+app_icon_57x57 = /assets/app_icons/icon_57.png
+app_icon_114x114 = /assets/app_icons/icon_114.png
+app_icon_72x72 = /assets/app_icons/icon_72.png
+app_icon_144x144 = /assets/app_icons/icon_144.png
+app_icon_167x167 = /assets/app_icons/icon_167.png
+bundle_identifier = com.example.todo
+icons_asset = /assets/Assets.car
+
+[osx]
+bundle_identifier = com.example.todo
+
+[android]
+input_method = HiddenInputField
+
+[script]
+shared_state = 1
+
+[physics]
+gravity_y = -1000.0
+scale = 0.02
+max_collisions = 128
+max_contacts = 256
+
