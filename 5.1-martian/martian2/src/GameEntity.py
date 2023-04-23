@@ -9,7 +9,7 @@ This file contains the base class GameEntity.
 """
 from typing import TypeVar, Dict, Any, Tuple
 
-from gale.state_machine import StateMachine, BaseState
+from gale.state import StateMachine, BaseState
 
 from src import mixins
 

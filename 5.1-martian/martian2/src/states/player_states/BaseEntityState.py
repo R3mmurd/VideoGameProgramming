@@ -9,7 +9,7 @@ This file contains the base class BaseEntityState.
 """
 from typing import TypeVar
 
-from gale.state_machine import BaseState, StateMachine
+from gale.state import BaseState, StateMachine
 
 
 class BaseEntityState(BaseState):

@@ -9,6 +9,8 @@ This file contains the class Player.
 """
 from typing import TypeVar
 
+from gale.input_handler import InputData
+
 from src.GameEntity import GameEntity
 from src.states.entities import player_states
 
@@ -37,3 +39,6 @@ class Player(GameEntity):
         )
         self.score = 0
         self.coins_counter = {54: 0, 55: 0, 61: 0, 62: 0}
+
+    def on_input(self, input_id: str, input_data: InputData) -> None:
+        self.state_machine.on_input(input_id, input_data)

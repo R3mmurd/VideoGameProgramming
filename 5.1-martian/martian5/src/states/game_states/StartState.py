@@ -10,8 +10,8 @@ This file contains the class StartState.
 import pygame
 
 from gale.animation import Animation
-from gale.input_handler import InputHandler, InputData
-from gale.state_machine import BaseState
+from gale.input_handler import InputData
+from gale.state import BaseState
 from gale.text import Text, render_text
 from gale.timer import Timer
 
@@ -40,7 +40,6 @@ class StartState(BaseState):
 
         self.tweening = True
 
-        InputHandler.register_listener(self)
         pygame.mixer.music.load(settings.BASE_DIR / "sounds" / "music_intro.ogg")
         pygame.mixer.music.play()
         Timer.tween(
@@ -55,7 +54,6 @@ class StartState(BaseState):
     def exit(self) -> None:
         pygame.mixer.music.stop()
         pygame.mixer.music.unload()
-        InputHandler.unregister_listener(self)
 
     def update(self, dt: float) -> None:
         self.martian_animation.update(dt)

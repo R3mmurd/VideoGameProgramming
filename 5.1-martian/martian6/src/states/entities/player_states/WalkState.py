@@ -7,7 +7,7 @@ alejandro.j.mujic4@gmail.com
 
 This file contains the class WalkState for player.
 """
-from gale.input_handler import InputHandler, InputData
+from gale.input_handler import InputData
 
 import settings
 from src.states.entities.BaseEntityState import BaseEntityState
@@ -20,10 +20,6 @@ class WalkState(BaseEntityState):
         if self.entity.flipped:
             self.entity.vx *= -1
         self.entity.change_animation("walk")
-        InputHandler.register_listener(self)
-
-    def exit(self) -> None:
-        InputHandler.unregister_listener(self)
 
     def update(self, dt: float) -> None:
         if not self.entity.check_floor():

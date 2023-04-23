@@ -11,7 +11,8 @@ from typing import Dict, Any
 
 import pygame
 
-from gale.state_machine import BaseState
+from gale.input_handler import InputData
+from gale.state import BaseState
 
 import settings
 from src.Camera import Camera
@@ -29,6 +30,10 @@ class PlayState(BaseState):
             "player", Player(0, settings.VIRTUAL_HEIGHT - 66, self.game_level)
         )
         self.player.change_state("idle")
+
+
+    def on_input(self, input_id: str, input_data: InputData) -> None:
+        self.player.on_input(input_id, input_data)
 
     def update(self, dt: float) -> None:
         self.player.update(dt)

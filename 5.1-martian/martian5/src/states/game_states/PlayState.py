@@ -11,8 +11,8 @@ from typing import Dict, Any
 
 import pygame
 
-from gale.input_handler import InputHandler, InputData
-from gale.state_machine import BaseState
+from gale.input_handler import InputData
+from gale.state import BaseState
 from gale.text import render_text
 from gale.timer import Timer
 
@@ -51,10 +51,8 @@ class PlayState(BaseState):
                 settings.SOUNDS["timer"].play()
 
         Timer.every(1, countdown_timer)
-        InputHandler.register_listener(self)
 
     def exit(self) -> None:
-        InputHandler.unregister_listener(self)
         Timer.clear()
 
     def update(self, dt: float) -> None:
@@ -112,3 +110,5 @@ class PlayState(BaseState):
                 player=self.player,
                 timer=self.timer,
             )
+        else:
+            self.player.on_input(input_id, input_data)

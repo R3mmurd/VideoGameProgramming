@@ -7,7 +7,7 @@ alejandro.j.mujic4@gmail.com
 
 This file contains the class JumpState for Player.
 """
-from gale.input_handler import InputHandler, InputData
+from gale.input_handler import InputData
 
 import settings
 from src.states.entities.BaseEntityState import BaseEntityState
@@ -17,11 +17,7 @@ class JumpState(BaseEntityState):
     def enter(self) -> None:
         self.entity.change_animation("jump")
         self.entity.vy = -settings.GRAVITY / 3
-        InputHandler.register_listener(self)
         settings.SOUNDS["jump"].play()
-
-    def exit(self) -> None:
-        InputHandler.unregister_listener(self)
 
     def update(self, dt: float) -> None:
         self.entity.vy += settings.GRAVITY * dt

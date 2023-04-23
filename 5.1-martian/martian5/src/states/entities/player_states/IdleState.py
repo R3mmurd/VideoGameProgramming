@@ -7,7 +7,7 @@ alejandro.j.mujic4@gmail.com
 
 This file contains the class IdleState for Player.
 """
-from gale.input_handler import InputHandler, InputData
+from gale.input_handler import InputData
 
 from src.states.entities.BaseEntityState import BaseEntityState
 
@@ -17,10 +17,6 @@ class IdleState(BaseEntityState):
         self.entity.vx = 0
         self.entity.vy = 0
         self.entity.change_animation("idle")
-        InputHandler.register_listener(self)
-
-    def exit(self) -> None:
-        InputHandler.unregister_listener(self)
 
     def update(self, dt: float) -> None:
         if self.entity.handle_tilemap_collision_on_bottom():

@@ -11,8 +11,8 @@ from typing import Dict, Any
 
 import pygame
 
-from gale.input_handler import InputHandler, InputData
-from gale.state_machine import BaseState
+from gale.input_handler import InputData
+from gale.state import BaseState
 from gale.text import render_text
 
 import settings
@@ -26,13 +26,9 @@ class PauseState(BaseState):
         self.tilemap = self.game_level.tilemap
         self.player = enter_params["player"]
         self.timer = enter_params["timer"]
-        InputHandler.unregister_listener(self.player.state_machine.current)
-        InputHandler.register_listener(self)
         pygame.mixer.music.pause()
 
     def exit(self) -> None:
-        InputHandler.unregister_listener(self)
-        InputHandler.register_listener(self.player.state_machine.current)
         pygame.mixer.music.unpause()
 
     def render(self, surface: pygame.Surface) -> None:

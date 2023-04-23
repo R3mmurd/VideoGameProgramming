@@ -9,8 +9,8 @@ This file contains the class GameOverState.
 """
 import pygame
 
-from gale.input_handler import InputHandler, InputData
-from gale.state_machine import BaseState
+from gale.input_handler import InputData
+from gale.state import BaseState
 from gale.text import render_text
 
 import settings
@@ -19,10 +19,6 @@ import settings
 class GameOverState(BaseState):
     def enter(self, player) -> None:
         self.player = player
-        InputHandler.register_listener(self)
-
-    def exit(self) -> None:
-        InputHandler.unregister_listener(self)
 
     def on_input(self, input_id: str, input_data: InputData) -> None:
         if input_id == "enter" and input_data.pressed:
