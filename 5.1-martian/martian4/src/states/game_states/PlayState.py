@@ -30,7 +30,7 @@ class PlayState(BaseState):
             "player", Player(0, settings.VIRTUAL_HEIGHT - 66, self.game_level)
         )
         self.player.change_state("idle")
-    
+
     def on_input(self, input_id: str, input_data: InputData) -> None:
         self.player.on_input(input_id, input_data)
 

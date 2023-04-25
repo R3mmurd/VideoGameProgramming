@@ -9,8 +9,8 @@ This file contains the class to define the Start state.
 """
 import pygame
 
-from gale.input_handler import InputHandler, InputData, InputData
-from gale.state_machine import BaseState
+from gale.input_handler import InputData
+from gale.state import BaseState
 from gale.text import render_text
 
 import settings
@@ -19,10 +19,6 @@ import settings
 class StartState(BaseState):
     def enter(self) -> None:
         self.selected = 1
-        InputHandler.register_listener(self)
-
-    def exit(self) -> None:
-        InputHandler.unregister_listener(self)
 
     def on_input(self, input_id: str, input_data: InputData) -> None:
         if input_id == "move_down" and input_data.pressed and self.selected == 1:

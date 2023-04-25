@@ -9,8 +9,8 @@ This file contains the class to define the state to show select the paddle to pl
 """
 import pygame
 
-from gale.state_machine import BaseState
-from gale.input_handler import InputHandler, InputData, InputData
+from gale.state import BaseState
+from gale.input_handler import InputData
 from gale.text import render_text
 
 import settings
@@ -24,10 +24,6 @@ class PaddleSelectState(BaseState):
         )
         self.arrows_texture = settings.TEXTURES["arrows"]
         self.gray_scale_surface = pygame.Surface((24, 24), pygame.SRCALPHA)
-        InputHandler.register_listener(self)
-
-    def exit(self) -> None:
-        InputHandler.unregister_listener(self)
 
     def on_input(self, input_id: str, input_data: InputData) -> None:
         if input_id == "enter" and input_data.pressed:

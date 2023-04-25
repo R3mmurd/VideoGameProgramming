@@ -9,8 +9,8 @@ This file contains the class to define the Serve state.
 """
 import pygame
 
-from gale.state_machine import BaseState
-from gale.input_handler import InputHandler, InputData
+from gale.state import BaseState
+from gale.input_handler import InputData
 from gale.text import render_text
 
 import settings
@@ -29,10 +29,6 @@ class ServeState(BaseState):
         self.score = params.get("score", 0)
         self.lives = params.get("lives", 3)
         self.broken_bricks_counter = params.get("broken_bricks_counter", 0)
-        InputHandler.register_listener(self)
-
-    def exit(self) -> None:
-        InputHandler.unregister_listener(self)
 
     def update(self, dt: float) -> None:
         self.paddle.update(dt)

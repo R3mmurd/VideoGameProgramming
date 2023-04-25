@@ -12,8 +12,8 @@ import random
 import pygame
 
 from gale.factory import AbstractFactory
-from gale.state_machine import BaseState
-from gale.input_handler import InputHandler, InputData, InputData
+from gale.state import BaseState
+from gale.input_handler import InputData
 from gale.text import render_text
 
 import settings
@@ -42,11 +42,6 @@ class PlayState(BaseState):
             settings.SOUNDS["paddle_hit"].play()
 
         self.powerups_abstract_factory = AbstractFactory("src.powerups")
-
-        InputHandler.register_listener(self)
-
-    def exit(self) -> None:
-        InputHandler.unregister_listener(self)
 
     def update(self, dt: float) -> None:
         self.paddle.update(dt)

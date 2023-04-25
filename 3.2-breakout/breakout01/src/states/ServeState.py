@@ -7,7 +7,7 @@ alejandro.j.mujic4@gmail.com
 
 This file contains the class to define the Serve state.
 """
-from gale.state_machine import BaseState
+from gale.state import BaseState
 
 
 class ServeState(BaseState):

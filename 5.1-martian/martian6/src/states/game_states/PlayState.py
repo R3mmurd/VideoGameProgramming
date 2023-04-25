@@ -63,7 +63,7 @@ class PlayState(BaseState):
             self.state_machine.change("game_over", self.player)
 
         self.player.update(dt)
-    
+
         if self.player.y >= self.player.tilemap.height:
             self.player.change_state("dead")
 

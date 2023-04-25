@@ -11,8 +11,8 @@ import random
 
 import pygame
 
-from gale.state_machine import BaseState
-from gale.input_handler import InputHandler, InputData, InputData
+from gale.state import BaseState
+from gale.input_handler import InputData
 from gale.text import render_text
 
 import settings
@@ -40,11 +40,6 @@ class PlayState(BaseState):
             self.balls[0].vx = random.randint(-80, 80)
             self.balls[0].vy = random.randint(-170, -100)
             settings.SOUNDS["paddle_hit"].play()
-
-        InputHandler.register_listener(self)
-
-    def exit(self) -> None:
-        InputHandler.unregister_listener(self)
 
     def update(self, dt: float) -> None:
         self.paddle.update(dt)

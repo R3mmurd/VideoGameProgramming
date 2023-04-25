@@ -1,7 +1,7 @@
 import pygame
 
-from gale.state_machine import BaseState
-from gale.input_handler import InputHandler, InputData, InputData
+from gale.state import BaseState
+from gale.input_handler import InputData
 from gale.text import render_text
 
 import settings
@@ -20,10 +20,6 @@ class PauseState(BaseState):
         self.points_to_next_live = params["points_to_next_live"]
         self.powerups = params["powerups"]
         settings.SOUNDS["pause"].play()
-        InputHandler.register_listener(self)
-
-    def exit(self) -> None:
-        InputHandler.unregister_listener(self)
 
     def render(self, surface: pygame.Surface) -> None:
         heart_x = settings.VIRTUAL_WIDTH - 120

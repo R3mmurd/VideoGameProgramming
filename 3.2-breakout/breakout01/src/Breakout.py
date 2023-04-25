@@ -10,8 +10,8 @@ This file contains the class Breakout as a specialization of gale.Game
 import pygame
 
 from gale.game import Game
-from gale.input_handler import InputHandler, InputData
-from gale.state_machine import StateMachine
+from gale.input_handler import InputData
+from gale.state import StateMachine
 
 from src import states
 
@@ -31,7 +31,6 @@ class Breakout(Game):
             }
         )
         self.state_machine.change("start")
-        InputHandler.register_listener(self)
 
     def update(self, dt: float) -> None:
         self.state_machine.update(dt)
@@ -42,3 +41,5 @@ class Breakout(Game):
     def on_input(self, input_id: str, input_data: InputData) -> None:
         if input_id == "quit" and input_data.pressed:
             self.quit()
+        else:
+            self.state_machine.on_input(input_id, input_data)

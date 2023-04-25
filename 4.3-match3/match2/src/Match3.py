@@ -21,7 +21,7 @@ This file contains the class Match3 as a specialization of gale.Game
 import random
 import pygame
 from gale.game import Game
-from gale.input_handler import InputHandler, InputData
+from gale.input_handler import InputData
 from gale.timer import Timer
 import settings
 from src.Tile import Tile
@@ -43,8 +43,6 @@ class Match3(Game):
         self.highlighted_i2 = None
         self.highlighted_j2 = None
         self.active = True
-
-        InputHandler.register_listener(self)
 
     def render(self, surface: pygame.Surface) -> None:
         for row in self.board:

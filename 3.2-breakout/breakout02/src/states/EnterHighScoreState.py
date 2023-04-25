@@ -7,7 +7,7 @@ alejandro.j.mujic4@gmail.com
 
 This file contains the class to define the state to enter high score.
 """
-from gale.state_machine import BaseState
+from gale.state import BaseState
 
 
 class EnterHighScoreState(BaseState):

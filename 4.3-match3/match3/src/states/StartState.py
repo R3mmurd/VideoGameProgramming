@@ -11,8 +11,8 @@ import random
 
 import pygame
 
-from gale.input_handler import InputHandler, InputData
-from gale.state_machine import BaseState, StateMachine
+from gale.input_handler import InputData
+from gale.state import BaseState, StateMachine
 from gale.text import render_text
 from gale.timer import Timer
 
@@ -86,11 +86,6 @@ class StartState(BaseState):
         # If we have selected an option, we need to deactivate inputs while we
         # animate out.
         self.active = True
-
-        InputHandler.register_listener(self)
-
-    def exit(self) -> None:
-        InputHandler.unregister_listener(self)
 
     def render(self, surface: pygame.Surface) -> None:
         # Render all the tiles and their shadows

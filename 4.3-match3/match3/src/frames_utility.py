@@ -23,7 +23,6 @@ def generate_tile_frames(spritesheet: pygame.Surface) -> List[List[pygame.Rect]]
 
     # There are 9 rows
     for _ in range(9):
-
         # There are two sets of 6 tiles of the same color and different
         # variety.
         for _ in range(2):

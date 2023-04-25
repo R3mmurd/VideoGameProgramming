@@ -12,7 +12,7 @@ import random
 import pygame
 
 from gale.game import Game
-from gale.input_handler import InputHandler, InputData
+from gale.input_handler import InputData
 
 import settings
 from src.Tile import Tile
@@ -31,8 +31,6 @@ class Match3(Game):
         self.highlighted_tile = False
         self.highlighted_i = None
         self.highlighted_j = None
-
-        InputHandler.register_listener(self)
 
     def render(self, surface: pygame.Surface) -> None:
         for row in self.board:

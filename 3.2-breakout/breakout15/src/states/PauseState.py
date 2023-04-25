@@ -9,8 +9,8 @@ This file contains the class to define the Pause state.
 """
 import pygame
 
-from gale.state_machine import BaseState
-from gale.input_handler import InputHandler, InputData
+from gale.state import BaseState
+from gale.input_handler import InputData
 from gale.text import render_text
 
 import settings
@@ -28,10 +28,6 @@ class PauseState(BaseState):
         self.live_factor = params["live_factor"]
         self.points_to_next_live = params["points_to_next_live"]
         settings.SOUNDS["pause"].play()
-        InputHandler.register_listener(self)
-
-    def exit(self) -> None:
-        InputHandler.unregister_listener(self)
 
     def render(self, surface: pygame.Surface) -> None:
         heart_x = settings.VIRTUAL_WIDTH - 120

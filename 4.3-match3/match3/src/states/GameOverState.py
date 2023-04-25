@@ -9,8 +9,8 @@ This file contains the class GameOverState.
 """
 import pygame
 
-from gale.input_handler import InputHandler, InputData
-from gale.state_machine import BaseState
+from gale.input_handler import InputData
+from gale.state import BaseState
 from gale.text import render_text
 
 import settings
@@ -24,10 +24,6 @@ class GameOverState(BaseState):
         pygame.draw.rect(
             self.text_alpha_surface, (56, 56, 56, 234), pygame.Rect(0, 0, 424, 176)
         )
-        InputHandler.register_listener(self)
-
-    def exit(self) -> None:
-        InputHandler.unregister_listener(self)
 
     def render(self, surface: pygame.Surface) -> None:
         surface.blit(self.text_alpha_surface, (settings.VIRTUAL_WIDTH // 2 - 212, 24))
