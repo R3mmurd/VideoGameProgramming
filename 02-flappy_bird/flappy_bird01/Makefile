@@ -1,0 +1,25 @@
+CXX = clang++ -std=c++17
+
+INCLUDE = -I.
+
+BUILD_DIR = build
+
+OBJ_RULES = Settings.o Bird.o
+
+LIBS = -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system $(BUILD_DIR)/*.o
+
+main: $(BUILD_DIR) $(OBJ_RULES) main.cpp
+	$(CXX) $(INCLUDE) $@.cpp -o $@ $(LIBS)
+
+Settings.o: Settings.cpp Settings.hpp
+	$(CXX) -c $(INCLUDE) $< -o $(BUILD_DIR)/$@
+
+Bird.o: src/Bird.cpp src/Bird.hpp
+	$(CXX) -c $(INCLUDE) $< -o $(BUILD_DIR)/$@
+
+$(BUILD_DIR):
+	mkdir -p $@
+
+.PHONY:
+clean:
+	$(RM) -r $(BUILD_DIR) main
