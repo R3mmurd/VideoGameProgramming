@@ -12,7 +12,7 @@
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_font.h>
 
-#define FPS 60.f
+#define FPS 60.0
 
 int main()
 {

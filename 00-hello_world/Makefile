@@ -5,7 +5,7 @@ LIBS = -lallegro -lallegro_font
 all: main
 
 main: main.c
-	$(CC) $@.c -o $@ $(LIBS)
+	$(CC) $< -o $@ $(LIBS)
 
 .PHONY:
 clean:
