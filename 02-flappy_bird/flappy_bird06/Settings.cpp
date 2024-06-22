@@ -36,28 +36,28 @@ void Settings::load_textures()
 
     if (!texture.loadFromFile(Settings::TEXTURES_PATH / "bird.png"))
     {
-        throw std::runtime_error{"Error loading texture graphics/bird.png"};
+        throw std::runtime_error{"Error loading texture assets/graphics/bird.png"};
     }
 
     Settings::textures["bird"] = texture;
 
     if (!texture.loadFromFile(Settings::TEXTURES_PATH / "background.png"))
     {
-        throw std::runtime_error{"Error loading texture graphics/background.png"};
+        throw std::runtime_error{"Error loading texture assets/graphics/background.png"};
     }
 
     Settings::textures["background"] = texture;
 
     if (!texture.loadFromFile(Settings::TEXTURES_PATH / "ground.png"))
     {
-        throw std::runtime_error{"Error loading texture graphics/ground.png"};
+        throw std::runtime_error{"Error loading texture assets/graphics/ground.png"};
     }
 
     Settings::textures["ground"] = texture;
 
     if (!texture.loadFromFile(Settings::TEXTURES_PATH / "log.png"))
     {
-        throw std::runtime_error{"Error loading texture graphics/log.png"};
+        throw std::runtime_error{"Error loading texture assets/graphics/log.png"};
     }
 
     Settings::textures["Log"] = texture;
@@ -70,7 +70,7 @@ void Settings::load_sounds()
     
     if (!buffer.loadFromFile(Settings::SOUNDS_PATH / "jump.wav"))
     {
-        throw std::runtime_error{"Error loading sound sounds/jump.wav"};
+        throw std::runtime_error{"Error loading sound assets/sounds/jump.wav"};
     }
 
     auto result = Settings::sound_buffers.emplace("jump", buffer);

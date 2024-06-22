@@ -17,6 +17,14 @@ Bird::Bird(float _x, float _y, float w, float h) noexcept
     sprite.setPosition(x, y);
 }
 
+void Bird::reset(float _x, float _y) noexcept
+{
+    x = _x;
+    y = _y;
+    vy = 0.f;
+    sprite.setPosition(x, y);
+}
+
 sf::FloatRect Bird::get_collision_rect() const noexcept
 {
     return sf::FloatRect{x, y, width, height};

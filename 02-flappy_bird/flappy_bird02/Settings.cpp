@@ -29,7 +29,7 @@ void Settings::load_textures()
 
     if (!texture.loadFromFile(Settings::TEXTURES_PATH / "bird.png"))
     {
-        throw std::runtime_error{"Error loading texture graphics/bird.png"};
+        throw std::runtime_error{"Error loading texture assets/graphics/bird.png"};
     }
 
     Settings::textures["bird"] = texture;

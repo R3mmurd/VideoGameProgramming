@@ -26,6 +26,7 @@ public:
 
 private:
     std::shared_ptr<World> world;
+    std::shared_ptr<Bird> bird;
     int counter{3};
     float timer{0.f};
 };

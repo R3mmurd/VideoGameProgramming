@@ -21,6 +21,8 @@ public:
 
     Bird& operator = (Bird) = delete;
 
+    void reset(float _x, float _y) noexcept;
+
     sf::FloatRect get_collision_rect() const noexcept;
 
     void jump() noexcept;

@@ -29,21 +29,21 @@ void Settings::load_textures()
 
     if (!texture.loadFromFile(Settings::TEXTURES_PATH / "bird.png"))
     {
-        throw std::runtime_error{"Error loading texture graphics/bird.png"};
+        throw std::runtime_error{"Error loading texture assets/graphics/bird.png"};
     }
 
     Settings::textures["bird"] = texture;
 
     if (!texture.loadFromFile(Settings::TEXTURES_PATH / "background.png"))
     {
-        throw std::runtime_error{"Error loading texture graphics/background.png"};
+        throw std::runtime_error{"Error loading texture assets/graphics/background.png"};
     }
 
     Settings::textures["background"] = texture;
 
     if (!texture.loadFromFile(Settings::TEXTURES_PATH / "ground.png"))
     {
-        throw std::runtime_error{"Error loading texture graphics/ground.png"};
+        throw std::runtime_error{"Error loading texture assets/graphics/ground.png"};
     }
 
     Settings::textures["ground"] = texture;

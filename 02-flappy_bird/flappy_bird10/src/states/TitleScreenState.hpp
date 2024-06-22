@@ -25,5 +25,5 @@ public:
     void render(sf::RenderTarget& target) const noexcept override;
 
 private:
-    World world;
+    std::shared_ptr<World> world;
 };

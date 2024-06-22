@@ -34,6 +34,7 @@ void PlayingState::enter(std::shared_ptr<World> _world, std::shared_ptr<Bird> _b
     else
     {
         bird = _bird;
+        bird->reset(Settings::VIRTUAL_WIDTH / 2 - Settings::BIRD_WIDTH / 2, Settings::VIRTUAL_HEIGHT / 2 - Settings::BIRD_HEIGHT / 2);
     }
 }
 
@@ -54,7 +55,8 @@ void PlayingState::update(float dt) noexcept
     {
         Settings::sounds["explosion"].play();
         Settings::sounds["hurt"].play();
-        state_machine->change_state("count_down");
+        state_machine->change_state("count_down", world, bird);
+        return;
     }
 
     if (world->update_scored(bird->get_collision_rect()))

@@ -23,6 +23,11 @@ World::World(bool _generate_logs) noexcept
 void World::reset(bool _generate_logs) noexcept
 {
     generate_logs = _generate_logs;
+    for (auto log_pair: logs)
+    {
+        log_factory.remove(log_pair);
+    }
+    logs.clear();
 }
 
 bool World::collides(const sf::FloatRect& rect) const noexcept
