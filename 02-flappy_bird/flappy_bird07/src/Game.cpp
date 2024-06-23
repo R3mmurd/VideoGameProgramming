@@ -80,7 +80,6 @@ void Game::render() noexcept
     score_text.move(-2, -2);
     score_text.setFillColor(sf::Color::White);
     render_texture.draw(score_text);
-    
 
     render_texture.display();
 

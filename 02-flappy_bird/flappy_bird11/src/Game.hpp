@@ -24,13 +24,13 @@ public:
 
     Game& operator = (Game) = delete;
 
-    sf::RenderWindow& get_window() noexcept;
-
     void handle_inputs(const sf::Event& event) noexcept;
 
     void update(float dt) noexcept;
 
     void render() noexcept;
+
+    void exec() noexcept;
 
 private:
     sf::RenderWindow render_window;

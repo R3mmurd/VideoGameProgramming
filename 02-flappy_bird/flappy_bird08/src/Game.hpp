@@ -37,7 +37,4 @@ private:
     sf::Sprite render_sprite;
 
     StateMachine state_machine;
-
-    bool bird_is_dead{false};
-    int score{0};
 };

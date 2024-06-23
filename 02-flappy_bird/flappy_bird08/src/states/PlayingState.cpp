@@ -46,6 +46,7 @@ void PlayingState::update(float dt) noexcept
         Settings::sounds["explosion"].play();
         Settings::sounds["hurt"].play();
         state_machine->change_state("count_down");
+        return;
     }
 
     if (world.update_scored(bird.get_collision_rect()))

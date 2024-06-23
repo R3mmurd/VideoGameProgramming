@@ -37,7 +37,7 @@ void render_text(sf::RenderTarget& target, float x, float y, const std::string& 
         center_text(text);
     }
     target.draw(text);
-    text.setFillColor(sf::Color::White);
+    text.setFillColor(color);
     text.move(-2, -2);
     target.draw(text);
 }
