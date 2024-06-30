@@ -26,13 +26,13 @@ class Brick:
         self.color = 0  # [0, 4]
 
         # To decide whether render it or not and collision detection
-        self.in_play = True
+        self.active = True
 
     def get_collision_rect(self) -> pygame.Rect:
         return pygame.Rect(self.x, self.y, self.width, self.height)
 
     def render(self, surface: pygame.Surface) -> None:
-        if self.in_play:
+        if self.active:
             frame = self.color * 4 + self.tier
             surface.blit(
                 self.texture, (self.x, self.y), settings.FRAMES["bricks"][frame]

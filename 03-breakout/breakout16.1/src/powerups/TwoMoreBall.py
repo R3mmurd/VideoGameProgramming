@@ -39,4 +39,4 @@ class TwoMoreBall(PowerUp):
             b.vy = random.randint(-170, -100)
             play_state.balls.append(b)
 
-        self.in_play = False
+        self.active = False

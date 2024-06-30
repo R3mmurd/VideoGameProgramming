@@ -48,8 +48,8 @@ class Paddle:
     def update(self, dt: float) -> None:
         next_x = self.x + self.vx * dt
 
-        if next_x < 0:
-            self.x = min(0, next_x)
+        if self.vx < 0:
+            self.x = max(0, next_x)
         else:
             self.x = min(settings.VIRTUAL_WIDTH - self.width, next_x)
 

@@ -45,7 +45,7 @@ class PlayState(BaseState):
         self.ball.update(dt)
         self.ball.solve_world_boundaries()
 
-        if not self.ball.in_play:
+        if not self.ball.active:
             self.lives -= 1
             if self.lives == 0:
                 self.state_machine.change("game_over", score=self.score)
@@ -74,7 +74,7 @@ class PlayState(BaseState):
         for brick in self.bricks:
             brick.update(dt)
 
-            if not self.ball.collides(brick) or not brick.in_play:
+            if not self.ball.collides(brick) or not brick.active:
                 continue
 
             brick.hit()
@@ -96,7 +96,7 @@ class PlayState(BaseState):
                 )
                 self.paddle.inc_size()
 
-            if not brick.in_play:
+            if not brick.active:
                 self.broken_bricks_counter += 1
 
         # Check victory

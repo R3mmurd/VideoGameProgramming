@@ -37,7 +37,7 @@ class Brick:
         self.color = 0  # [0, 4]
 
         # To decide whether render it or not and collision detection
-        self.in_play = True
+        self.active = True
 
         self.particle_system = ParticleSystem(self.x + 16, self.y + 8, 64)
         self.particle_system.set_life_time(0.2, 0.4)
@@ -54,7 +54,7 @@ class Brick:
 
         if self.tier == 0:
             if self.color == 0:
-                self.in_play = False
+                self.active = False
                 settings.SOUNDS["brick_hit_1"].stop()
                 settings.SOUNDS["brick_hit_1"].play()
             else:
@@ -73,7 +73,7 @@ class Brick:
         self.particle_system.update(dt)
 
     def render(self, surface: pygame.Surface) -> None:
-        if self.in_play:
+        if self.active:
             frame = self.color * 4 + self.tier
             surface.blit(
                 self.texture, (self.x, self.y), settings.FRAMES["bricks"][frame]

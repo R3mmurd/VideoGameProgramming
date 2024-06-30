@@ -61,7 +61,7 @@ class Brickset:
         to_del = []
         for pos, brick in self.bricks.items():
             brick.update(dt)
-            if not brick.in_play:
+            if not brick.active:
                 to_del.append(pos)
 
         for pos in to_del:

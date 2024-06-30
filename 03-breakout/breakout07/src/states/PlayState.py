@@ -39,7 +39,7 @@ class PlayState(BaseState):
         self.ball.update(dt)
         self.ball.solve_world_boundaries()
 
-        if not self.ball.in_play:
+        if not self.ball.active:
             self.lives -= 1
             if self.lives == 0:
                 self.state_machine.change("game_over")

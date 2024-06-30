@@ -57,7 +57,7 @@ class PlayState(BaseState):
                 ball.push(self.paddle)
 
         # Removing all balls that are not in play
-        self.balls = [ball for ball in self.balls if ball.in_play]
+        self.balls = [ball for ball in self.balls if ball.active]
 
         if not self.balls:
             self.lives -= 1
@@ -81,7 +81,7 @@ class PlayState(BaseState):
         for brick in self.bricks:
             brick.update(dt)
 
-            if not brick.in_play:
+            if not brick.active:
                 continue
 
             for ball in self.balls:
@@ -118,7 +118,7 @@ class PlayState(BaseState):
                         powerups.TwoMoreBall(r.centerx - 8, r.centery - 8)
                     )
 
-                if not brick.in_play:
+                if not brick.active:
                     self.broken_bricks_counter += 1
 
         # Update powerups
@@ -129,7 +129,7 @@ class PlayState(BaseState):
                 powerup.take(self)
 
         # Remove powerups that are not in play
-        self.powerups = [p for p in self.powerups if p.in_play]
+        self.powerups = [p for p in self.powerups if p.active]
 
         # Check victory
         if self.broken_bricks_counter == len(self.bricks):

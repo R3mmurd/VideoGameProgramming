@@ -26,7 +26,7 @@ class Brick:
         self.color = 0  # [0, 4]
 
         # To decide whether render it or not and collision detection
-        self.in_play = True
+        self.active = True
 
     def hit(self) -> None:
         settings.SOUNDS["brick_hit_2"].stop()
@@ -34,7 +34,7 @@ class Brick:
 
         if self.tier == 0:
             if self.color == 0:
-                self.in_play = False
+                self.active = False
                 settings.SOUNDS["brick_hit_1"].stop()
                 settings.SOUNDS["brick_hit_1"].play()
             else:
@@ -47,7 +47,7 @@ class Brick:
         return pygame.Rect(self.x, self.y, self.width, self.height)
 
     def render(self, surface: pygame.Surface) -> None:
-        if self.in_play:
+        if self.active:
             frame = self.color * 4 + self.tier
             surface.blit(
                 self.texture, (self.x, self.y), settings.FRAMES["bricks"][frame]

@@ -37,11 +37,11 @@ class Brick:
         self.color = 0  # [0, 4]
 
         # To decide whether render it or not and collision detection
-        self.in_play = True
+        self.active = True
         self.broken = False
 
         def update_in_play():
-            self.in_play = not self.broken
+            self.active = not self.broken
 
         self.particle_system = ParticleSystem(
             self.x + 16, self.y + 8, 64, update_in_play

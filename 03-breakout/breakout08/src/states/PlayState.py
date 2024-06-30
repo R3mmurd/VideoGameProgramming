@@ -39,7 +39,7 @@ class PlayState(BaseState):
         self.ball.update(dt)
         self.ball.solve_world_boundaries()
 
-        if not self.ball.in_play:
+        if not self.ball.active:
             self.lives -= 1
             if self.lives == 0:
                 self.state_machine.change("game_over")
@@ -63,13 +63,13 @@ class PlayState(BaseState):
 
         # Check collision with bricks
         for brick in self.bricks:
-            if not (brick.in_play and self.ball.collides(brick)):
+            if not (brick.active and self.ball.collides(brick)):
                 continue
 
             brick.hit()
             self.ball.rebound(brick)
 
-            if not brick.in_play:
+            if not brick.active:
                 self.broken_bricks_counter += 1
 
     def render(self, surface: pygame.Surface) -> None:

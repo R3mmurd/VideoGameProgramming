@@ -30,7 +30,7 @@ class ServeState(BaseState):
 
     def update(self, dt: float) -> None:
         self.paddle.update(dt)
-        self.ball.x = self.paddle.x + self.paddle.width // 2 - 2
+        self.ball.x = self.paddle.x + self.paddle.width // 2 - 4
 
     def render(self, surface: pygame.Surface) -> None:
         heart_x = settings.VIRTUAL_WIDTH - 120
