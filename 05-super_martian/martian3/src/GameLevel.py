@@ -11,17 +11,21 @@ This file contains the class GameLevel.
 import pygame
 
 import settings
-from src.Camera import Camera
 
 
 class GameLevel:
-    def __init__(self, num_level: int, camera: Camera) -> None:
+    def __init__(self, num_level: int) -> None:
         self.tilemap = None
-        self.camera = camera
         settings.LevelLoader().load(self, settings.TILEMAPS[num_level])
 
+    def get_rect(self) -> pygame.Rect:
+        return pygame.Rect(0, 0, self.tilemap.width, self.tilemap.height)
+    
+    def set_render_boundaries(self, rect: pygame.Rect) -> None:
+        self.tilemap.set_render_boundaries(rect)
+
     def update(self, dt: float) -> None:
-        self.tilemap.set_render_boundaries(self.camera.get_rect())
+        pass
 
     def render(self, surface: pygame.Surface) -> None:
         self.tilemap.render(surface)

@@ -19,10 +19,9 @@ from src.definitions import creatures
 
 
 class GameLevel:
-    def __init__(self, num_level: int, camera: Camera) -> None:
+    def __init__(self, num_level: int) -> None:
         self.tilemap = None
         self.creatures = []
-        self.camera = camera
         settings.LevelLoader().load(self, settings.TILEMAPS[num_level])
 
     def add_creature(self, creature_data: Dict[str, Any]) -> None:
@@ -38,8 +37,13 @@ class GameLevel:
             )
         )
 
+    def get_rect(self) -> pygame.Rect:
+        return pygame.Rect(0, 0, self.tilemap.width, self.tilemap.height)
+    
+    def set_render_boundaries(self, rect: pygame.Rect) -> None:
+        self.tilemap.set_render_boundaries(rect)
+
     def update(self, dt: float) -> None:
-        self.tilemap.set_render_boundaries(self.camera.get_rect())
         for creature in self.creatures:
             creature.update(dt)
 

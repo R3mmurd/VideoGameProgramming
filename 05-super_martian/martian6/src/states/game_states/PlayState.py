@@ -26,12 +26,9 @@ from src.Player import Player
 class PlayState(BaseState):
     def enter(self, **enter_params: Dict[str, Any]) -> None:
         self.level = enter_params.get("level", 1)
-        self.camera = enter_params.get(
-            "camera", Camera(0, 0, settings.VIRTUAL_WIDTH, settings.VIRTUAL_HEIGHT)
-        )
         self.game_level = enter_params.get("game_level")
         if self.game_level is None:
-            self.game_level = GameLevel(self.level, self.camera)
+            self.game_level = GameLevel(self.level)
             pygame.mixer.music.load(
                 settings.BASE_DIR / "assets" / "sounds" / "music_grassland.ogg"
             )
@@ -42,6 +39,13 @@ class PlayState(BaseState):
         if self.player is None:
             self.player = Player(0, settings.VIRTUAL_HEIGHT - 66, self.game_level)
             self.player.change_state("idle")
+
+        self.camera = enter_params.get("camera")
+
+        if self.camera is None:
+            self.camera = Camera(0, 0, settings.VIRTUAL_WIDTH, settings.VIRTUAL_HEIGHT)
+            self.camera.set_collision_boundaries(self.game_level.get_rect())
+            self.camera.attach_to(self.player)
 
         self.timer = enter_params.get("timer", 30)
 
@@ -70,21 +74,8 @@ class PlayState(BaseState):
         if self.player.y >= self.player.tilemap.height:
             self.player.change_state("dead")
 
-        self.camera.x = max(
-            0,
-            min(
-                self.player.x + 8 - settings.VIRTUAL_WIDTH // 2,
-                self.tilemap.width - settings.VIRTUAL_WIDTH,
-            ),
-        )
-        self.camera.y = max(
-            0,
-            min(
-                self.player.y + 10 - settings.VIRTUAL_HEIGHT // 2,
-                self.tilemap.height - settings.VIRTUAL_HEIGHT,
-            ),
-        )
-
+        self.camera.update()
+        self.game_level.set_render_boundaries(self.camera.get_rect())
         self.game_level.update(dt)
 
         for creature in self.game_level.creatures:
