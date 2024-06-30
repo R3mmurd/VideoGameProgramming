@@ -47,6 +47,13 @@ class MouseMotionEvent:
         self.buttons: Tuple[int, int, int] = buttons
 
 
+class MouseWheelEvent:
+    def __init__(self, x: int, y: int, flipped: bool) -> None:
+        self.x: int = x
+        self.y: int = y
+        self.flipped: bool = flipped
+
+
 class InputHandler:
 
     listeners: List[Listener] = []
@@ -105,6 +112,9 @@ class InputHandler:
                         evt = MouseMotionEvent(event.pos, event.buttons)
                         cls.notify(action, evt)
             elif event.type == pygame.MOUSEWHEEL:
-                print(event)
-                print(event.x, event.y)
-                print(event.flipped)
+                wheel_binding = settings.input_binding.get("wheel")
+                if wheel_binding is not None:
+                    action = wheel_binding.get((event.x, event.y))
+                    if action is not None:
+                        evt = MouseWheelEvent(event.x, event.y, event.flipped)
+                        cls.notify(action, evt)

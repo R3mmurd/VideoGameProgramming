@@ -21,4 +21,10 @@ input_binding = {
         (-1, 0): "rotate_left",
         (1, 0): "rotate_right",
     },
+    "wheel": {
+        (0, 1): "zoom_in",
+        (0, -1): "zoom_out",
+        (1, 0): "next",
+        (-1, 0): "previous",
+    },
 }

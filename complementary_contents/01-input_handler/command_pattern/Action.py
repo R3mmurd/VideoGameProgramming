@@ -15,5 +15,5 @@ from Actor import Actor
 
 
 class Action:
-    def execute(self, target: dict) -> NoReturn:
+    def execute(self, target: Actor) -> NoReturn:
         raise NotImplementedError()
