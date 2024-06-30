@@ -12,7 +12,6 @@ from typing import TypeVar, Dict, Any, Tuple
 
 from gale.state import StateMachine, BaseState
 
-import settings
 from src import mixins
 from src.GameObject import GameObject
 

@@ -8,7 +8,7 @@ alejandro.j.mujic4@gmail.com
 This file contains the CollidableMixin.
 """
 
-from typing import Any, Tuple
+from typing import Any
 
 import pygame
 
