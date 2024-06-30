@@ -33,21 +33,21 @@ class Camera:
             self.x = self.following.x + self.following.width // 2 - self.width // 2
             self.y = self.following.y + self.following.height // 2 - self.height // 2
 
-            if self.collision_boundaries is not None:
-                self.x = max(
-                    self.collision_boundaries.x,
-                    min(
-                        self.x,
-                        self.collision_boundaries.x + self.collision_boundaries.width - self.width,
-                    ),
-                )
-                self.y = max(
-                    self.collision_boundaries.y,
-                    min(
-                        self.y,
-                        self.collision_boundaries.y + self.collision_boundaries.height - self.height,
-                    ),
-                )
+        if self.collision_boundaries is not None:
+            self.x = max(
+                self.collision_boundaries.x,
+                min(
+                    self.x,
+                    self.collision_boundaries.x + self.collision_boundaries.width - self.width,
+                ),
+            )
+            self.y = max(
+                self.collision_boundaries.y,
+                min(
+                    self.y,
+                    self.collision_boundaries.y + self.collision_boundaries.height - self.height,
+                ),
+            )
 
     def get_rect(self) -> pygame.Rect:
         return pygame.Rect(self.x, self.y, self.width, self.height)
