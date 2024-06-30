@@ -24,7 +24,7 @@ class PowerUp:
         self.x = x
         self.y = y
         self.vy = settings.POWERUP_SPEED
-        self.in_play = True
+        self.active = True
         self.frame = frame
 
     def get_collision_rect(self) -> pygame.Rect:
@@ -35,7 +35,7 @@ class PowerUp:
 
     def update(self, dt: float) -> None:
         if self.y > settings.VIRTUAL_HEIGHT:
-            self.in_play = False
+            self.active = False
 
         self.y += self.vy * dt
 

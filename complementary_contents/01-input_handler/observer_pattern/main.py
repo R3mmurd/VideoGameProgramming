@@ -1,5 +1,5 @@
 """
-ISPPJ1 2023
+ISPPJ1 2024
 Input handler by commands.
 
 Author: Alejandro Mujica
@@ -8,6 +8,7 @@ alejandro.j.mujic4@gmail.com
 This file contains the main program to build a window an test the
 input handler.
 """
+
 import pygame
 
 from Actor import Actor

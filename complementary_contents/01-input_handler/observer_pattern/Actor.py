@@ -1,5 +1,5 @@
 """
-ISPPJ1 2023
+ISPPJ1 2024
 Input handler by observers.
 
 Author: Alejandro Mujica
@@ -7,6 +7,7 @@ alejandro.j.mujic4@gmail.com
 
 This file contains the class Actor, a Listener of input events.
 """
+
 from typing import Any
 
 from Listener import Listener
@@ -32,3 +33,11 @@ class Actor(Listener):
             print(f"{self} is rotating up")
         elif input_id == "rotate_down":
             print(f"{self} is rotating down")
+        elif input_id == "zoom_in":
+            print(f"{self} is zooming in")
+        elif input_id == "zoom_out":
+            print(f"{self} is zooming out")
+        elif input_id == "next":
+            print(f"{self} is going to the next item")
+        elif input_id == "previous":
+            print(f"{self} is going to the previous item")

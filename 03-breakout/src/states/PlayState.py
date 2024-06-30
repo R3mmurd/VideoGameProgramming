@@ -96,7 +96,7 @@ class PlayState(BaseState):
                 )
 
         # Removing all balls that are not in play
-        self.balls = [ball for ball in self.balls if ball.in_play]
+        self.balls = [ball for ball in self.balls if ball.active]
 
         self.brickset.update(dt)
 
@@ -125,7 +125,7 @@ class PlayState(BaseState):
                 powerup.take(self)
 
         # Remove powerups that are not in play
-        self.powerups = [p for p in self.powerups if p.in_play]
+        self.powerups = [p for p in self.powerups if p.active]
 
         # Check victory
         if self.brickset.size == 1 and next(

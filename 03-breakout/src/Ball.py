@@ -29,7 +29,7 @@ class Ball:
 
         self.texture = settings.TEXTURES["spritesheet"]
         self.frame = random.randint(0, 6)
-        self.in_play = True
+        self.active = True
 
     def get_collision_rect(self) -> pygame.Rect:
         return pygame.Rect(self.x, self.y, self.width, self.height)
@@ -54,7 +54,7 @@ class Ball:
             self.vy *= -1
         elif r.top > settings.VIRTUAL_HEIGHT:
             settings.SOUNDS["hurt"].play()
-            self.in_play = False
+            self.active = False
 
     def collides(self, another: Any) -> bool:
         return self.get_collision_rect().colliderect(another.get_collision_rect())
