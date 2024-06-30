@@ -40,11 +40,11 @@ class Brick:
         self.active = True
         self.broken = False
 
-        def update_in_play():
+        def update_active():
             self.active = not self.broken
 
         self.particle_system = ParticleSystem(
-            self.x + 16, self.y + 8, 64, update_in_play
+            self.x + 16, self.y + 8, 64, update_active
         )
         self.particle_system.set_life_time(0.2, 0.4)
         self.particle_system.set_linear_acceleration(-0.3, 0.5, 0.3, 1)

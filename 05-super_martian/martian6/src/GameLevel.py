@@ -63,5 +63,5 @@ class GameLevel:
         for creature in self.creatures:
             creature.render(surface)
         for item in self.items:
-            if item.in_play:
+            if item.active:
                 item.render(surface)

@@ -92,7 +92,7 @@ class PlayState(BaseState):
                 self.player.change_state("dead")
 
         for item in self.game_level.items:
-            if not item.in_play or not item.collidable:
+            if not item.active or not item.collidable:
                 continue
 
             if self.player.collides(item):
