@@ -41,7 +41,7 @@ class PlayState(BaseState):
         if self.player is None:
             self.player = Player(0, settings.VIRTUAL_HEIGHT - 66, self.game_level)
             self.player.change_state("idle")
-        
+
         self.camera = enter_params.get("camera")
         if self.camera is None:
             self.camera = Camera(0, 0, settings.VIRTUAL_WIDTH, settings.VIRTUAL_HEIGHT)
@@ -49,7 +49,7 @@ class PlayState(BaseState):
             self.camera.attach_to(self.player)
 
         self.clock = enter_params.get("clock")
-        
+
         if self.clock is None:
             self.clock = Clock(30)
 

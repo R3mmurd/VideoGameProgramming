@@ -49,17 +49,19 @@ class PlayState(BaseState):
             self.camera.attach_to(self.player)
 
         self.clock = enter_params.get("clock")
-        
+
         if self.clock is None:
             self.clock = Clock(30)
+
             def countdown_timer():
                 self.clock.count_down()
-                
+
                 if 0 < self.clock.time <= 5:
                     settings.SOUNDS["timer"].play()
 
                 if self.clock.time == 0:
                     self.player.change_state("dead")
+
             Timer.every(1, countdown_timer)
         else:
             Timer.resume()

@@ -39,7 +39,7 @@ class GameLevel:
 
     def get_rect(self) -> pygame.Rect:
         return pygame.Rect(0, 0, self.tilemap.width, self.tilemap.height)
-    
+
     def set_render_boundaries(self, rect: pygame.Rect) -> None:
         self.tilemap.set_render_boundaries(rect)
 
