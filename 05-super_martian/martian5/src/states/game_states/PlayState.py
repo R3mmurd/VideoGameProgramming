@@ -19,6 +19,7 @@ from gale.timer import Timer
 
 import settings
 from src.Camera import Camera
+from src.Clock import Clock
 from src.GameLevel import GameLevel
 from src.Player import Player
 
@@ -42,29 +43,31 @@ class PlayState(BaseState):
             self.player.change_state("idle")
         
         self.camera = enter_params.get("camera")
-
         if self.camera is None:
             self.camera = Camera(0, 0, settings.VIRTUAL_WIDTH, settings.VIRTUAL_HEIGHT)
             self.camera.set_collision_boundaries(self.game_level.get_rect())
             self.camera.attach_to(self.player)
 
-        self.timer = enter_params.get("timer", 30)
+        self.clock = enter_params.get("clock")
+        
+        if self.clock is None:
+            self.clock = Clock(30)
 
-        def countdown_timer():
-            # self.timer -= 1
+            def countdown_timer():
+                self.clock.count_down()
 
-            if 0 < self.timer <= 5:
-                settings.SOUNDS["timer"].play()
+                if 0 < self.clock.time <= 5:
+                    settings.SOUNDS["timer"].play()
 
-        Timer.every(1, countdown_timer)
-
-    def exit(self) -> None:
-        Timer.clear()
+            Timer.every(1, countdown_timer)
+        else:
+            Timer.resume()
 
     def update(self, dt: float) -> None:
-        if self.player.is_dead or self.timer == 0:
+        if self.player.is_dead or self.clock.time == 0:
             pygame.mixer.music.stop()
             pygame.mixer.music.unload()
+            Timer.clear()
             self.state_machine.change("game_over", self.player)
 
         self.player.update(dt)
@@ -85,7 +88,7 @@ class PlayState(BaseState):
 
         render_text(
             surface,
-            f"Time: {self.timer}",
+            f"Time: {self.clock}",
             settings.FONTS["small"],
             settings.VIRTUAL_WIDTH - 60,
             5,
@@ -95,13 +98,14 @@ class PlayState(BaseState):
 
     def on_input(self, input_id: str, input_data: InputData) -> None:
         if input_id == "pause" and input_data.pressed:
+            Timer.pause()
             self.state_machine.change(
                 "pause",
                 level=self.level,
                 camera=self.camera,
                 game_level=self.game_level,
                 player=self.player,
-                timer=self.timer,
+                clock=self.clock,
             )
         else:
             self.player.on_input(input_id, input_data)

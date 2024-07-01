@@ -31,12 +31,9 @@ class PlayState(BaseState):
         )
         self.player.change_state("idle")
 
-        self.camera = enter_params.get("camera")
-
-        if self.camera is None:
-            self.camera = Camera(0, 0, settings.VIRTUAL_WIDTH, settings.VIRTUAL_HEIGHT)
-            self.camera.set_collision_boundaries(self.game_level.get_rect())
-            self.camera.attach_to(self.player)
+        self.camera = Camera(0, 0, settings.VIRTUAL_WIDTH, settings.VIRTUAL_HEIGHT)
+        self.camera.set_collision_boundaries(self.game_level.get_rect())
+        self.camera.attach_to(self.player)
 
     def on_input(self, input_id: str, input_data: InputData) -> None:
         self.player.on_input(input_id, input_data)

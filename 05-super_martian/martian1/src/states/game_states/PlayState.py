@@ -24,11 +24,8 @@ class PlayState(BaseState):
         self.level = enter_params.get("level", 1)
         self.game_level = GameLevel(self.level)
         self.tilemap = self.game_level.tilemap
-        self.camera = enter_params.get("camera")
-
-        if self.camera is None:
-            self.camera = Camera(0, 0, settings.VIRTUAL_WIDTH, settings.VIRTUAL_HEIGHT)
-            self.camera.set_collision_boundaries(self.game_level.get_rect())
+        self.camera = Camera(0, 0, settings.VIRTUAL_WIDTH, settings.VIRTUAL_HEIGHT)
+        self.camera.set_collision_boundaries(self.game_level.get_rect())
 
     def update(self, dt: float) -> None:
         self.camera.update()

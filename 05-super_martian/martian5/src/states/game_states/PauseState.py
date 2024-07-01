@@ -26,7 +26,7 @@ class PauseState(BaseState):
         self.game_level = enter_params["game_level"]
         self.tilemap = self.game_level.tilemap
         self.player = enter_params["player"]
-        self.timer = enter_params["timer"]
+        self.clock = enter_params["clock"]
         pygame.mixer.music.pause()
 
     def exit(self) -> None:
@@ -40,7 +40,7 @@ class PauseState(BaseState):
 
         render_text(
             surface,
-            f"Time: {self.timer}",
+            f"Time: {self.clock}",
             settings.FONTS["small"],
             settings.VIRTUAL_WIDTH - 60,
             5,
@@ -56,5 +56,5 @@ class PauseState(BaseState):
                 camera=self.camera,
                 game_level=self.game_level,
                 player=self.player,
-                timer=self.timer,
+                clock=self.clock,
             )
