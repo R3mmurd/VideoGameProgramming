@@ -21,10 +21,10 @@ class Camera:
         self.height = height
         self.collision_boundaries = None
         self.following = None
-    
+
     def attach_to(self, entity: GameEntity) -> None:
         self.following = entity
-    
+
     def set_collision_boundaries(self, rect: pygame.Rect) -> None:
         self.collision_boundaries = rect
 
@@ -38,14 +38,18 @@ class Camera:
                 self.collision_boundaries.x,
                 min(
                     self.x,
-                    self.collision_boundaries.x + self.collision_boundaries.width - self.width,
+                    self.collision_boundaries.x
+                    + self.collision_boundaries.width
+                    - self.width,
                 ),
             )
             self.y = max(
                 self.collision_boundaries.y,
                 min(
                     self.y,
-                    self.collision_boundaries.y + self.collision_boundaries.height - self.height,
+                    self.collision_boundaries.y
+                    + self.collision_boundaries.height
+                    - self.height,
                 ),
             )
 
