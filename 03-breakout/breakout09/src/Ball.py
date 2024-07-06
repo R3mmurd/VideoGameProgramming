@@ -120,7 +120,7 @@ class Ball:
         """
         br = self.get_collision_rect()
         pr = paddle.get_collision_rect()
-        d = pr.centerx - br.x
+        d = pr.centerx - br.centerx
 
         if d > 0 and paddle.vx < 0 and pr.x > 0:
             self.vx = -50 - 8 * d

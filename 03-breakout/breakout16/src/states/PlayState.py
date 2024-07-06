@@ -112,7 +112,7 @@ class PlayState(BaseState):
                     self.paddle.inc_size()
 
                 # Chance to generate two more balls
-                if random.random() < 0.1:
+                if random.random() < 0.5:
                     r = brick.get_collision_rect()
                     self.powerups.append(
                         powerups.TwoMoreBall(r.centerx - 8, r.centery - 8)
