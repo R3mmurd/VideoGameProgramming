@@ -30,7 +30,6 @@ class TimerGame(Game):
         self.interval3 = 4
         self.counter3 = 0
         self.font = pygame.font.Font("font.ttf", 64)
-        InputHandler.register_listener(self)
 
     def update(self, dt: float) -> None:
         self.timer1 += dt

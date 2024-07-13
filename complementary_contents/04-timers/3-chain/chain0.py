@@ -44,8 +44,6 @@ class ChainGame(Game):
             {"left": 0, "top": 0, "reached": False},
         )
 
-        InputHandler.register_listener(self)
-
     def update(self, dt: float) -> None:
         self.timer = min(MOVEMENT_TIME, self.timer + dt)
 
@@ -65,7 +63,7 @@ class ChainGame(Game):
                 d["reached"] = True
                 self.base_left = d["left"]
                 self.base_top = d["top"]
-                self.timer = 0
+                self.timer %= MOVEMENT_TIME
 
             break
 

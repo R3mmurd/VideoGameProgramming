@@ -61,7 +61,7 @@ class Match3(Game):
             i = (pos_y - settings.BOARD_OFFSET_Y) // settings.TILE_SIZE
             j = (pos_x - settings.BOARD_OFFSET_X) // settings.TILE_SIZE
 
-            if 0 <= i < settings.BOARD_HEIGHT and 0 <= j <= settings.BOARD_WIDTH:
+            if 0 <= i < settings.BOARD_HEIGHT and 0 <= j < settings.BOARD_WIDTH:
                 if not self.highlighted_tile:
                     self.highlighted_tile = True
                     self.highlighted_i1 = i

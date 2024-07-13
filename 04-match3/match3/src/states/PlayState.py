@@ -134,7 +134,7 @@ class PlayState(BaseState):
             i = (pos_y - self.board.y) // settings.TILE_SIZE
             j = (pos_x - self.board.x) // settings.TILE_SIZE
 
-            if 0 <= i < settings.BOARD_HEIGHT and 0 <= j <= settings.BOARD_WIDTH:
+            if 0 <= i < settings.BOARD_HEIGHT and 0 <= j < settings.BOARD_WIDTH:
                 if not self.highlighted_tile:
                     self.highlighted_tile = True
                     self.highlighted_i1 = i

@@ -42,7 +42,6 @@ class TweenGame(Game):
         # end X position for our interpolation
         self.end_x = WINDOW_WIDTH - self.SQUARE_SIZE
         self.timer = 0
-        InputHandler.register_listener(self)
 
     def update(self, dt: float) -> None:
         if self.timer < TIMER_MAX:

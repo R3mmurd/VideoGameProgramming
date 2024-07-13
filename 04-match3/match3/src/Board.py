@@ -158,7 +158,7 @@ class Board:
 
     def get_falling_tiles(self) -> Tuple[Any, Dict[str, Any]]:
         # List of tweens to create
-        tweens: Tuple[Tile, Dict[str, Any]] = []
+        tweens: List[Tuple[Tile, Dict[str, Any]]] = []
 
         # for each column, go up tile by tile until we hit a space
         for j in range(settings.BOARD_WIDTH):

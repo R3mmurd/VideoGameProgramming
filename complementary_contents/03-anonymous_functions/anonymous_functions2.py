@@ -26,4 +26,4 @@ power2_4 = build_power_function(2, 4)
 print(power2_4())
 
 power_3 = build_power_three_function()
-print(po)
+print(power_3(3))

@@ -46,8 +46,6 @@ class ChainGame(Game):
             ),
         )
 
-        InputHandler.register_listener(self)
-
     def render(self, surface: pygame.Surface) -> None:
         pygame.draw.rect(surface, (255, 255, 255), self.rect)
 

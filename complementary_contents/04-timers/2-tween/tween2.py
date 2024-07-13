@@ -41,8 +41,6 @@ class TweenGame(Game):
             self.rects.append(rect)
             Timer.tween(rate, [(rect, {"left": WINDOW_WIDTH - self.SQUARE_SIZE})])
 
-        InputHandler.register_listener(self)
-
     def render(self, surface: pygame.Surface) -> None:
         for rect in self.rects:
             pygame.draw.rect(surface, (255, 255, 255), rect)

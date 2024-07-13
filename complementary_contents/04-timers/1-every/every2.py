@@ -36,7 +36,6 @@ class TimerGame(Game):
             Timer.every(self.intervals[i], inc(i))
 
         self.font = pygame.font.Font("font.ttf", 64)
-        InputHandler.register_listener(self)
 
     def render(self, surface: pygame.Surface) -> None:
         for i in range(len(self.counters)):
