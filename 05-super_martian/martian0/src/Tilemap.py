@@ -13,7 +13,6 @@ from typing import List, Tuple
 
 import pygame
 
-import settings
 from src.Tile import Tile
 
 

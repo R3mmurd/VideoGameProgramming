@@ -28,6 +28,7 @@ class PlayState(BaseState):
         self.camera.set_collision_boundaries(self.game_level.get_rect())
 
     def update(self, dt: float) -> None:
+        self.camera.x += dt * 50
         self.camera.update()
         self.game_level.set_render_boundaries(self.camera.get_rect())
         self.game_level.update(dt)
