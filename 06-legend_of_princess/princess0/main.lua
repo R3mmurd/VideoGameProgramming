@@ -5,7 +5,7 @@
     Author: Alejandro Mujica
     alejandro.j.mujic4@gmail.com
 
-    This file contains the configure the framework.
+    This file contains the framework configuration.
 ]]
 require 'settings'
 
@@ -21,6 +21,6 @@ end
 
 function love.draw()
     push:start()
-    -- render my game
+    -- render game
     push:finish()
 end

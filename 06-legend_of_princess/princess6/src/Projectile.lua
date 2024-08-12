@@ -24,12 +24,13 @@ function Projectile:update(dt)
         return
     end
 
-    local d = PROJECTILE_SPEED*dt
+    local d = PROJECTILE_SPEED * dt
     
     if self.direction == 'up' then
         self.obj.y = self.obj.y - d
-        if self.obj.y <= MAP_RENDER_OFFSET_Y + TILE_SIZE - self.obj.height / 2 then 
-            self.obj.y = MAP_RENDER_OFFSET_Y + TILE_SIZE - self.obj.height / 2
+        local topEdge = MAP_RENDER_OFFSET_Y + TILE_SIZE
+        if self.obj.y <= topEdge - self.obj.height / 2 then 
+            self.obj.y = topEdge - self.obj.height / 2
             self.dead = true
         end
     elseif self.direction == 'down' then
@@ -43,14 +44,16 @@ function Projectile:update(dt)
         end
     elseif self.direction == 'left' then
         self.obj.x = self.obj.x - d
-        if self.obj.x <= MAP_RENDER_OFFSET_X + TILE_SIZE then 
-            self.obj.x = MAP_RENDER_OFFSET_X + TILE_SIZE
+        local leftEdge = MAP_RENDER_OFFSET_X + TILE_SIZE
+        if self.obj.x <= leftEdge then 
+            self.obj.x = leftEdge
             self.dead = true
         end
     elseif self.direction == 'right' then
         self.obj.x = self.obj.x + d
-        if self.obj.x + self.obj.width >= VIRTUAL_WIDTH - TILE_SIZE * 2 then
-            self.obj.x = VIRTUAL_WIDTH - TILE_SIZE * 2 - self.obj.width
+        local rightEdge = VIRTUAL_WIDTH - TILE_SIZE * 2
+        if self.obj.x + self.obj.width >= rightEdge then
+            self.obj.x = rightEdge - self.obj.width
             self.dead = true
         end
     end
@@ -62,7 +65,7 @@ function Projectile:update(dt)
 
     self.distance = self.distance + d
 
-    if self.distance > PROJECTILE_MAX_TILES*TILE_SIZE then
+    if self.distance > PROJECTILE_MAX_TILES * TILE_SIZE then
         self.dead = true
     end
 end
