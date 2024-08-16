@@ -1,5 +1,5 @@
 --[[
-    ISPPJ1 2024
+    ISPPV1 2024
     Study Case: Ultimate Fantasy (RPG)
 
     Author: Alejandro Mujics

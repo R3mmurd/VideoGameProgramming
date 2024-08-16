@@ -1,5 +1,5 @@
 --[[
-    ISPPJ1 2024
+    ISPPV1 2024
     Study Case: The Legend of the Princess (ARPG)
 
     Author: Colton Ogden

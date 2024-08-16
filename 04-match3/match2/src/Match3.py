@@ -1,5 +1,5 @@
 """
-ISPPJ1 2024
+ISPPV1 2024
 Study Case: Match-3
 
 Author: Alejandro Mujica
@@ -9,7 +9,7 @@ This file contains the class Match3 as a specialization of gale.Game
 """
 
 """
-ISPPJ1 2024
+ISPPV1 2024
 Study Case: Match-3
 
 Author: Alejandro Mujica

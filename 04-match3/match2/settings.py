@@ -1,5 +1,5 @@
 """
-ISPPJ1 2024
+ISPPV1 2024
 Study Case: Match-3
 
 Author: Alejandro Mujica

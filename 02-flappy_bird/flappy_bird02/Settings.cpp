@@ -1,5 +1,5 @@
 /*
-    ISPPJ1 2024
+    ISPPV1 2024
     Study Case: Flappy Bird
 
     Author: Alejandro Mujica
