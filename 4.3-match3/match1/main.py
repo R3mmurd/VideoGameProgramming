@@ -1,5 +1,5 @@
 """
-ISPPJ1 2023
+ISPPV1 2023
 Study Case: Match-3
 
 Author: Alejandro Mujica
@@ -8,7 +8,7 @@ alejandro.j.mujic4@gmail.com
 This file contains the main program to run the game.
 """
 """
-ISPPJ1 2023
+ISPPV1 2023
 Study Case: Match-3
 
 Author: Alejandro Mujica
