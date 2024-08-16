@@ -241,7 +241,7 @@ end
 function BattleState:triggerStartingDialogue()
     self.battleStarted = true
     --
-    -- display a dialogue first for the pokemon that appeared, then the one being sent out
+    -- display a dialogue first for the creatures horde that appeared, then the one being sent out
     stateStack:push(BattleMessageState(self, 'A wild creatures horde appeared!',
     
     -- callback for when the battle message is closed
