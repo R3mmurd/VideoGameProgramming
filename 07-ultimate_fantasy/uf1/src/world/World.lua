@@ -56,8 +56,6 @@ function World:move(direction)
         end
     end
 
-    local xs, ys = {}, {}
-    
     if direction == 'right' and self.current_region == 'center' then
         next_region = 'east'
         x = d

@@ -63,8 +63,7 @@ ENTITY_DEFS = {
                 HPIV = 4,
                 attackIV = 5,
                 defenseIV = 5,
-                magicIV = 0,
-                level = 1
+                magicIV = 0
             },
             actions = {
                 {
@@ -101,8 +100,7 @@ ENTITY_DEFS = {
                 HPIV = 2,
                 attackIV = 7,
                 defenseIV = 4,
-                magicIV = 1,
-                level = 1
+                magicIV = 1
             },
             actions = {
                 {
@@ -153,8 +151,7 @@ ENTITY_DEFS = {
                 HPIV = 2,
                 attackIV = 2,
                 defenseIV = 2,
-                magicIV = 7,
-                level = 1
+                magicIV = 7
             },
             actions = {
                 {
@@ -205,8 +202,7 @@ ENTITY_DEFS = {
                 HPIV = 2,
                 attackIV = 3,
                 defenseIV = 2,
-                magicIV = 8,
-                level = 1
+                magicIV = 8
             },
             actions = {
                 {
