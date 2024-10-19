@@ -50,7 +50,7 @@ function update(self, dt)
 		local linear_speed = vmath.length(linear_velocity)
 		local angular_speed = vmath.length(angular_velocity)
 
-		if linear_speed < 20 and  angular_speed < 5 then
+		if linear_speed < 30 and  angular_speed < 10 then
 			self.idle_frames = self.idle_frames + 1
 			
 			if self.idle_frames > 100 then
