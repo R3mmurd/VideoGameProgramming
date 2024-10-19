@@ -54,7 +54,7 @@ function update(self, dt)
 				msg.post(".", "acquire_input_focus")
 				go.set_position(self.initial_position, "parrot")
 				go.set_rotation(self.initial_rotation, "parrot")
-				self.finging = false
+				self.flinging = false
 				self.camera_target = self.initial_position - self.camera_offset
 			end
 		else
